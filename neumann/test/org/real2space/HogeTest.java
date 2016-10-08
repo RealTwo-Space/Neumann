@@ -14,17 +14,17 @@ public class HogeTest {
     @Before
     public void setUp() throws Exception {
         System.out.println ("setup");
-        hoge = new Hoge ("aiueo");
+        hoge = new Hoge ("created Hoge instance");
     }
 
     @After
     public void tearDown() throws Exception {
-        System.out.println ("test");
+        System.out.println ("tear down");
     }
 
     @Test
     public void show() throws Exception {
-        System.out.println ("testest");
+        System.out.println ("invoked show");
         hoge.show();
     }
 
