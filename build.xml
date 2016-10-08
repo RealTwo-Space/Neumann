@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <project name="java-junit-travis-project" default="test" basedir=".">
     <property name="main.build.dir" value="build/main" />
-    <property name="main.src.dir" value="src" />
+    <property name="main.src.dir" value="neumann/src" />
     <property name="test.build.dir" value="build/test" />
-    <property name="test.src.dir" value="src" />
+    <property name="test.src.dir" value="neumann/test" />
     <path id="classpath.base">
         <fileset dir="." includes="**/*.jar" />
     </path>
@@ -14,7 +14,9 @@
         <pathelement location="${main.build.dir}"/>
         <path refid="classpath.base" />
     </path>
-    <target name="test" depends="run, clean" />
+    <target name="test" depends="run, clean">
+        <echo message="Start Unit Test."/>
+    </target>
     <target name="compile">
         <mkdir dir="${main.build.dir}"/>
         <javac srcdir="${main.src.dir}" destdir="${main.build.dir}" includeantruntime="false">
