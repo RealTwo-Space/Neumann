@@ -1,0 +1,11 @@
+#
+#
+# travis ci settings
+#
+#
+
+language: java
+jdk:
+  - openjdk8
+  - openjdk7
+
