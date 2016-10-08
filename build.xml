@@ -15,7 +15,6 @@
         <path refid="classpath.base" />
     </path>
     <target name="test" depends="run, clean">
-        <echo message="Start Unit Test."/>
     </target>
     <target name="compile">
         <mkdir dir="${main.build.dir}"/>

@@ -6,15 +6,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by sryosuke on 2016/10/09.
- */
+
 public class HogeTest {
     private Hoge hoge;
     @Before
     public void setUp() throws Exception {
         System.out.println ("setup");
-        hoge = new Hoge ("created Hoge instance");
+        hoge = new Hoge ("Hoge's method - show -");
     }
 
     @After
@@ -24,7 +22,6 @@ public class HogeTest {
 
     @Test
     public void show() throws Exception {
-        System.out.println ("invoked show");
         hoge.show();
     }
 
