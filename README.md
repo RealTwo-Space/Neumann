@@ -5,8 +5,10 @@ This is includes:
 - Congraph  =>  Machine learning library
 
 ## Build Status
-- master 
-- dev [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=dev)](https://travis-ci.org/RealTwo-Space/Neumann)
+
+| master | dev |
+|:------:|:---:|
+| [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=master)](https://travis-ci.org/RealTwo-Space/Neumann) |  [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=dev)](https://travis-ci.org/RealTwo-Space/Neumann)   |
 
 ## Test Environment
 - Travis CI
