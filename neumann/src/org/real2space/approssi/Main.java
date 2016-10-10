@@ -10,4 +10,9 @@ package org.real2space.approssi;
 public class Main {
     public void test () {
     }
+
+    public static void main (String[] args) {
+        Ryosuke r = new Ryosuke(199289193);
+        System.out.println(r);
+    }
 }
