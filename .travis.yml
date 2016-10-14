@@ -9,7 +9,6 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk7
-  - openjdk6
 
 # excute tests in only master and dev branch
 branches:
