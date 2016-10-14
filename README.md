@@ -1,5 +1,5 @@
 # Project - Neumann 
-This project is includes: (libraries)
+This project includes: (libraries)
 
 | Approssi | Bravoplot | Congraph | DrDeep |
 | :------: | :-------: | :------: | :----: |
