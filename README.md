@@ -1,8 +1,9 @@
 # Project - Neumann 
-This is includes:
-- Approssi  =>  Numerical calculation library
-- Bravoplot =>  Plot library
-- Congraph  =>  Machine learning library
+This project includes: (libraries)
+
+| Approssi | Bravoplot | Congraph | DrDeep |
+| :------: | :-------: | :------: | :----: |
+| Numerical Calculation | Graphcis | Data Flow Graph | Machine Leaning |
 
 ## Build Status
 
@@ -49,14 +50,14 @@ $ git clone https://github.com/RealTwo-Space/Neumann.git
 
 - boot IntelliJ
 
-- click File -> Open on the menu.
+- click File \-\> Open on the menu.
 
 - select Neumann folder
 
-- click file -> Project Structure...
+- click file \-\> Project Structure...
 
-- Project Settings -> Project -> Project SDK -> select java SDK (We are using jdk 1.8)
+- Project Settings \-\> Project \-\> Project SDK \-\> select java SDK (We are using jdk 1.8)
 
-- Project settings -> Module -> Dependencies -> add new library and includes jUnit4 and hamcrest-core in the lib folder to the library.
+- Project settings \-\> Module \-\> Dependencies \-\> add new library and includes jUnit4 and hamcrest-core in the lib folder to the library.
 
 [more information](https://github.com/RealTwo-Space/Information)
