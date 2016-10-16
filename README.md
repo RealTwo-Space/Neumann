@@ -3,7 +3,7 @@ This project includes: (libraries)
 
 | Approssi | Bravoplot | Congraph | DrDeep |
 | :------: | :-------: | :------: | :----: |
-| Numerical Calculation | Graphcis | Data Flow Graph | Machine Leaning |
+| Numerical Calculation | Graphcis | Data Flow Graph | Machine Learning |
 
 ## Build Status
 
