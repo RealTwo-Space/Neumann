@@ -1,17 +1,16 @@
-package org.real2space.approssi;
+package org.real2space.neumann.drdeep;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Project Neumann
  *
  * @author RealTwo-Space
  * @version 0
- * @created 2016/10/10
+ *
+ * created 2016/10/15
  */
 public class MainTest {
     private Main test;
@@ -19,7 +18,7 @@ public class MainTest {
     public void setUp() throws Exception {
         this.test = new Main();
         this.test.test();
-        System.out.println ("approssi test");
+        System.out.println ("drdeep test");
     }
 
     @After
