@@ -13,7 +13,7 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
  * created     2016/11/01
  */
  
-public class BigInt implements OrderedRing<BigInt> {
+public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
     private BigInteger value;
     
     public static final BigInt ZERO = new BigInt (BigInteger.ZERO);

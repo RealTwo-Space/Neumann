@@ -13,7 +13,7 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
  * created     2016/11/01
  */
  
-public class Int16 implements OrderedRing<Int16> {
+public class Int16 implements OrderedRing<Int16>, Quotient<Int16> {
     private short value;
     
     public static final Int16 ZERO = new Int16 (0);
@@ -25,7 +25,7 @@ public class Int16 implements OrderedRing<Int16> {
     }
     
     public Int16 (int value) {
-        this.valule = (short)value;
+        this.value = (short)value;
     }
     
     public short getValue () {

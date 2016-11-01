@@ -13,7 +13,7 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
  * created     2016/11/01
  */
  
-public class Int64 {
+public class Int64 extends OrderedRing<Int64>, Quotient<Int64> {
     private long value;
     
     public static final Int64 ZERO = new Int64 (0);
