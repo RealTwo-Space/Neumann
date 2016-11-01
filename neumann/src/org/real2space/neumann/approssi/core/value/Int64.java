@@ -1,6 +1,10 @@
 package org.real2space.neumann.approssi.core.value;
 
 import java.lang.ArithmeticException;
+import java.lang.CloneNotSupportedException;
+import java.lang.InternalError;
+import org.real2space.neumann.approssi.core.structure.OrderedRing;
+import org.real2space.neumann.approssi.core.structure.Quotient;
 /**
  * Project Neumann
  *
@@ -104,7 +108,7 @@ public class Int64 {
     }
     
     public void mod (long other) {
-        this.value %= other.value;
+        this.value %= other;
     }
     
     public static Int64 mod (Int64 a, Int64 b) {
@@ -118,7 +122,7 @@ public class Int64 {
     // pow : Exception
     public void pow (Int64 other) {
         if (other.value < 0) {
-            throws new ArithmeticException("Cannot pow by Negative number (" + other.value + ").");
+            throw new ArithmeticException("Cannot pow by Negative number (" + other.value + ").");
         }
         
         long result = 1;
@@ -130,7 +134,7 @@ public class Int64 {
     
     public void pow (long other) {
         if (other < 0) {
-            throws new ArithmeticException("Cannot pow by Negative number (" + other + ").");
+            throw new ArithmeticException("Cannot pow by Negative number (" + other + ").");
         }
         
         long result = 1;
@@ -160,11 +164,11 @@ public class Int64 {
         return (this.value == other);
     }
     
-    public static Int64 isET (Int64 a, Int64 b) {
+    public static boolean isET (Int64 a, Int64 b) {
         return (a.value == b.value);
     }
     
-    public static Int64 isET (long a, long b) {
+    public static boolean isET (long a, long b) {
         return (a == b);
     }
     
@@ -241,7 +245,7 @@ public class Int64 {
             return (Int64)super.clone();
         }
         catch (CloneNotSupportedException e) {
-            throws e;
+            throw new InternalError (e.toString());
         }
     }
     

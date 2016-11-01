@@ -1,6 +1,9 @@
 package org.real2space.neumann.approssi.core.value;
 
+import java.lang.CloneNotSupportedException;
+import java.lang.InternalError;
 import java.math.BigDecimal;
+import org.real2space.neumann.approssi.core.structure.OrderedField;
 /**
  * Project Neumann
  *
@@ -33,11 +36,11 @@ public class BigFloat implements OrderedField<BigFloat> {
     }
     
     public BigFloat opposite () {
-        return new BigFloat (this.value.multiply(NEGATIVE_ONE));
+        return new BigFloat (this.multiply(NEGATIVE_ONE));
     }
     
     public BigFloat inverse () {
-        return new BigFloat (1.0 / this.value);
+        return new BigFloat (ONE.divide(this));
     }
     
 
@@ -125,11 +128,11 @@ public class BigFloat implements OrderedField<BigFloat> {
     
     // divide
     public void divide (BigFloat other) {
-        this.value = other.value.divide(other.value);
+        this.value = this.value.divide(other.value);
     }
     
     public void divide (BigDecimal other) {
-        this.value = other.value.divide(other);
+        this.value = this.divide(other);
     }
  
     public void divide (String other) {
@@ -179,30 +182,46 @@ public class BigFloat implements OrderedField<BigFloat> {
     
     // pow : Exception
     public void pow (BigFloat other) {
+        /*
         this.value = this.value.pow(other.value);
+        */
     }
     
     public void pow (BigDecimal other) {
+        /*
         this.value = this.value.pow(other);
+        */
     }
     
     public void pow (String other) {
+        /*
         this.pow (new BigFloat (other));
+        */
     }
     
     public static BigFloat pow (BigFloat a, BigFloat b) {
+        /*
         BigFloat result = new BigFloat (a.value);
         result.pow(b);
         
         return result;
+        */
+        return ONE;
     }
     
     public static BigFloat pow (BigDecimal a, BigDecimal b) {
+        /*
         return BigFloat.pow(new BigFloat(a), new BigFloat(b));
+        */
+        
+        return ONE;
     }
     
     public static BigFloat pow (String a, String b) {
+        /*
         return BigFloat.pow(new BigFloat (a), new BigFloat(b));
+        */
+        return ONE;
     }
     
     // is equal to
@@ -338,11 +357,11 @@ public class BigFloat implements OrderedField<BigFloat> {
             return out;
         }
         catch (CloneNotSupportedException e) {
-            throw e;
+            throw new InternalError (e.toString());
         }
     }
     
     public String toString () {
-        return this.value.toString + "(BigFloat)";
+        return this.value.toString() + "(BigFloat)";
     }
 }

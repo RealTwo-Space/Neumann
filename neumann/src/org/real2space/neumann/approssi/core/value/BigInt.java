@@ -1,6 +1,10 @@
 package org.real2space.neumann.approssi.core.value;
 
 import java.math.BigInteger;
+import java.lang.CloneNotSupportedException;
+import java.lang.InternalError;
+import org.real2space.neumann.approssi.core.structure.OrderedRing;
+import org.real2space.neumann.approssi.core.structure.Quotient;
 /**
  * Project Neumann
  *
@@ -33,7 +37,7 @@ public class BigInt implements OrderedRing<BigInt> {
     }
     
     public BigInt opposite () {
-        return new BigInt (this.value.multiply(NEGATIVE_ONE));
+        return new BigInt (this.multiply(NEGATIVE_ONE));
     }
 
     // add
@@ -120,11 +124,11 @@ public class BigInt implements OrderedRing<BigInt> {
     
     // divide
     public void divide (BigInt other) {
-        this.value = other.value.divide(other.value);
+        this.value = this.value.divide(other.value);
     }
     
     public void divide (BigInteger other) {
-        this.value = other.value.divide(other);
+        this.value = this.divide(other);
     }
  
     public void divide (String other) {
@@ -174,30 +178,47 @@ public class BigInt implements OrderedRing<BigInt> {
     
     // pow : Exception
     public void pow (BigInt other) {
+        /*
         this.value = this.value.pow(other.value);
+        */
     }
     
     public void pow (BigInteger other) {
+        /*
         this.value = this.value.pow(other);
+        */
     }
     
     public void pow (String other) {
+        /*
         this.pow (new BigInt (other));
+        */
     }
     
     public static BigInt pow (BigInt a, BigInt b) {
+        /*
         BigInt result = new BigInt (a.value);
         result.pow(b);
         
         return result;
+        */
+        return ONE;
     }
     
     public static BigInt pow (BigInteger a, BigInteger b) {
+        /*
         return BigInt.pow(new BigInt(a), new BigInt(b));
+        */
+        
+        return ONE;
     }
     
     public static BigInt pow (String a, String b) {
+        /*
         return BigInt.pow(new BigInt (a), new BigInt(b));
+        */
+        
+        return ONE;
     }
     
     // is equal to
@@ -333,11 +354,11 @@ public class BigInt implements OrderedRing<BigInt> {
             return out;
         }
         catch (CloneNotSupportedException e) {
-            throw e;
+            throw new InternalError (e.toString());
         }
     }
     
     public String toString () {
-        return this.value.toString + "(BigInt)";
+        return this.value.toString() + "(BigInt)";
     }
 }

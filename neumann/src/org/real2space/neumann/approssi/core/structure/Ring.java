@@ -9,7 +9,7 @@ package org.real2space.neumann.approssi.core.structure;
  * created    2016/11/01
  */
  
-public interface Ring<R> extends GroupAditive<R>, Residue<R> {
+public interface Ring<R> extends GroupAdditive<R>, Residue<R> {
     /*
      * Multiply this by "other"
      */

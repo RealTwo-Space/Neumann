@@ -1,6 +1,9 @@
 package org.real2space.neumann.approssi.core.value;
 
+import java.lang.CloneNotSupportedException;
+import java.lang.InternalError;
 import java.lang.Math;
+import org.real2space.neumann.approssi.core.structure.OrderedField;
 /**
  * Project Neumann
  *
@@ -107,7 +110,7 @@ public class Float64 implements OrderedField<Float64> {
     }
     
     public void mod (double other) {
-        this.value %= other.value;
+        this.value %= other;
     }
     
     public static Float64 mod (Float64 a, Float64 b) {
@@ -147,11 +150,11 @@ public class Float64 implements OrderedField<Float64> {
         return (this.value == other);
     }
     
-    public static Float64 isET (Float64 a, Float64 b) {
+    public static boolean isET (Float64 a, Float64 b) {
         return (a.value == b.value);
     }
     
-    public static Float64 isET (double a, double b) {
+    public static boolean isET (double a, double b) {
         return (a == b);
     }
     
@@ -228,7 +231,7 @@ public class Float64 implements OrderedField<Float64> {
             return (Float64)super.clone();
         }
         catch (CloneNotSupportedException e) {
-            return e;
+            throw new InternalError (e.toString());
         }
     }
 

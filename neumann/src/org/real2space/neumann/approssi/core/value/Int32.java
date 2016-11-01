@@ -1,7 +1,10 @@
 package org.real2space.neumann.approssi.core.value;
 
 import java.lang.ArithmeticException;
-
+import java.lang.CloneNotSupportedException;
+import java.lang.InternalError;
+import org.real2space.neumann.approssi.core.structure.OrderedRing;
+import org.real2space.neumann.approssi.core.structure.Quotient;
 /**
  * Project Neumann
  *
@@ -105,7 +108,7 @@ public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
     }
     
     public void mod (int other) {
-        this.value %= other.value;
+        this.value %= other;
     }
     
     public static Int32 mod (Int32 a, Int32 b) {
@@ -119,7 +122,7 @@ public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
     // pow : Exception
     public void pow (Int32 other) {
         if (other.value < 0) {
-            throws new ArithmeticException("Cannot pow by Negative number (" + other.value + ").");
+            throw new ArithmeticException("Cannot pow by Negative number (" + other.value + ").");
         }
         
         int result = 1;
@@ -131,7 +134,7 @@ public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
     
     public void pow (int other) {
         if (other < 0) {
-            throws new ArithmeticException("Cannot pow by Negative number (" + other + ").");
+            throw new ArithmeticException("Cannot pow by Negative number (" + other + ").");
         }
         
         int result = 1;
@@ -161,11 +164,11 @@ public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
         return (this.value == other);
     }
     
-    public static Int32 isET (Int32 a, Int32 b) {
+    public static boolean isET (Int32 a, Int32 b) {
         return (a.value == b.value);
     }
     
-    public static Int32 isET (int a, int b) {
+    public static boolean isET (int a, int b) {
         return (a == b);
     }
     
@@ -242,7 +245,7 @@ public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
             return (Int32)super.clone();
         }
         catch (CloneNotSupportedException e) {
-            return e;
+            throw new InternalError (e.toString());
         }
     }
 

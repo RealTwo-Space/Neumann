@@ -1,6 +1,10 @@
 package org.real2space.neumann.approssi.core.value;
 
 import java.lang.ArithmeticException;
+import java.lang.CloneNotSupportedException;
+import java.lang.InternalError;
+import org.real2space.neumann.approssi.core.structure.OrderedRing;
+import org.real2space.neumann.approssi.core.structure.Quotient;
 /**
  * Project Neumann
  *
@@ -18,6 +22,10 @@ public class Int16 implements OrderedRing<Int16> {
     
     public Int16 (short value) {
         this.value = value;
+    }
+    
+    public Int16 (int value) {
+        this.valule = (short)value;
     }
     
     public short getValue () {
@@ -104,7 +112,7 @@ public class Int16 implements OrderedRing<Int16> {
     }
     
     public void mod (short other) {
-        this.value %= other.value;
+        this.value %= other;
     }
     
     public static Int16 mod (Int16 a, Int16 b) {
@@ -118,7 +126,7 @@ public class Int16 implements OrderedRing<Int16> {
     // pow : Exception
     public void pow (Int16 other) {
         if (other.value < 0) {
-            throws new ArithmeticException("Cannot pow by Negative number (" + other.value + ").");
+            throw new ArithmeticException("Cannot pow by Negative number (" + other.value + ").");
         }
         
         short result = 1;
@@ -130,7 +138,7 @@ public class Int16 implements OrderedRing<Int16> {
     
     public void pow (short other) {
         if (other < 0) {
-            throws new ArithmeticException("Cannot pow by Negative number (" + other + ").");
+            throw new ArithmeticException("Cannot pow by Negative number (" + other + ").");
         }
         
         short result = 1;
@@ -160,11 +168,11 @@ public class Int16 implements OrderedRing<Int16> {
         return (this.value == other);
     }
     
-    public static Int16 isET (Int16 a, Int16 b) {
+    public static boolean isET (Int16 a, Int16 b) {
         return (a.value == b.value);
     }
     
-    public static Int16 isET (short a, short b) {
+    public static boolean isET (short a, short b) {
         return (a == b);
     }
     
@@ -241,7 +249,7 @@ public class Int16 implements OrderedRing<Int16> {
             return (Int16)super.clone();
         }
         catch (CloneNotSupportedException e) {
-            return e;
+            throw new InternalError (e.toString());
         }
     }
     

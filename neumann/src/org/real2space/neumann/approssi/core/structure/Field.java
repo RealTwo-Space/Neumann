@@ -17,5 +17,5 @@ public interface Field<F> {
     /*
      * Returns an inverse of this member.
      */ 
-    public E inverse ();
+    public F inverse ();
 }
