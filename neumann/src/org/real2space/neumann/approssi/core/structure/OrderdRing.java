@@ -9,6 +9,6 @@ package org.real2space.neumann.approssi.core.structure;
  * created    2016/11/01
  */
 
-public OrderedRing<R> extends Ring<R>, Order<R> {
+public interface OrderedRing<R> extends Ring<R>, Order<R> {
     
 }
