@@ -1,5 +1,7 @@
 package org.real2space.neumann.approssi.data.vectorspace.value;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -11,5 +13,8 @@ import static org.junit.Assert.*;
  *          created 11/1/16
  */
 public class MainTest {
-
+    @Test
+    public void doTest () throws Exception {
+        System.out.println("Vec val test");
+    }
 }

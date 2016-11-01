@@ -1,5 +1,7 @@
 package org.real2space.neumann.approssi.data.vectorspace.structure;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -12,4 +14,8 @@ import static org.junit.Assert.*;
  */
 public class MainTest {
 
+    @Test
+    public void doTest () throws Exception {
+        System.out.println("Vec struct test");
+    }
 }
