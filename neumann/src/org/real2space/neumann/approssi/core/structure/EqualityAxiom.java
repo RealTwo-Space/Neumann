@@ -8,9 +8,9 @@ package org.real2space.neumann.approssi.core.structure;
  *
  * created    2016/11/01
  */
-public interface Power<G> {
+public interface EqualityAxiom<E> {
     /*
-     * Makes this value to the power of "exponent".
-     */
-    public void pow (G exponent);
+     * Equal to "other"
+     */ 
+    public boolean isET (E other);
 }
