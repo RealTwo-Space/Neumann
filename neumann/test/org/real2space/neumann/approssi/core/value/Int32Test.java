@@ -1,6 +1,7 @@
 package org.real2space.neumann.approssi.core.value;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Project Neumann
@@ -10,5 +11,9 @@ import static org.junit.Assert.*;
  *          created     2016/11/01
  */
 public class Int32Test {
+    @Test
+    public void test () throws Exception {
+        System.out.println("Int32 test");
+    }
 
 }
