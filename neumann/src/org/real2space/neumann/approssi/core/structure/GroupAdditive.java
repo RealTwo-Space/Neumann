@@ -8,20 +8,20 @@ package org.real2space.neumann.approssi.core.structure;
  *
  * created    2016/11/01
  */
-public interface GroupAdditive<G> extends Power<G> {
+public interface GroupAdditive<G> extends EqualityAxiom<G>, Power<G> {
     /*
-     * return opposite
+     * Returns opposite of this member
      */
     public G opposite ();
     
     /*
-     * add other
+     * Add "other" to this member
      */
     public void add (G other);
     
     /*
-     * minus other
+     * Add opposite of "other" to this member
      */
-    public void minus (G other);
+    public void subtract (G other);
     
 }
