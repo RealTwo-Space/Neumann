@@ -1,5 +1,6 @@
 package org.real2space.neumann.approssi.core.structure;
 
+import java.lang.Cloneable;
 /**
  * Project Neumann
  *
@@ -8,7 +9,7 @@ package org.real2space.neumann.approssi.core.structure;
  *
  * created    2016/11/01
  */
-public interface GroupAdditive<G> extends EqualityAxiom<G>, Power<G> {
+public interface GroupAdditive<G> extends EqualityAxiom<G>, Power<G>, Cloneable {
     /*
      * Returns opposite of this member
      */
