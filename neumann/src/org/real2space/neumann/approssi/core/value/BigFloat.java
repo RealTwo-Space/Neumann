@@ -36,11 +36,14 @@ public class BigFloat implements OrderedField<BigFloat> {
     }
     
     public BigFloat opposite () {
-        return new BigFloat (this.multiply(NEGATIVE_ONE));
+        BigFloat result = this.clone();
+        result.multiply("-1.0");
+        return result;
     }
     
     public BigFloat inverse () {
-        return new BigFloat (ONE.divide(this));
+        return BigFloat.divide(BigFloat.ONE, this);
+
     }
     
 
@@ -132,7 +135,7 @@ public class BigFloat implements OrderedField<BigFloat> {
     }
     
     public void divide (BigDecimal other) {
-        this.value = this.divide(other);
+        this.value = this.value.divide(other);
     }
  
     public void divide (String other) {
@@ -353,7 +356,7 @@ public class BigFloat implements OrderedField<BigFloat> {
     public BigFloat clone() {
         try {
             BigFloat out = (BigFloat)super.clone ();
-            out.setValue (this.value.clone());
+            out.setValue (new BigDecimal(this.value.toString()));
             return out;
         }
         catch (CloneNotSupportedException e) {

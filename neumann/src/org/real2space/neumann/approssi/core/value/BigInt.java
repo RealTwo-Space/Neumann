@@ -37,7 +37,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
     }
     
     public BigInt opposite () {
-        return new BigInt (this.multiply(NEGATIVE_ONE));
+        return BigInt.multiply(this, BigInt.NEGATIVE_ONE);
     }
 
     // add
@@ -128,7 +128,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
     }
     
     public void divide (BigInteger other) {
-        this.value = this.divide(other);
+        this.value = this.value.divide(other);
     }
  
     public void divide (String other) {
@@ -350,7 +350,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
     public BigInt clone() {
         try {
             BigInt out = (BigInt)super.clone ();
-            out.setValue (this.value.clone());
+            out.setValue (new BigInteger(this.value.toString()));
             return out;
         }
         catch (CloneNotSupportedException e) {
