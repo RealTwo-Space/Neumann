@@ -15,16 +15,24 @@ import org.real2space.neumann.approssi.core.structure.OrderedField;
 public class BigFloat implements OrderedField<BigFloat> {
     private BigDecimal value;
     
-    public static final BigFloat ZERO = new BigFloat (BigDecimal.ZERO);
-    public static final BigFloat ONE = new BigFloat (BigDecimal.ONE);
-    public static final BigFloat NEGATIVE_ONE = new BigFloat ("-1.0");
-    
     public BigFloat (BigDecimal value) {
         this.value = value;
     }
     
     public BigFloat (String number) {
         this.value = new BigDecimal (number);
+    }
+
+    public static BigFloat ZERO () {
+        return new BigFloat(BigDecimal.ZERO);
+    }
+
+    public static BigFloat ONE () {
+        return new BigFloat(BigDecimal.ONE);
+    }
+
+    public static BigFloat NEGATIVE_ONE () {
+        return new BigFloat("-1.0");
     }
     
     public BigDecimal getValue () {
@@ -42,7 +50,7 @@ public class BigFloat implements OrderedField<BigFloat> {
     }
     
     public BigFloat inverse () {
-        return BigFloat.divide(BigFloat.ONE, this);
+        return BigFloat.divide(BigFloat.ONE(), this);
 
     }
     
@@ -209,7 +217,7 @@ public class BigFloat implements OrderedField<BigFloat> {
         
         return result;
         */
-        return ONE;
+        return BigFloat.ONE();
     }
     
     public static BigFloat pow (BigDecimal a, BigDecimal b) {
@@ -217,14 +225,14 @@ public class BigFloat implements OrderedField<BigFloat> {
         return BigFloat.pow(new BigFloat(a), new BigFloat(b));
         */
         
-        return ONE;
+        return BigFloat.ONE();
     }
     
     public static BigFloat pow (String a, String b) {
         /*
         return BigFloat.pow(new BigFloat (a), new BigFloat(b));
         */
-        return ONE;
+        return BigFloat.ONE();
     }
     
     // is equal to

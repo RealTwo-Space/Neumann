@@ -15,12 +15,20 @@ import org.real2space.neumann.approssi.core.structure.OrderedField;
 public class Float32 implements OrderedField<Float32> {
     private float value;
     
-    public static final Float32 ZERO = new Float32 (0f);
-    public static final Float32 ONE = new Float32 (1f);
-    public static final Float32 NEGATIVE_ONE = new Float32 (-1f);
-    
     public Float32 (float value) {
         this.value = value;
+    }
+
+    public static Float32 ZERO () {
+        return new Float32(0f);
+    }
+
+    public static Float32 ONE () {
+        return new Float32(1f);
+    }
+
+    public static Float32 NEGATIVE_ONE () {
+        return new Float32(-1f);
     }
     
     public float getValue () {

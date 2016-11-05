@@ -16,16 +16,24 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
 public class Int16 implements OrderedRing<Int16>, Quotient<Int16> {
     private short value;
     
-    public static final Int16 ZERO = new Int16 (0);
-    public static final Int16 ONE = new Int16 (1);
-    public static final Int16 NEGATIVE_ONE = new Int16 (-1);
-    
     public Int16 (short value) {
         this.value = value;
     }
     
     public Int16 (int value) {
         this.value = (short)value;
+    }
+
+    public static Int16 ZERO () {
+        return new Int16(0);
+    }
+
+    public static Int16 ONE () {
+        return new Int16(1);
+    }
+
+    public static Int16 NEGATIVE_ONE () {
+        return new Int16(-1);
     }
     
     public short getValue () {

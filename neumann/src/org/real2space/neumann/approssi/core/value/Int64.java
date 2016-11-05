@@ -16,14 +16,22 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
 public class Int64 implements OrderedRing<Int64>, Quotient<Int64> {
     private long value;
     
-    public static final Int64 ZERO = new Int64 (0);
-    public static final Int64 ONE = new Int64 (1);
-    public static final Int64 NEGATIVE_ONE = new Int64 (-1);
-    
     public Int64 (long value) {
         this.value = value;
     }
-    
+
+    public static Int64 ZERO () {
+        return new Int64(0);
+    }
+
+    public static Int64 ONE () {
+        return new Int64(1);
+    }
+
+    public static Int64 NEGATIVE_ONE () {
+        return new Int64(-1);
+    }
+
     public long getValue () {
         return this.value;
     }
@@ -31,7 +39,6 @@ public class Int64 implements OrderedRing<Int64>, Quotient<Int64> {
     public Int64 opposite () {
         return new Int64 (- this.value);
     }
-    
 
     // add
     public void add (Int64 other) {
@@ -90,15 +97,15 @@ public class Int64 implements OrderedRing<Int64>, Quotient<Int64> {
         this.value /= other.value;
     }
     
-    public void devide (long other) {
+    public void divide (long other) {
         this.value /= other;
     }
     
-    public static Int64 devide (Int64 a, Int64 b) {
+    public static Int64 divide (Int64 a, Int64 b) {
         return new Int64 (a.value / b.value);
     }
     
-    public static Int64 devide (long a, long b) {
+    public static Int64 divide (long a, long b) {
         return new Int64 (a / b);
     }
     
