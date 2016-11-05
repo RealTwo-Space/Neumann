@@ -17,10 +17,10 @@ public class Int32Test {
 
     @Test
     public void constantValue() throws  Exception {
-        Int32 zero = Int32.ZERO;
+        Int32 zero = Int32.ZERO();
         zero.add (1);
         assertEquals(zero.getValue(), 1);
-        assertEquals(Int32.ZERO.getValue(), 0);
+        assertEquals(Int32.ZERO().getValue(), 0);
     }
 
     @Test

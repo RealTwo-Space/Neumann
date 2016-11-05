@@ -16,12 +16,20 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
 public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
     private int value;
     
-    public static final Int32 ZERO = new Int32 (0);
-    public static final Int32 ONE = new Int32 (1);
-    public static final Int32 NEGATIVE_ONE = new Int32 (-1);
-    
     public Int32 (int value) {
         this.value = value;
+    }
+
+    public static Int32 ZERO () {
+        return new Int32(0);
+    }
+
+    public static Int32 ONE () {
+        return new Int32(1);
+    }
+
+    public static Int32 NEGATIVE_ONE () {
+        return new Int32(-1);
     }
     
     public int getValue () {
@@ -31,7 +39,6 @@ public class Int32 implements OrderedRing<Int32>, Quotient<Int32> {
     public Int32 opposite () {
         return new Int32 (- this.value);
     }
-    
 
     // add
     public void add (Int32 other) {

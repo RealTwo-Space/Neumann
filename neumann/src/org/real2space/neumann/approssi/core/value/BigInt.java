@@ -15,17 +15,25 @@ import org.real2space.neumann.approssi.core.structure.Quotient;
  
 public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
     private BigInteger value;
-    
-    public static final BigInt ZERO = new BigInt (BigInteger.ZERO);
-    public static final BigInt ONE = new BigInt (BigInteger.ONE);
-    public static final BigInt NEGATIVE_ONE = new BigInt ("-1");
-    
+
     public BigInt (BigInteger value) {
         this.value = value;
     }
     
     public BigInt (String number) {
         this.value = new BigInteger (number);
+    }
+
+    public static BigInt ZERO () {
+        return new BigInt(BigInteger.ZERO);
+    }
+
+    public static BigInt ONE () {
+        return new BigInt(BigInteger.ONE);
+    }
+
+    public static BigInt NEGATIVE_ONE () {
+        return new BigInt("-1");
     }
     
     public BigInteger getValue () {
@@ -37,7 +45,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
     }
     
     public BigInt opposite () {
-        return BigInt.multiply(this, BigInt.NEGATIVE_ONE);
+        return BigInt.multiply(this, BigInt.NEGATIVE_ONE());
     }
 
     // add
@@ -202,7 +210,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
         
         return result;
         */
-        return ONE;
+        return BigInt.ONE();
     }
     
     public static BigInt pow (BigInteger a, BigInteger b) {
@@ -210,7 +218,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
         return BigInt.pow(new BigInt(a), new BigInt(b));
         */
         
-        return ONE;
+        return BigInt.ONE();
     }
     
     public static BigInt pow (String a, String b) {
@@ -218,7 +226,7 @@ public class BigInt implements OrderedRing<BigInt>, Quotient<BigInt> {
         return BigInt.pow(new BigInt (a), new BigInt(b));
         */
         
-        return ONE;
+        return BigInt.ONE();
     }
     
     // is equal to
