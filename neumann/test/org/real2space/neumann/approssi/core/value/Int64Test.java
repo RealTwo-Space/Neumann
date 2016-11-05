@@ -22,7 +22,7 @@ public class Int64Test {
     @Test
     public void getValue() throws Exception {
         Int64 actual = new Int64(11l);
-        long expected = 1l;
+        long expected = 11l;
         boolean isSame = actual.getValue() == expected;
         assertTrue(isSame);
     }

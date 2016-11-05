@@ -97,15 +97,15 @@ public class Int64 implements OrderedRing<Int64>, Quotient<Int64> {
         this.value /= other.value;
     }
     
-    public void devide (long other) {
+    public void divide (long other) {
         this.value /= other;
     }
     
-    public static Int64 devide (Int64 a, Int64 b) {
+    public static Int64 divide (Int64 a, Int64 b) {
         return new Int64 (a.value / b.value);
     }
     
-    public static Int64 devide (long a, long b) {
+    public static Int64 divide (long a, long b) {
         return new Int64 (a / b);
     }
     
