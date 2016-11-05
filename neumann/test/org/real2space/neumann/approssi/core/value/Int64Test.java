@@ -3,12 +3,11 @@ package org.real2space.neumann.approssi.core.value;
 import static org.junit.Assert.*;
 import org.junit.*;
 /**
- * @author Ryosuke Suzuki
- * @author Ryu Fujiwara
- * @version 0.0
- * @created 2016/11/05
- * @see None
- * @since 0.0
+ * Project Neumann
+ *
+ * @author      RealTwo-Space
+ * @version     0
+ * since        2016/11/04
  */
 public class Int64Test {
     @Test
