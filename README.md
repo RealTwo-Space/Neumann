@@ -7,9 +7,10 @@ This project includes: (libraries)
 
 ## Build Status
 
-| master | dev |
-|:------:|:---:|
-| [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=master)](https://travis-ci.org/RealTwo-Space/Neumann) |  [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=dev)](https://travis-ci.org/RealTwo-Space/Neumann)   |
+| master | dev | coverage |
+|:------:|:---:|:--------:|
+| [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=master)](https://travis-ci.org/RealTwo-Space/Neumann) |  [![Build Status](https://travis-ci.org/RealTwo-Space/Neumann.svg?branch=dev)](https://travis-ci.org/RealTwo-Space/Neumann)   | [![codecov](https://codecov.io/gh/RealTwo-Space/Neumann/branch/dev/graph/badge.svg)](https://codecov.io/gh/RealTwo-Space/Neumann)|
+
 
 Compatible with Java7 and Java8
 ## Test Environment
