@@ -30,6 +30,18 @@ public class Float32 implements OrderedField<Float32> {
     public static Float32 NEGATIVE_ONE () {
         return new Float32(-1f);
     }
+
+    public static Float32 POSITIVE_INFINITY () {
+        return new Float32 (Float.POSITIVE_INFINITY);
+    }
+
+    public static Float32 NEGATIVE_INFINITY () {
+        return new Float32 (Float.NEGATIVE_INFINITY);
+    }
+
+    public static Float32 NaN() {
+        return new Float32 (Float.NaN);
+    }
     
     public float getValue () {
         return this.value;

@@ -30,6 +30,18 @@ public class Float64 implements OrderedField<Float64> {
     public static Float64 NEGATIVE_ONE () {
         return new Float64(-1.0);
     }
+
+    public static Float64 POSITIVE_INFINITY () {
+        return new Float64(Double.POSITIVE_INFINITY);
+    }
+
+    public static Float64 NEGATIVE_INFINITY () {
+        return new Float64(Double.NEGATIVE_INFINITY);
+    }
+
+    public static Float64 NaN () {
+        return new Float64(Double.NaN);
+    }
     
     public double getValue () {
         return this.value;
