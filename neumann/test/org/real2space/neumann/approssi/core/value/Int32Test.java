@@ -3,8 +3,6 @@ package org.real2space.neumann.approssi.core.value;
 import static org.junit.Assert.*;
 
 import org.junit.*;
-import org.omg.CORBA.INTERNAL;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  * Project Neumann
