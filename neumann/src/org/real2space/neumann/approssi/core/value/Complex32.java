@@ -19,10 +19,6 @@ public class Complex32 implements Complex<Float> {
         this.im = im;
     }
     
-    public Complex32 (float abs, float arg) {
-        
-    }
-    
     public final Float re () {
         return this.re;
     }
@@ -36,23 +32,23 @@ public class Complex32 implements Complex<Float> {
     }
     
     public void add (Complex<Float> other) {
-        this.re += other.re;
-        this.im += other.im;
+        this.re += other.re();
+        this.im += other.im();
     }
     
     public void subtract (Complex<Float> other) {
-        this.re -= this.other;
-        this.im -= this.other;
+        this.re -= other.re();
+        this.im -= other.im();
     }
     
     public void multiply (Complex<Float> other) {
-        this.re = this.re * other.re - this.im * other.im;
-        this.im = this.re * other.im + this.im * other.re;
+        this.re = this.re * other.re() - this.im * other.im();
+        this.im = this.re * other.im() + this.im * other.re();
     }
     
     public void divide (Complex<Float> other) {
-        this.re = (this.re * other.re + this.im * other.im) / (other.re * other.re + other.im * other.im);
-        this.re = (this.im * other.re - this.re * other.im) / (other.re * other.re + other.im * other.im);
+        this.re = (this.re() * other.re() + this.im() * other.im()) / (other.re() * other.re() + other.im() * other.im());
+        this.re = (this.im() * other.re() - this.re() * other.im()) / (other.re() * other.re() + other.im() * other.im());
     }
     
     public Float abs () {
