@@ -7,5 +7,7 @@ package org.real2space.neumann.approssi.core.value;
  * @version 0
  *          created     2016/11/14
  */
-public interface Vector {
+ 
+public class MatrixC64 {
+    
 }
