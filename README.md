@@ -1,9 +1,9 @@
 # Project - Neumann 
 This project includes: (libraries)
 
-| Approssi | Bravoplot | Congraph | DrDeep |
-| :------: | :-------: | :------: | :----: |
-| Numerical Calculation | Graphcis | Data Flow Graph | Machine Learning |
+| Approssi | Bravoplot | Congraph | DrDeep | Evaris |
+| :------: | :-------: | :------: | :----: | :----: |
+| Numerical Calculation | Graphics | Data Flow Graph | Machine Learning | Algebra |
 
 ## Build Status
 
