@@ -15,13 +15,13 @@ public interface Complex<E> extends DeepCopy <Complex<E>>{
      * Get real part
      * @return E
      */
-    public final E re ();
+    public E re ();
     
     /**
      * Get imaginary part.
      * @return E
      */
-    public final E im ();
+    public E im ();
     
     /**
      * Get conjugate of this.
