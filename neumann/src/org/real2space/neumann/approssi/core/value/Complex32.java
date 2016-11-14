@@ -42,13 +42,23 @@ public class Complex32 implements Complex<Float> {
     }
     
     public void multiply (Complex<Float> other) {
-        this.re = this.re * other.re() - this.im * other.im();
-        this.im = this.re * other.im() + this.im * other.re();
+        float oim = other.im ();
+        float ore = other.re ();
+        float tim = this.im;
+        float tre = this.re;
+        
+        this.re = tre * ore - tim * oim;
+        this.im = tre * oim + tim * ore;
     }
     
     public void divide (Complex<Float> other) {
-        this.re = (this.re() * other.re() + this.im() * other.im()) / (other.re() * other.re() + other.im() * other.im());
-        this.re = (this.im() * other.re() - this.re() * other.im()) / (other.re() * other.re() + other.im() * other.im());
+        float oim = other.im ();
+        float ore = other.re ();
+        float tim = this.im;
+        float tre = this.re;
+        
+        this.re = (tre * ore + tim * oim) / (ore * ore + oim * oim);
+        this.im = (tim * ore - tre * oim) / (ore * ore + oim * oim);
     }
     
     public Float abs () {
@@ -62,5 +72,8 @@ public class Complex32 implements Complex<Float> {
     public Complex32 deepCopy () {
         return new Complex32 (this.re, this.im);
     }
-
+    
+    public String toString () {
+        return this.re + " + "  + this.im + "i : (Complex32)";
+    }
 }
