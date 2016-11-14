@@ -1,4 +1,4 @@
-package approssi.core.value;
+package org.real2space.neumann.approssi.core.value;
 
 /**
  * Project Neumann
