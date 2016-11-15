@@ -22,7 +22,7 @@ public class Complex32 implements Complex<Float> {
     public final Float re () {
         return this.re;
     }
-    
+
     public final Float im () {
         return this.im;
     }
@@ -30,15 +30,18 @@ public class Complex32 implements Complex<Float> {
     public Complex32 conjugate () {
         return new Complex32 (this.re, - this.im);
     }
-    
+
     public void add (Complex<Float> other) {
-        this.re += other.re();
-        this.im += other.im();
+        Complex32 temp = (Complex32) other;
+
+        this.re += temp.re;
+        this.im += temp.im;
     }
-    
+
     public void subtract (Complex<Float> other) {
-        this.re -= other.re();
-        this.im -= other.im();
+        Complex32 temp = (Complex32) other;
+        this.re -= temp.re;
+        this.im -= temp.im;
     }
 
     public void multiply (Complex<Float> other) {

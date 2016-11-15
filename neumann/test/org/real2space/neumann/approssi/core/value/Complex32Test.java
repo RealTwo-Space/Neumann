@@ -32,6 +32,36 @@ public class Complex32Test {
         System.out.println(c.re());
     }
 
+    public void performanceTestAdd () {
+        long start = System.currentTimeMillis();
+
+        Complex32 b = new Complex32(1f, 1f);
+        Complex32 a;
+        for (int i = 0; i < 10000; i++) {
+            a = new Complex32(10f, 10f);
+            for (int j = 0; j < 100000; j++) {
+                a.add(b);
+            }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println((end - start)  + "ms");
+    }
+
+    public void performanceTestSubtract () {
+        long start = System.currentTimeMillis();
+
+        Complex32 b = new Complex32(1f, 1f);
+        Complex32 a;
+        for (int i = 0; i < 10000; i++) {
+            a = new Complex32(10f, 10f);
+            for (int j = 0; j < 100000; j++) {
+                a.subtract(b);
+            }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println((end - start)  + "ms");
+    }
+
 
     public void performanceTestDivide () {
         long start = System.currentTimeMillis();
