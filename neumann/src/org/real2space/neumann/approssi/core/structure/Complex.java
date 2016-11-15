@@ -31,28 +31,28 @@ public interface Complex<E> extends DeepCopy <Complex<E>>{
     
     /**
      * Add other to this.
-     * @param Complex<E> other
+     * @param other Complex<E>
      * @return void
      */
     public void add (Complex<E> other);
     
     /**
-     * Subtract other from this.
-     * @param Complex<E> other
+     * Subtract other from this. : this - other
+     * @param other Complex<E>
      * @return void
      */
     public void subtract (Complex<E> other);
     
     /**
      * Multiply this by other.
-     * @param Complex<E> other
+     * @param other Complex<E>
      * @return void
      */
     public void multiply (Complex<E> other);
     
     /**
-     * Divide this by other.
-     * @param Complex<E> other
+     * Divide this by other. : this / other
+     * @param other Complex<E>
      * @return void
      */
     public void divide (Complex<E> other);

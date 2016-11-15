@@ -12,42 +12,42 @@ import org.real2space.neumann.approssi.core.util.DeepCopy;
 public interface Matrix<E> extends DeepCopy <Matrix<E>> {
     /**
      * Add other matrix to this
-     * @param Matrix<E> other
+     * @param other Matrix<E>
      * @return void
      */
     public void add (Matrix<E> other);
     
     /**
      * Subtract other matrix from this
-     * @param Matrix<E> other
+     * @param other Matrix<E>
      * @return void
      */
     public void subtract (Matrix<E> other);
     
     /**
      * Multiply other matrix
-     * @param Matrix<E> other
+     * @param other Matrix<E>
      * @return void
      */
     public void multiply (Matrix<E> other);
     
     /**
      * Multiply scalar to this matrix
-     * @param E scalar
+     * @param scalar E
      * @return void
      */
     public void multiply (E scalar);
     
     /**
      * Divide this matrix by scalar
-     * @param E scalar
+     * @param scalar E
      * @return E
      */
     public void divide (E scalar);
     
     /**
      * Calculate (this matrix)^(non-negative integer)
-     * @param int exponent
+     * @param exponent int
      * @return void
      */
     public void power (int exponent);

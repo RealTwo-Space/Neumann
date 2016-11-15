@@ -12,43 +12,43 @@ import org.real2space.neumann.approssi.core.util.DeepCopy;
 public interface Vector<E> extends DeepCopy<Vector<E>> {
     /**
      * Add other to this.
-     * @param Vector<E> other
+     * @param other Vector<E>
      * @return void
      */
     public void add (Vector<E> other);
     
     /**
      * Subtract other to this.
-     * @param Complex<E> other
+     * @param other Vector<E>
      * @return void
      */
     public void subtract (Vector<E> other);
     
     /**
      * Multiply this scalar value to this.
-     * @param Complex<E> other
+     * @param other Vector<E>
      * @return void
      */
     public void multiply (E scalar);
     
     /**
      * Divide this vector by a scalar.
-     * @param Complex<E> other
+     * @param other Vector<E>
      * @return void
      */
     public void divide (E scalar);
     
     /**
      *  Get eulidian norm.
-     * @param Complex<E> other
-     * @return void
+     * @param othe Vector<E>
+     * @return E
      */
     public E norm ();
     
     /**
      * Divide this by other.
-     * @param Complex<E> other
-     * @return void
+     * @param other Vector<E>
+     * @return Matrix<E>
      */
     public Matrix<E> toMatrix ();
 }

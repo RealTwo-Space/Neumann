@@ -1,5 +1,8 @@
 package org.real2space.neumann.approssi.core.value;
 
+import org.real2space.neumann.approssi.core.structure;
+import java.util.Arrays;
+
 /**
  * Project Neumann
  *
@@ -8,6 +11,76 @@ package org.real2space.neumann.approssi.core.value;
  *          created     2016/11/14
  */
 
-public class Vector32 {
+public class Vector32 implements Vector<Float> {
+    private float[] vector;
     
+    public Vector32 (float[] vector) {
+        this.vector = Arrays.copyOf(vector, vector.length);
+    }
+    
+    /**
+     * Add other to this.
+     * @param other Vector<Float>
+     * @return void
+     */
+    public void add (Vector<Float> other) {
+        Vector32 temp = (Vector32) other;
+        for (int i = 0, n = vector.length; i < n; i++) {
+            vector[i] += temp.vector[i];
+        }
+    }
+    
+    /**
+     * Subtract other to this.
+     * @param other Vector<E>
+     * @return void
+     */
+    public void subtract (Vector<Float> other) {
+        Vector32 temp = (Vector32) other;
+        for (int i = 0, n = vector.length; i < n; i++) {
+            vector[i] -= temp.vector[i];
+        }
+    }
+    
+    /**
+     * Multiply this scalar value to this.
+     * @param other Vector<Float>
+     * @return void
+     */
+    public void multiply (Float scalar) {
+        float temp = scalar;
+        for (int i = 0, n = vector.length; i < n; i++) {
+            vector[i] *= temp;
+        }
+    }
+    
+    /**
+     * Divide this vector by a scalar.
+     * @param other Vector<Float>
+     * @return void
+     */
+    public void divide (Float scalar) {
+        float temp = 1f / scalar;
+        for (int i = 0, n = vector.length; i < n; i++) {
+            vector[i] *= temp;
+        }
+    }
+    
+    /**
+     *  Get eulidian norm.
+     * @param other Vector<Float>
+     * @return Float
+     */
+    public Float norm () {
+        return 0f;
+    }
+    
+    /**
+     * Divide this by other.
+     * @param other Vector<Float>
+     * @return void
+     */
+    public Matrix<Float> toMatrix () {
+        return new Matrix32();
+    }
 }
