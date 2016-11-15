@@ -54,7 +54,7 @@ public class Complex32 implements Complex<Float> {
     public void divide (Complex<Float> other) {
         Complex32 temp = (Complex32)other;
 
-        float a = 1f / temp.im * temp.im + temp.re * temp.re;
+        float a = 1f / (temp.im * temp.im + temp.re * temp.re);
 
         float tre = (this.re * temp.re + this.im * temp.im) * a;
         this.im = (this.im * temp.re + this.re * temp.im) * a;
