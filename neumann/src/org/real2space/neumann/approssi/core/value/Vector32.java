@@ -1,6 +1,6 @@
 package org.real2space.neumann.approssi.core.value;
 
-import org.real2space.neumann.approssi.core.structure;
+import org.real2space.neumann.approssi.core.structure.Vector;
 import java.util.Arrays;
 
 /**
@@ -44,7 +44,7 @@ public class Vector32 implements Vector<Float> {
     
     /**
      * Multiply this scalar value to this.
-     * @param other Vector<Float>
+     * @param scalar Float
      * @return void
      */
     public void multiply (Float scalar) {
@@ -56,7 +56,7 @@ public class Vector32 implements Vector<Float> {
     
     /**
      * Divide this vector by a scalar.
-     * @param other Vector<Float>
+     * @param scalar Float
      * @return void
      */
     public void divide (Float scalar) {
@@ -68,7 +68,6 @@ public class Vector32 implements Vector<Float> {
     
     /**
      *  Get eulidian norm.
-     * @param other Vector<Float>
      * @return Float
      */
     public Float norm () {
@@ -77,10 +76,13 @@ public class Vector32 implements Vector<Float> {
     
     /**
      * Divide this by other.
-     * @param other Vector<Float>
      * @return void
      */
-    public Matrix<Float> toMatrix () {
+    public Matrix32 toMatrix () {
         return new Matrix32();
+    }
+
+    public Vector32 deepCopy () {
+        return new Vector32(this.vector);
     }
 }
