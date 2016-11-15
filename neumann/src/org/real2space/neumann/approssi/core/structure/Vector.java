@@ -26,28 +26,26 @@ public interface Vector<E> extends DeepCopy<Vector<E>> {
     
     /**
      * Multiply this scalar value to this.
-     * @param other Vector<E>
+     * @param scalar E
      * @return void
      */
     public void multiply (E scalar);
     
     /**
      * Divide this vector by a scalar.
-     * @param other Vector<E>
+     * @param scalar E
      * @return void
      */
     public void divide (E scalar);
     
     /**
-     *  Get eulidian norm.
-     * @param othe Vector<E>
+     * Get eulidian norm.
      * @return E
      */
     public E norm ();
     
     /**
-     * Divide this by other.
-     * @param other Vector<E>
+     * To matrix.
      * @return Matrix<E>
      */
     public Matrix<E> toMatrix ();
