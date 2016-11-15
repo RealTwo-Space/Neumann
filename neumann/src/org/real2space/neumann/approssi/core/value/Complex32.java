@@ -40,17 +40,15 @@ public class Complex32 implements Complex<Float> {
         this.re -= other.re();
         this.im -= other.im();
     }
-    
+
     public void multiply (Complex<Float> other) {
-        float oim = other.im ();
-        float ore = other.re ();
-        float tim = this.im;
-        float tre = this.re;
-        
-        this.re = tre * ore - tim * oim;
-        this.im = tre * oim + tim * ore;
+        Complex32 temp = (Complex32)other;
+
+        float tre = this.re * temp.re - this.im * temp.im;
+        this.im = this.re * temp.im + this.im * temp.re;
+        this.re = tre;
+
     }
-    
     public void divide (Complex<Float> other) {
         Complex32 temp = (Complex32)other;
 

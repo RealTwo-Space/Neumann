@@ -47,4 +47,20 @@ public class Complex32Test {
         long end = System.currentTimeMillis();
         System.out.println((end - start)  + "ms");
     }
+
+    public void performanceTestMult () {
+        long start = System.currentTimeMillis();
+
+        Complex32 b = new Complex32(1f, 1f);
+        Complex32 a;
+        for (int i = 0; i < 10000; i++) {
+            a = new Complex32(10f, 10f);
+            for (int j = 0; j < 100000; j++) {
+                a.multiply(b);
+            }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println((end - start)  + "ms");
+    }
+
 }
