@@ -145,7 +145,7 @@ public class Complex64 implements Complex<Double> {
     }
 
     public Double abs () {
-        return 0;
+        return 0.0;
     }
     
     /**
@@ -158,7 +158,7 @@ public class Complex64 implements Complex<Double> {
     }
     
     public Double arg () {
-        return 0;
+        return 0.0;
     }
     
     /**

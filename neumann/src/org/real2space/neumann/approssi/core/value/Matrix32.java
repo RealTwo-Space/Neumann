@@ -1,7 +1,7 @@
-package org.real2space.neumann.approssi.core.structure;
+package org.real2space.neumann.approssi.core.value;
 
 import java.util.Arrays;
-import org.real2space.neumann.approssi.core.structure;
+import org.real2space.neumann.approssi.core.structure.Matrix;
 /**
  * Project Neumann
  *
@@ -100,5 +100,9 @@ public class Matrix32 implements Matrix<Float> {
      */
      public void inverse () {
          
+     }
+
+     public Matrix32 deepCopy () {
+         return new Matrix32();
      }
 }
