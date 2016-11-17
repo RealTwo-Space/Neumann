@@ -79,7 +79,9 @@ public class Vector32 implements Vector<Float> {
      * @return void
      */
     public Matrix32 toMatrix () {
-        return new Matrix32();
+        float[][] mat = new float[1][];
+        mat[0] = this.vector;
+        return new Matrix32(mat);
     }
 
     public Vector32 deepCopy () {
