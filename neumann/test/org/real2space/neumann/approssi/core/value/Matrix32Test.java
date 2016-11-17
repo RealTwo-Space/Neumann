@@ -18,7 +18,7 @@ public class Matrix32Test {
     public void add() throws Exception {
 
     }
-    @Test
+
     public void performanceTestConstructor() throws Exception {
         long start = System.currentTimeMillis();
         Matrix32 a;
@@ -29,7 +29,7 @@ public class Matrix32Test {
         long end = System.currentTimeMillis();
         System.out.println((end - start)  + "ms");
     }
-    @Test
+
     public void performanceTestAdd() throws Exception {
         long start = System.currentTimeMillis();
         Matrix32 a, b;
