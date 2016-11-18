@@ -153,40 +153,29 @@ public class Matrix32 implements Matrix<Float> {
      * Transpose this matrix
      * @return void
      */
-     public void inverse () {
-         
-     }
+    public void inverse () {
+    }
 
-     public Matrix32 deepCopy () {
-         return new Matrix32(this.matrix);
-     }
+    public Matrix32 deepCopy () {
+        return new Matrix32(this.matrix);
+    }
 
-     public String toString () {
-         String output = "{{";
+    public String toString () {
+        StringBuffer output = new StringBuffer();
 
-         int N = matrix.length;
-         int M = matrix[0].length;
-         for (int i = 0; i < N; i++) {
-             if (i != 0) {
-                 output += " {";
-             }
+        int N = matrix.length;
+        int M = matrix[0].length;
+        for (int i = 0; i < N; i++) {
+            output.append("| ");
+            for (int j = 0; j < M; j++) {
+                output.append(matrix[i][j]);
+                if (j != M - 1) {
+                    output.append("\t");
+                }
+            }
+            output.append(" |\n");
+        }
+        return output.toString();
+    }
 
-             for (int j = 0; j < M; j++) {
-                 output += matrix[i][j];
-                 if (j != matrix[0].length - 1) {
-                     output += ", ";
-                 }
-                 else {
-                     if (i != matrix.length - 1) {
-                         output += "},\n";
-                     }
-                     else {
-                         output += "}}";
-                     }
-                 }
-             }
-         }
-
-         return output;
-     }
 }
