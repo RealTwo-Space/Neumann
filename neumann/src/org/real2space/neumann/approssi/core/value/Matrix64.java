@@ -114,7 +114,7 @@ public class Matrix64 implements Matrix<Double>{
      * @return Double
      */
     public void divide (Double scalar) {
-        double sca = 1f / scalar;
+        double sca = 1 / scalar;
         int N = this.matrix.length;
         int M = this.matrix[0].length;
         for (int i = 0; i < N; i++) {

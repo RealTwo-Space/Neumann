@@ -83,4 +83,18 @@ public class Matrix32Test {
         System.out.println((end - start)  + "ms");
     }
 
+    @Test
+    public void addTest () throws Exception {
+        Matrix32 a;
+        Matrix32 b;
+        float[][] c = {{1}, {2}};
+        float[][] d = {{2, 1}, {2, 1}};
+
+        a = new Matrix32(c);
+        b = new Matrix32(d);
+
+        a.add(b);
+
+        System.out.println(a);
+    }
 }

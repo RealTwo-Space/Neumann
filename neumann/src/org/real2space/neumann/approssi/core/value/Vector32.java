@@ -87,4 +87,20 @@ public class Vector32 implements Vector<Float> {
     public Vector32 deepCopy () {
         return new Vector32(this.vector);
     }
+
+    public String toString () {
+        String output = "{";
+
+        int N = vector.length;
+        for (int i = 0; i < N; i++) {
+            output += vector[i];
+            if (i != N - 1) {
+                output += ", ";
+            }
+        }
+
+        output += "}";
+
+        return output;
+    }
 }
