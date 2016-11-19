@@ -11,12 +11,12 @@ import org.real2space.neumann.approssi.core.structure.Vector;
  *          created     2016/11/20
  */
  
-public class VectorC64 implements Vector<Compelex64>{
+public class VectorC64 implements Vector<Complex64>{
     private Complex64[] vector;
     
     public VectorC64 (Complex64[] vector) {
         for (int i = 0, n = vector.length; i < n; i++) {
-            this.vector[i] = vector.deepCopy();
+            this.vector[i] = vector[i].deepCopy();
         }
     }
     
@@ -89,10 +89,10 @@ public class VectorC64 implements Vector<Compelex64>{
      * Divide this by other.
      * @return void
      */
-    public Matrix64 toMatrix () {
+    public MatrixC64 toMatrix () {
         Complex64[][] mat = new Complex64[1][];
         mat[0] = this.vector;
-        return new Matrix64(mat);
+        return new MatrixC64(mat);
     }
 
     public VectorC64 deepCopy () {

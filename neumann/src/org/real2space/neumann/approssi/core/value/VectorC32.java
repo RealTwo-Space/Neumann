@@ -11,12 +11,12 @@ import org.real2space.neumann.approssi.core.structure.Vector;
  *          created     2016/11/20
  */
  
-public class VectorC32 implements Vector<Compelex32>{
+public class VectorC32 implements Vector<Complex32>{
     private Complex32[] vector;
     
     public VectorC32 (Complex32[] vector) {
         for (int i = 0, n = vector.length; i < n; i++) {
-            this.vector[i] = vector.deepCopy();
+            this.vector[i] = vector[i].deepCopy();
         }
     }
     
@@ -89,10 +89,10 @@ public class VectorC32 implements Vector<Compelex32>{
      * Divide this by other.
      * @return void
      */
-    public Matrix32 toMatrix () {
+    public MatrixC32 toMatrix () {
         Complex32[][] mat = new Complex32[1][];
         mat[0] = this.vector;
-        return new Matrix32(mat);
+        return new MatrixC32(mat);
     }
 
     public VectorC32 deepCopy () {
