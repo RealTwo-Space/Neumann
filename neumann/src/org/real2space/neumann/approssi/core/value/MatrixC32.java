@@ -85,7 +85,7 @@ public class MatrixC32 implements Matrix<Complex32> {
             for (int j = 0; j < N; j++) {
                     mat[i][j] += new Complex32(0f, 0f);
                 for (int k = 0; k < M; k++) {
-                    mat[i][j].add(Complex32.multiply(this.matrix[i][k] * temp.matrix[k][j]));
+                    mat[i][j].add(Complex32.multiply(this.matrix[i][k], temp.matrix[k][j]));
                 }
             }
         }
