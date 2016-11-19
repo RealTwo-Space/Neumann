@@ -175,6 +175,9 @@ public class Complex64 implements Complex<Double> {
     }
     
     public String toString () {
-        return this.re + " + "  + this.im + "i";
+        if (this.im >= 0) {
+            return this.re + " + "  + this.im + "i";
+        }
+        return this.re + " - " + (- this.im) + "i";
     }
 }

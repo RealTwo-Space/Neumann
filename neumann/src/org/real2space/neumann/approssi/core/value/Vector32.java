@@ -39,7 +39,7 @@ public class Vector32 implements Vector<Float> {
     
     /**
      * Subtract other to this.
-     * @param other Vector<E>
+     * @param other Vector<Float>
      * @return void
      */
     public void subtract (Vector<Float> other) {

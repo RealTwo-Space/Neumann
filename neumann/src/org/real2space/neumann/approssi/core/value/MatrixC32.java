@@ -1,13 +1,12 @@
 package org.real2space.neumann.approssi.core.value;
 
-import java.util.Arrays;
 import org.real2space.neumann.approssi.core.structure.Matrix;
 /**
  * Project Neumann
  *
  * @author RealTwo-Space
  * @version 0
- *          created     2016/11/14
+ *          created     2016/11/20
  */
  
 public class MatrixC32 implements Matrix<Complex32> {
