@@ -13,18 +13,6 @@ import org.junit.Test;
  * created 2016/10/15
  */
 public class MainTest {
-    private Main test;
-    @Before
-    public void setUp() throws Exception {
-        this.test = new Main();
-        this.test.test();
-        System.out.println ("drdeep test");
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
 
     @Test
     public void test1() throws Exception {

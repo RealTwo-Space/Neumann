@@ -1,5 +1,7 @@
 package org.real2space.neumann.approssi.core.value;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
@@ -11,5 +13,7 @@ import static org.junit.Assert.*;
  *          created 11/20/16
  */
 public class VectorC32Test {
-
+    @Test
+    public void test(){
+    }
 }
