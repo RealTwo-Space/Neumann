@@ -22,14 +22,14 @@ public class Matrix64 implements Matrix<Double>{
         }
     }
 
-    private void checkDimensionAdd (Matrix64 b) {
-        if (this.matrix.length != b.matrix.length || this.matrix[0].length != b.matrix[0].length) {
+    private void checkDimensionAdd (Matrix64 other) {
+        if (this.matrix.length != other.matrix.length || this.matrix[0].length != other.matrix[0].length) {
             throw new ArithmeticException("Wrong Dimension");
         }
     }
 
-    private void checkDimensionMult (Matrix64 b) {
-        if (this.matrix[0].length != b.matrix.length) {
+    private void checkDimensionMult (Matrix64 other) {
+        if (this.matrix[0].length != other.matrix.length) {
             throw new ArithmeticException("Wrong Dimension");
         }
     }
@@ -41,7 +41,7 @@ public class Matrix64 implements Matrix<Double>{
      */
     public void add (Matrix<Double> other) {
         Matrix64 temp = (Matrix64)other;
-        checkDimensionAdd(temp);
+        this.checkDimensionAdd(temp);
 
         int N = this.matrix.length;
         int M = this.matrix[0].length;
@@ -59,7 +59,7 @@ public class Matrix64 implements Matrix<Double>{
      */
     public void subtract (Matrix<Double> other) {
         Matrix64 temp = (Matrix64)other;
-        checkDimensionAdd(temp);
+        this.checkDimensionAdd(temp);
 
         int N = this.matrix.length;
         int M = this.matrix[0].length;
@@ -77,7 +77,7 @@ public class Matrix64 implements Matrix<Double>{
      */
     public void multiply (Matrix<Double> other) {
         Matrix64 temp = (Matrix64)other;
-        checkDimensionMult(temp);
+        this.checkDimensionMult(temp);
 
         int N = this.matrix.length;
         int M = temp.matrix[0].length;

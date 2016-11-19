@@ -21,6 +21,18 @@ public class Matrix32 implements Matrix<Float> {
             this.matrix[i] = Arrays.copyOf(matrix[i], M);
         }
     }
+    
+    private void checkDimensionAdd (Matrix32 other) {
+        if (this.matrix.length != other.matrix.length || this.matrix[0].length != other.matrix[0].length) {
+            throw new ArithmeticException("Wrong Dimension");
+        }
+    }
+
+    private void checkDimensionMult (Matrix32 other) {
+        if (this.matrix[0].length != other.matrix.length) {
+            throw new ArithmeticException("Wrong Dimension");
+        }
+    }
 
     /**
      * Add other matrix to this
@@ -29,6 +41,7 @@ public class Matrix32 implements Matrix<Float> {
      */
     public void add (Matrix<Float> other) {
         Matrix32 temp = (Matrix32)other;
+        this.checkDimensionAdd(temp);
         int N = this.matrix.length;
         int M = this.matrix[0].length;
         for (int i = 0; i < N; i++) {
@@ -45,6 +58,7 @@ public class Matrix32 implements Matrix<Float> {
      */
     public void subtract (Matrix<Float> other) {
         Matrix32 temp = (Matrix32)other;
+        this.checkDimensionAdd(temp);
         int N = this.matrix.length;
         int M = this.matrix[0].length;
         for (int i = 0; i < N; i++) {
@@ -61,6 +75,7 @@ public class Matrix32 implements Matrix<Float> {
      */
     public void multiply (Matrix<Float> other) {
         Matrix32 temp = (Matrix32)other;
+        this.checkDimensionMult(temp);
         int N = this.matrix.length;
         int M = temp.matrix[0].length;
         float[][] mat = new float[N][M];

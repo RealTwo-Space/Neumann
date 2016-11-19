@@ -20,8 +20,8 @@ public class Vector64 implements Vector<Double>{
     }
 
 
-    private void checkDimension (Vector64 a, Vector64 b) {
-        if (a.vector.length != b.vector.length) {
+    private void checkDimension (Vector64 other) {
+        if (this.vector.length != other.vector.length) {
             throw new ArithmeticException ("Wrong Dimension");
         }
     }
@@ -33,7 +33,7 @@ public class Vector64 implements Vector<Double>{
      */
     public void add (Vector<Double> other) {
         Vector64 temp = (Vector64) other;
-        checkDimension(this, temp);
+        this.checkDimension(temp);
         for (int i = 0, n = vector.length; i < n; i++) {
             vector[i] += temp.vector[i];
         }
@@ -46,7 +46,7 @@ public class Vector64 implements Vector<Double>{
      */
     public void subtract (Vector<Double> other) {
         Vector64 temp = (Vector64) other;
-        checkDimension(this, temp);
+        this.checkDimension(temp);
         for (int i = 0, n = vector.length; i < n; i++) {
             vector[i] -= temp.vector[i];
         }
@@ -90,7 +90,7 @@ public class Vector64 implements Vector<Double>{
      */
     public Matrix64 toMatrix () {
         double[][] mat = new double[1][];
-        mat[0] = Arrays.copyOf(this.vector, this.vector.length);
+        mat[0] = this.vector;
         return new Matrix64(mat);
     }
 
@@ -99,18 +99,6 @@ public class Vector64 implements Vector<Double>{
     }
 
     public String toString () {
-        String output = "{";
-
-        int N = vector.length;
-        for (int i = 0; i < N; i++) {
-            output += vector[i];
-            if (i != N - 1) {
-                output += ", ";
-            }
-        }
-
-        output += "}";
-
-        return output;
+        return Arrays.toString(this.vector);
     }
 }

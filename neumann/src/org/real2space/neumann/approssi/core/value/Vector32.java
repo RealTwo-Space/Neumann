@@ -18,6 +18,12 @@ public class Vector32 implements Vector<Float> {
         this.vector = Arrays.copyOf(vector, vector.length);
     }
     
+    private void checkDimension (Vector32 other) {
+        if (this.vector.length != other.vector.length) {
+            throw new ArithmeticException ("Wrong Dimension");
+        }
+    }
+    
     /**
      * Add other to this.
      * @param other Vector<Float>
@@ -25,6 +31,7 @@ public class Vector32 implements Vector<Float> {
      */
     public void add (Vector<Float> other) {
         Vector32 temp = (Vector32) other;
+        this.checkDimension(temp);
         for (int i = 0, n = vector.length; i < n; i++) {
             vector[i] += temp.vector[i];
         }
@@ -37,6 +44,7 @@ public class Vector32 implements Vector<Float> {
      */
     public void subtract (Vector<Float> other) {
         Vector32 temp = (Vector32) other;
+        this.checkDimension(temp);
         for (int i = 0, n = vector.length; i < n; i++) {
             vector[i] -= temp.vector[i];
         }
@@ -89,18 +97,6 @@ public class Vector32 implements Vector<Float> {
     }
 
     public String toString () {
-        String output = "{";
-
-        int N = vector.length;
-        for (int i = 0; i < N; i++) {
-            output += vector[i];
-            if (i != N - 1) {
-                output += ", ";
-            }
-        }
-
-        output += "}";
-
-        return output;
+        return Arrays.toString(this.vector);
     }
 }

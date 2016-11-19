@@ -175,6 +175,6 @@ public class Complex32 implements Complex<Float> {
     }
     
     public String toString () {
-        return this.re + " + "  + this.im + "i : (Complex32)";
+        return this.re + " + "  + this.im + "i";
     }
 }
