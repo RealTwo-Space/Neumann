@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
+ *
  *          created 11/14/16
  */
 public class Complex32Test {
