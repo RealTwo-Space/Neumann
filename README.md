@@ -42,6 +42,7 @@ We recommend you to use IntelliJ if you collaborate with us.
 Of course, you can use the other IDE like Eclipse.
 
 Here, how to construct environment with IntelliJ
+
 - download and unzip this [zip](https://github.com/RealTwo-Space/Neumann/archive/dev.zip) or in terminal,
 
 ```
@@ -50,14 +51,20 @@ $ git clone https://github.com/RealTwo-Space/Neumann.git
 
 - boot IntelliJ
 
-- click File \-\> Open on the menu.
+- click __File__ \-\> __Open__ on the menu.
 
-- select Neumann folder
+- select __Neumann__ folder
 
-- click file \-\> Project Structure...
+- click __File__ \-\> __Project Structure...__
 
-- Project Settings \-\> Project \-\> Project SDK \-\> select java SDK (We are using jdk 1.8)
+- __Project Settings__ \-\> __Project__ \-\> __Project SDK__ \-\> select java SDK (We are using jdk 1.8)
 
-- Project settings \-\> Module \-\> Dependencies \-\> add new library and includes jUnit4 and hamcrest-core in the lib folder to the library.
+- __Project Settings__ \-\> __Project__ \-\> __Project language level__ \-\> select __7__ or __8__
+
+- __Project settings__ \-\> __Module__ \-\> __Dependencies__ \-\> add new library and includes jUnit4 and hamcrest-core in the lib folder to the library.
+
+- __Project settings__ \-\> __Module__ \-\> __Sources__ \-\> make __neumann/src__ to __Sources__ and __neumann/test__ to __Tests__
+
+
 
 [more information](https://github.com/RealTwo-Space/Information)
