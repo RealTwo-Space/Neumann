@@ -5,8 +5,9 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
- *          created 11/28/16
+ *
+ * created 11/28/16
  */
-public interface State {
+protected interface State {
+    Data execute();
 }

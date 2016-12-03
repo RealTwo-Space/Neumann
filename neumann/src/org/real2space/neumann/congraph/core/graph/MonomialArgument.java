@@ -5,8 +5,22 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
- *          created 11/28/16
+ *
+ * created 11/29/16
  */
-public class MonomialArgument {
+protected class MonomialArgument implements Argument {
+    private Data arg;
+    
+    protected MonomialArgument(Data arg) {
+        this.arg = arg;
+    }
+    
+    protected Data getDataAt(int index) {
+        return this.arg;
+    }
+    
+    protected int getSize() {
+        return 1;
+    }
+
 }

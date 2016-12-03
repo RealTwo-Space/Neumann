@@ -5,8 +5,23 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
- *          created 11/28/16
+ * 
+ * created 11/29/16
  */
-public class BinomialArgument {
+protected class BinomialArgument implements Argument {
+    private Data[] args;
+    
+    protected MonomialArgument(Data argL, Data argR) {
+        this.args = new Data[2];
+        this.args[0] = argL;
+        this.args[1] = argR;
+    }
+    
+    protected Data getDataAt(int index) {
+        return this.arg[index];
+    }
+    
+    protected int getSize() {
+        return 2;
+    }
 }

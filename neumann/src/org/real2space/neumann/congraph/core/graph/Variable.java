@@ -5,8 +5,22 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
- *          created 11/28/16
+ * 
+ * created 11/28/16
  */
-public class Variable {
+
+protected class Variable implements State {
+    protected MonomialArgument arg;
+    
+    protected Variable(MonomialArgument arg) {
+        this.arg = arg;
+    }
+    
+    protected Variable(Variable var) {
+        this.arg = var.arg;
+    }
+    
+    protected Data execute() {
+        return this.arg;
+    }
 }

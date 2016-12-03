@@ -5,8 +5,17 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
- *          created 11/28/16
+ * 
+ * created 11/29/16
  */
-public class Constant {
+protected class Constant implements State {
+    private MonomialArgument arg;
+    
+    protected Constant(Data data) {
+        this.arg = new MonomialArgument(data);
+    }
+    
+    protected Data execute() {
+        return this.arg.getDataAt(0);
+    }
 }
