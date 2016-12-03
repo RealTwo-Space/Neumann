@@ -65,6 +65,6 @@ $ git clone https://github.com/RealTwo-Space/Neumann.git
 
 - __Project settings__ \-\> __Module__ \-\> __Sources__ \-\> make __neumann/src__ to __Sources__ and __neumann/test__ to __Tests__
 
-
+- DONE!!
 
 [more information](https://github.com/RealTwo-Space/Information)
