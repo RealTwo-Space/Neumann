@@ -11,7 +11,7 @@ package org.real2space.neumann.congraph.core.graph;
 protected class MultinomialArgument implements Argument {
     private Data[] args;
     
-    protected MonomialArgument(Data[] args) {
+    protected MultinomialArgument(Data[] args) {
         this.args = args;
     }
     

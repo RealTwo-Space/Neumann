@@ -11,7 +11,7 @@ package org.real2space.neumann.congraph.core.graph;
 protected class BinomialArgument implements Argument {
     private Data[] args;
     
-    protected MonomialArgument(Data argL, Data argR) {
+    protected BinomialArgument(Data argL, Data argR) {
         this.args = new Data[2];
         this.args[0] = argL;
         this.args[1] = argR;

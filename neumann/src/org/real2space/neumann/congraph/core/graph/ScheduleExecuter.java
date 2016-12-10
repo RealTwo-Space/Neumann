@@ -3,7 +3,7 @@ package org.real2space.neumann.congraph.core.graph;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.HashSet;
-import jaca.util.Iterator;
+import java.util.Iterator;
 /**
  * Project Neumann
  *
@@ -14,7 +14,7 @@ import jaca.util.Iterator;
  */
  
 protected class ScheduleExecuter {
-    private static final ScheduleExcetuter singleton = new ScheduleExecuter();
+    private static final ScheduleExecuter singleton = new ScheduleExecuter();
     
     private ScheduleExecuter() {}
     
