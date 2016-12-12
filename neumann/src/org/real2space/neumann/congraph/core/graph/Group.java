@@ -10,7 +10,7 @@ import java.util.Arrays;
  * 
  * created 12/02/16
  */
-protected class Group {
+class Group {
     private Node[] nodes;
     
     protected Group(Node[] nodes) {

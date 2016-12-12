@@ -8,6 +8,6 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * created 11/28/16
  */
-protected interface State {
-    Data execute();
+abstract class State {
+    abstract Data execute();
 }

@@ -8,7 +8,7 @@ package org.real2space.neumann.congraph.core.graph;
  * 
  * created 11/29/16
  */
-protected class MultinomialArgument implements Argument {
+class MultinomialArgument extends Argument {
     private Data[] args;
     
     protected MultinomialArgument(Data[] args) {
@@ -16,7 +16,7 @@ protected class MultinomialArgument implements Argument {
     }
     
     protected Data getDataAt(int index) {
-        return this.arg[index];
+        return this.args[index];
     }
     
     protected int getSize() {

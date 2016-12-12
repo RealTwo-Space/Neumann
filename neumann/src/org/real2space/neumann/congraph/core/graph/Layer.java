@@ -10,7 +10,7 @@ import java.util.HashSet;
  * 
  * created 12/02/16
  */
-protected class Layer {
+class Layer {
     private HashSet<Group> groups;
     
     protected Layer() {

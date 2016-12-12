@@ -13,7 +13,7 @@ import java.util.Iterator;
  * created 12/02/16
  */
  
-protected class ScheduleExecuter {
+class ScheduleExecuter {
     private static final ScheduleExecuter singleton = new ScheduleExecuter();
     
     private ScheduleExecuter() {}

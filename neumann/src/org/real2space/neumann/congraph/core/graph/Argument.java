@@ -8,7 +8,7 @@ package org.real2space.neumann.congraph.core.graph;
  *          
  * created 11/28/16
  */
-protected interface Argument {
-    Data getDataAt(int index);
-    int getSize();
+abstract class Argument {
+    abstract Data getDataAt(int index);
+    abstract int getSize();
 }

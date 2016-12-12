@@ -8,5 +8,5 @@ package org.real2space.neumann.congraph.core.graph;
  *          <p>
  *          created 11/28/16
  */
-public interface Operation extends State {
+public abstract class Operation extends State {
 }

@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * 
  * created 12/02/16
  */
-protected class Schedule {
+class Schedule {
     private Node origin;
     private LinkedList<Layer> layers;
     
@@ -24,7 +24,7 @@ protected class Schedule {
     }
     
     protected void addLayer(Layer layer) {
-        this.layer.add(layer);
+        this.layers.add(layer);
     }
     
     protected LinkedList<Layer> getLayers() {

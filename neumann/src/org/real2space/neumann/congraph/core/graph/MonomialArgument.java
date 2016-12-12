@@ -8,7 +8,7 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * created 11/29/16
  */
-protected class MonomialArgument implements Argument {
+class MonomialArgument extends Argument {
     private Data arg;
     
     protected MonomialArgument(Data arg) {

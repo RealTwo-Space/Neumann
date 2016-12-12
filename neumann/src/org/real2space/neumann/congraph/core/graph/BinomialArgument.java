@@ -8,7 +8,7 @@ package org.real2space.neumann.congraph.core.graph;
  * 
  * created 11/29/16
  */
-protected class BinomialArgument implements Argument {
+class BinomialArgument extends Argument {
     private Data[] args;
     
     protected BinomialArgument(Data argL, Data argR) {
@@ -18,7 +18,7 @@ protected class BinomialArgument implements Argument {
     }
     
     protected Data getDataAt(int index) {
-        return this.arg[index];
+        return this.args[index];
     }
     
     protected int getSize() {

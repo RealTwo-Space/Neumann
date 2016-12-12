@@ -9,7 +9,7 @@ package org.real2space.neumann.congraph.core.graph;
  * created 11/28/16
  */
 
-protected class Variable implements State {
+class Variable extends State {
     protected MonomialArgument arg;
     
     protected Variable(MonomialArgument arg) {
@@ -21,6 +21,6 @@ protected class Variable implements State {
     }
     
     protected Data execute() {
-        return this.arg;
+        return this.arg.getDataAt(0);
     }
 }

@@ -1,5 +1,9 @@
 package org.real2space.neumann.congraph.core.graph;
 
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
 /**
  * Project Neumann
  *
@@ -26,7 +30,7 @@ public class Scheduler {
         LinkedList linkedList = schedule.getLayers();
         ListIterator<Layer> it = linkedList.listIterator();
         
-        ArrayDeque stack = new ArrayDeque();
+        ArrayDeque<Group> stack = new ArrayDeque<Group>();
         stack.push(graph.getChildren(origin));
         
         while(!stack.isEmpty()) {

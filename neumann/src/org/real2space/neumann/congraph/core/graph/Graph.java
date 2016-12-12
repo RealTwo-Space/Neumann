@@ -12,7 +12,7 @@ import java.util.HashSet;
  * created 12/02/16
  */
  
-protected class Graph {
+class Graph {
     private HashSet<Node> nodes;
     private HashMap<Node, Group> edges;
     
@@ -25,7 +25,7 @@ protected class Graph {
         this.nodes.add(node);
     }
 
-    protected void addEdge(node, group) {
+    protected void addEdge(Node node, Group group) {
         this.edges.put(node, group);
     }
     

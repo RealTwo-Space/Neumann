@@ -8,7 +8,7 @@ package org.real2space.neumann.congraph.core.graph;
  * 
  * created 11/29/16
  */
-protected class Constant implements State {
+class Constant extends State {
     private MonomialArgument arg;
     
     protected Constant(Data data) {
