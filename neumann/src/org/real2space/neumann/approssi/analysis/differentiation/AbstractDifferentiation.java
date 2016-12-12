@@ -17,7 +17,7 @@ public abstract class AbstractDifferentiation<E, H> extends Function<E> {
         result = new Variable<E>();
         setFunction("f");
     }
-    
+
     public abstract void substitute (String var, E va);
     
     public void changeArgument(Function va) {

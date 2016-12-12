@@ -19,11 +19,11 @@ public class Variable<E> {
     public Variable() {
     }
     
-    E get() {
+    public E get() {
         return this.value;
     }
     
-    void set(E value) {
+    public void set(E value) {
         this.value = value;
     }
 }
