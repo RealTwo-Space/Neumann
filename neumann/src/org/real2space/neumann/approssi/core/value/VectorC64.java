@@ -92,6 +92,8 @@ public class VectorC64 implements Vector<Complex64>{
     public MatrixC64 toMatrix () {
         Complex64[][] mat = new Complex64[1][];
         mat[0] = this.vector;
+        MatrixC64 res = new MatrixC64(mat);
+        res.transpose();
         return new MatrixC64(mat);
     }
 
