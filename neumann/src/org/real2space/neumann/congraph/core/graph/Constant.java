@@ -9,10 +9,10 @@ import org.real2space.neumann.congraph.core.data.Data;
  * created 11/29/16
  */
 class Constant extends State {
-    private MonomialArgument arg;
-    
+    private ConstantArgument arg;
+
     protected Constant(Data data) {
-        this.arg = new MonomialArgument(data);
+        this.arg = new ConstantArgument(data);
     }
     
     public Data execute() {

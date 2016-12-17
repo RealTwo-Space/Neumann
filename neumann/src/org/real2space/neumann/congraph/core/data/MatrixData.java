@@ -36,6 +36,8 @@ public class MatrixData<F> implements Data<Matrix<F>> {
     }
     
     public Data<Matrix<F>> multiply(Data a) {
+        //System.out.println("begin get()\n" + a.get());
+        System.out.println(this.get() + "\nend get()");
         Matrix output = this.data.deepCopy();
         if (a instanceof NumberData) {
             NumberData t = (NumberData)a;

@@ -11,13 +11,21 @@ import org.real2space.neumann.congraph.core.data.Data;
 
 class Variable extends State {
     protected MonomialArgument arg;
-    
+
+    protected Variable () {
+    }
+    /*
     protected Variable(MonomialArgument arg) {
         this.arg = arg;
     }
+    */
     
     protected Variable(Variable var) {
         this.arg = var.arg;
+    }
+
+    protected void setMonomialArgument(Node node) {
+        this.arg = new MonomialArgument(node);
     }
     
     public Data execute() {

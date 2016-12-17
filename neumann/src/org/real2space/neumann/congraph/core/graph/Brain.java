@@ -23,6 +23,6 @@ public class Brain {
     public void execute(Node origin) {
         this.schedule = this.scheduler.createSchedule(origin, this.graph);
         this.scheduleExecuter.executeSchedule(this.schedule);
-        // System.out.println(origin);
+        System.out.println(origin.refData());
     }
 }
