@@ -1,5 +1,5 @@
 package org.real2space.neumann.congraph.core.graph;
-
+import org.real2space.neumann.congraph.core.data.Data;
 /**
  * Project Neumann
  *
