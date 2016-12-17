@@ -20,7 +20,7 @@ class Variable extends State {
         this.arg = var.arg;
     }
     
-    protected Data execute() {
+    public Data execute() {
         return this.arg.getDataAt(0);
     }
 }

@@ -1,5 +1,7 @@
 package org.real2space.neumann.congraph.core.operation;
 
+import org.real2space.neumann.congraph.core.data.Data;
+
 import org.real2space.neumann.congraph.core.graph.Operation;
 import org.real2space.neumann.congraph.core.graph.BinomialArgument;
 /**

@@ -12,7 +12,7 @@ public class Node {
     private Data data;
     private State state;
     
-    protected Node(Data data, State state) {
+    public Node(Data data, State state) {
         this.data = data;
         this.state = state;
     }
@@ -22,7 +22,7 @@ public class Node {
     }
     
     // return refenrence
-    protected Data refData() {
+    public Data refData() {
         return this.data;
     }
     

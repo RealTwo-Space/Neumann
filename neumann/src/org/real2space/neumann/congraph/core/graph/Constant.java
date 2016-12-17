@@ -15,7 +15,7 @@ class Constant extends State {
         this.arg = new MonomialArgument(data);
     }
     
-    protected Data execute() {
+    public Data execute() {
         return this.arg.getDataAt(0);
     }
 }
