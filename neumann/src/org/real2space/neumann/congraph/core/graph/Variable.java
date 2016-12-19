@@ -14,6 +14,7 @@ class Variable extends State {
 
     protected Variable () {
     }
+    
     /*
     protected Variable(MonomialArgument arg) {
         this.arg = arg;

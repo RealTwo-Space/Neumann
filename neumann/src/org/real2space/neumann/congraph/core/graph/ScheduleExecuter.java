@@ -23,22 +23,13 @@ class ScheduleExecuter {
     }
     
     protected void executeSchedule(Schedule schedule) {
-        System.out.println("\n " + "executeSchedule starts");
-
         // many fors schedule => layers => group => node.execute()
         LinkedList<Layer> layers = schedule.getLayers();
         Layer layer;
         HashSet<Group> groups;
         Group group;
         Node[] nodes;
-        /*
-        for(ListIterator it=list.listIterator(list.size()); it.hasPrevious();){
-            String fruit = it.previous();
-             System.out.println(fruit);
-        }
-         */
 
-        // ここかえたよ
         for (ListIterator<Layer> itL = layers.listIterator(layers.size()); itL.hasPrevious();){
             layer = itL.previous();
             groups = layer.getGroups();
@@ -47,14 +38,10 @@ class ScheduleExecuter {
                 nodes = group.getNodes();
                 for (int i = 0, n = nodes.length; i < n; i++) {
                     nodes[i].execute();
-                    System.out.println("It " + itL.nextIndex() + " " + i);
-                    System.out.println(nodes[i].refData().get() + "\n");
                 }
             }
         }
 
-        System.out.println("Before execute");
         schedule.getOrigin().execute();
-        System.out.println("After execute");
     }
 }

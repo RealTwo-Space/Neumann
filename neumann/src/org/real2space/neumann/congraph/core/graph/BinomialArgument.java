@@ -10,7 +10,6 @@ import org.real2space.neumann.congraph.core.data.Data;
  * created 11/29/16
  */
 
-// 全体的に変えたよ
 public class BinomialArgument extends Argument {
     private Node[] args;
     
