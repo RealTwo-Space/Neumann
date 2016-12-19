@@ -12,26 +12,28 @@ public class Node {
     private Data data;
     private State state;
     
-    protected Node(Data data, State state) {
+    public Node(Data data, State state) {
         this.data = data;
         this.state = state;
     }
     
     protected void execute() {
         this.data = this.state.execute();
+        System.out.println("Node: \n" + this.data.get());
     }
     
     // return refenrence
-    protected Data refData() {
+    public Data refData() {
         return this.data;
     }
     
     // deep copy and return (for users)
     public Data getData() {
-        return null;
+        throw new ArithmeticException("Not implemented");
+        //return null;
     }
     
     public String toString() {
-        return this.data.toString() + " : " + this.state.toString();
+        return this.data.toString() + " : ";// + this.state.toString();
     }
 }

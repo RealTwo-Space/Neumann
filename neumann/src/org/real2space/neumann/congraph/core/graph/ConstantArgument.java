@@ -1,22 +1,23 @@
 package org.real2space.neumann.congraph.core.graph;
 import org.real2space.neumann.congraph.core.data.Data;
+
 /**
  * Project Neumann
  *
  * @author RealTwo-Space
  * @version 0
  *
- * created 11/29/16
+ * created 12/18/16
  */
-class MonomialArgument extends Argument {
-    private Node arg;
-    
-    protected MonomialArgument(Node arg) {
+class ConstantArgument extends Argument {
+    private Data arg;
+
+    protected ConstantArgument(Data arg) {
         this.arg = arg;
     }
     
     protected Data getDataAt(int index) {
-        return this.arg.refData();
+        return this.arg;
     }
     
     protected int getSize() {

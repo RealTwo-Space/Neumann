@@ -29,9 +29,9 @@ class ScheduleExecuter {
         HashSet<Group> groups;
         Group group;
         Node[] nodes;
-    
-        for (ListIterator<Layer> itL = layers.listIterator(); itL.hasNext();){
-            layer = itL.next();
+
+        for (ListIterator<Layer> itL = layers.listIterator(layers.size()); itL.hasPrevious();){
+            layer = itL.previous();
             groups = layer.getGroups();
             for (Iterator<Group> itG = groups.iterator(); itG.hasNext();) {
                 group = itG.next();
@@ -41,8 +41,7 @@ class ScheduleExecuter {
                 }
             }
         }
-        
+
         schedule.getOrigin().execute();
-        
     }
 }

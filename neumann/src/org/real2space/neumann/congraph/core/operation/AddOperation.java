@@ -1,5 +1,7 @@
 package org.real2space.neumann.congraph.core.operation;
 
+import org.real2space.neumann.congraph.core.data.Data;
+import org.real2space.neumann.congraph.core.graph.Node;
 import org.real2space.neumann.congraph.core.graph.Operation;
 import org.real2space.neumann.congraph.core.graph.BinomialArgument;
 /**
@@ -14,7 +16,7 @@ import org.real2space.neumann.congraph.core.graph.BinomialArgument;
 public class AddOperation extends Operation {
     private BinomialArgument arg;
     
-    public AddOperation(Data a, Data b) {
+    public AddOperation(Node a, Node b) {
         this.arg = new BinomialArgument(a, b);
     }
     

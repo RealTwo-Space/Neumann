@@ -8,6 +8,6 @@ import org.real2space.neumann.congraph.core.data.Data;
  *
  * created 11/28/16
  */
-abstract class State {
-    abstract Data execute();
+public abstract class State {
+    public abstract Data execute();
 }

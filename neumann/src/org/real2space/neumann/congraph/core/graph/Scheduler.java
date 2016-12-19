@@ -32,28 +32,24 @@ public class Scheduler {
         
         ArrayDeque<Group> stack = new ArrayDeque<Group>();
         stack.push(graph.getChildren(origin));
-        
+
         while(!stack.isEmpty()) {
             Group group = stack.pop();
             if (it.hasNext()) {
                 it.next().addGroup(group);
             } else {
                 it.add(new Layer());
-                it.next().addGroup(group);
+                it.previous().addGroup(group);
+                it.next();
             }
-            
+
             nodes = group.getNodes();
-            boolean hasChildren = false;
+            
             for (int i = 0, n = nodes.length; i < n; i++) {
                 Group children = graph.getChildren(nodes[i]);
                 if (children != null) {
                     stack.push(children);
-                    hasChildren = true;
                 }
-            }
-            
-            if (!hasChildren) {
-                it.previous();
             }
         }
         
