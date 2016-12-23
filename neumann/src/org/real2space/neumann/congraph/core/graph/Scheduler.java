@@ -20,9 +20,7 @@ public class Scheduler {
     protected static Scheduler getInstance() {
         return singleton;
     }
-    
-    
-    // TODO : write "if origin has no child"
+
     protected Schedule createSchedule(Node origin, Graph graph) {
         Schedule schedule = new Schedule(origin);
         
@@ -31,7 +29,14 @@ public class Scheduler {
         ListIterator<Layer> it = linkedList.listIterator();
         
         ArrayDeque<Group> stack = new ArrayDeque<Group>();
-        stack.push(graph.getChildren(origin));
+
+        Group originsChildren = graph.getChildren(origin);
+
+        if (originsChildren == null) {
+            return schedule;
+        }
+
+        stack.push(originsChildren);
 
         while(!stack.isEmpty()) {
             Group group = stack.pop();

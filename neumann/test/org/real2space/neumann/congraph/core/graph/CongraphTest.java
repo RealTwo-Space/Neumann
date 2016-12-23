@@ -80,4 +80,12 @@ public class CongraphTest {
         }
     }
 
+    @Test
+    public void oneNodeTest () {
+        Congraph cg = new Congraph();
+        Node a = cg.floatConstant(1.0f);
+
+        cg.execute(a);
+    }
+
 }
