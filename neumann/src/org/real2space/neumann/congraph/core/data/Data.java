@@ -1,5 +1,6 @@
 package org.real2space.neumann.congraph.core.data;
 
+import org.real2space.neumann.approssi.core.util.DeepCopy;
 /**
  * Project Neumann
  *
@@ -9,7 +10,7 @@ package org.real2space.neumann.congraph.core.data;
  * created 12/17/16
  */
  
-public interface Data<E> {
+public interface Data<E> extends DeepCopy<Data<E>> {
     public Data<E> add(Data a);
     public Data<E> subtract(Data a);
     public Data<E> multiply(Data a);

@@ -43,4 +43,8 @@ public class FloatData implements NumberData<Float> {
     public Float get() {
         return this.data;
     }
+    
+    public Data<Float> deepCopy() {
+        return new FloatData(this.data);
+    }
 }

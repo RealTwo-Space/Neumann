@@ -56,4 +56,8 @@ public class MatrixData<F> implements Data<Matrix<F>> {
     public Matrix<F> get () {
         return this.data;
     }
+    
+    public Data<Matrix<F>> deepCopy() {
+        return new MatrixData(this.data.deepCopy());
+    }
 }

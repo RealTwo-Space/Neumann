@@ -11,8 +11,14 @@ import org.real2space.neumann.approssi.core.structure.*;
 import static org.junit.Assert.*;
 
 /**
- * Created by ryosukesuzuki on 2016/12/18.
+ * Project Neumann
+ *
+ * @author RealTwo-Space
+ * @version 0
+ * 
+ * created 12/18/16
  */
+ 
 public class BrainTest {
     @Test
     public void execute() throws Exception {

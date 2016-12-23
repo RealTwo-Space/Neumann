@@ -11,7 +11,7 @@ import org.real2space.neumann.congraph.core.data.Data;
  */
 
 public class BinomialArgument extends Argument {
-    private Node[] args;
+    protected Node[] args;
     
     public BinomialArgument(Node argL, Node argR) {
         this.args = new Node[2];

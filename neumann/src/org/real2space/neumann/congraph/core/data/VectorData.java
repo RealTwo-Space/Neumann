@@ -47,4 +47,8 @@ public class VectorData<F> implements Data<Vector<F>> {
     public Vector<F> get () {
         return this.data;
     }
+    
+    public Data<Vector<F>> deepCopy() {
+        return new VectorData(this.data.deepCopy());
+    }
 }

@@ -19,7 +19,6 @@ public class Node {
     
     protected void execute() {
         this.data = this.state.execute();
-        System.out.println("Node: \n" + this.data.get());
     }
     
     // return refenrence
@@ -27,10 +26,12 @@ public class Node {
         return this.data;
     }
     
-    // deep copy and return (for users)
     public Data getData() {
-        throw new ArithmeticException("Not implemented");
-        //return null;
+        return data.deepCopy();
+    }
+    
+    public void setData(Data data) {
+        this.data = data;
     }
     
     public String toString() {

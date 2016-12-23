@@ -43,4 +43,8 @@ public class DoubleData implements NumberData<Double> {
     public Double get() {
         return this.data;
     }
+    
+    public Data<Double> deepCopy() {
+        return new DoubleData(this.data);
+    }
 }
