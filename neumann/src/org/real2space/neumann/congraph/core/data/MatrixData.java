@@ -60,4 +60,8 @@ public class MatrixData<F> implements Data<Matrix<F>> {
     public Data<Matrix<F>> deepCopy() {
         return new MatrixData(this.data.deepCopy());
     }
+
+    public String toString() {
+        return this.data.toString();
+    }
 }

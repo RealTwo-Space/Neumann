@@ -35,6 +35,6 @@ public class Node {
     }
     
     public String toString() {
-        return this.data.toString() + " : ";// + this.state.toString();
+        return this.data.toString();// + " : "// + this.state.toString();
     }
 }

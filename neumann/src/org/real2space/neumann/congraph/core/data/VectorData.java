@@ -51,4 +51,8 @@ public class VectorData<F> implements Data<Vector<F>> {
     public Data<Vector<F>> deepCopy() {
         return new VectorData(this.data.deepCopy());
     }
+
+    public String toString() {
+        return this.data.toString();
+    }
 }

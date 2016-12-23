@@ -18,7 +18,7 @@ public class SubstituteOperation extends Operation {
     
     // a <- b
     public SubstituteOperation(Node a, Node b) {
-        this.arg = new BinomialArgument(a, b);
+        this.arg = new SubstituteArgument(a, b);
     }
     
     public Data execute() {

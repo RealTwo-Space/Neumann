@@ -42,7 +42,7 @@ public class Congraph {
     }
     
     public Node vectorConstant (Vector constant) {
-        Data data = new VectorData(constant.deepCopy());
+        Data data = new VectorData((Vector)constant.deepCopy());
         Constant con = new Constant(data);
         Node node = new Node (data, con);
         this.brain.addNode(node);
@@ -50,7 +50,7 @@ public class Congraph {
     }
     
     public Node matrixConstant (Matrix constant) {
-        Data data = new MatrixData(constant.deepCopy());
+        Data data = new MatrixData((Matrix)constant.deepCopy());
         Constant con = new Constant(data);
         Node node = new Node (data, con);
         this.brain.addNode(node);
@@ -69,7 +69,7 @@ public class Congraph {
         Variable var = new Variable();
         Data data = new FloatData(variable);
         Node node = new Node(data, var);
-        vat.setMonomialArgument(node);
+        var.setMonomialArgument(node);
         this.brain.addNode(node);
         return node;
     }
@@ -78,25 +78,25 @@ public class Congraph {
         Variable var = new Variable();
         Data data = new DoubleData(variable);
         Node node = new Node(data, var);
-        vat.setMonomialArgument(node);
+        var.setMonomialArgument(node);
         this.brain.addNode(node);
         return node;
     }
     
     public Node vectorVariable (Vector variable) {
         Variable var = new Variable();
-        Data data = new VectorData(variable.deepCopy());
+        Data data = new VectorData((Vector)variable.deepCopy());
         Node node = new Node(data, var);
-        vat.setMonomialArgument(node);
+        var.setMonomialArgument(node);
         this.brain.addNode(node);
         return node;
     }
     
     public Node matrixVariable (Matrix variable) {
         Variable var = new Variable();
-        Data data = new MatrixData(variable.deepCopy());
+        Data data = new MatrixData((Vector)variable.deepCopy());
         Node node = new Node(data, var);
-        vat.setMonomialArgument(node);
+        var.setMonomialArgument(node);
         this.brain.addNode(node);
         return node;
     }

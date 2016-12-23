@@ -16,4 +16,5 @@ public interface Data<E> extends DeepCopy<Data<E>> {
     public Data<E> multiply(Data a);
     public Data<E> divide(Data a);
     public E get();
+    public Data<E> deepCopy();
 }
