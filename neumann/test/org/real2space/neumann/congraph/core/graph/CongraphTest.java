@@ -54,6 +54,7 @@ public class CongraphTest {
 
     @Test
     public void goldenRatioTest () {
+
         Congraph cg = new Congraph();
 
         Node ren1 = cg.doubleVariable(1.0); // n - 1
@@ -63,7 +64,7 @@ public class CongraphTest {
         Node ren5 = cg.substitute(ren1, ren3);
         Node ren6 = cg.substitute(ren2, ren4);
         Node ren7 = cg.divide(ren6, ren5);
-
+        long start = System.currentTimeMillis();
 
         /*
         Node ren1 = cg.floatVariable(1.0f); // n - 1
@@ -75,9 +76,11 @@ public class CongraphTest {
         Node ren7 = cg.divide(ren6, ren5);
         */
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 2000; i++) {
             cg.execute(ren7);
         }
+        long end = System.currentTimeMillis();
+        System.out.println(end - start + " ms");
     }
 
     @Test
