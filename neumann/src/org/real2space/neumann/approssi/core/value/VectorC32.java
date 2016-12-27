@@ -92,6 +92,8 @@ public class VectorC32 implements Vector<Complex32>{
     public MatrixC32 toMatrix () {
         Complex32[][] mat = new Complex32[1][];
         mat[0] = this.vector;
+        MatrixC32 res = new MatrixC32(mat);
+        res.transpose();
         return new MatrixC32(mat);
     }
 

@@ -12,17 +12,24 @@ public class Brain {
     private Schedule schedule;
     private Scheduler scheduler;
     private ScheduleExecuter scheduleExecuter;
-    private Graph graph;
+    public Graph graph;
     
-    protected Brain() {
+    public Brain() {
         this.scheduler = Scheduler.getInstance();
         this.scheduleExecuter = ScheduleExecuter.getInstance();
         this.graph = new Graph();
     }
     
-    protected void execute(Node origin) {
+    public void execute(Node origin) {
         this.schedule = this.scheduler.createSchedule(origin, this.graph);
         this.scheduleExecuter.executeSchedule(this.schedule);
-        // System.out.println(origin);
+    }
+    
+    public void addNode(Node node) {
+        this.graph.addNode(node);
+    }
+    
+    public void addEdge(Node node, Group group) {
+        this.graph.addEdge(node, group);
     }
 }

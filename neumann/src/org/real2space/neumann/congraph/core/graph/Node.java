@@ -1,5 +1,5 @@
 package org.real2space.neumann.congraph.core.graph;
-
+import org.real2space.neumann.congraph.core.data.Data;
 /**
  * Project Neumann
  *
@@ -12,7 +12,7 @@ public class Node {
     private Data data;
     private State state;
     
-    protected Node(Data data, State state) {
+    public Node(Data data, State state) {
         this.data = data;
         this.state = state;
     }
@@ -22,16 +22,19 @@ public class Node {
     }
     
     // return refenrence
-    protected Data refData() {
+    public Data refData() {
         return this.data;
     }
     
-    // deep copy and return (for users)
     public Data getData() {
-        return null;
+        return data.deepCopy();
+    }
+    
+    public void setData(Data data) {
+        this.data = data;
     }
     
     public String toString() {
-        return this.data.toString() + " : " + this.state.toString();
+        return this.data.toString();// + " : "// + this.state.toString();
     }
 }

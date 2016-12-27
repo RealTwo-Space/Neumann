@@ -5,8 +5,8 @@ package org.real2space.neumann.congraph.core.graph;
  *
  * @author RealTwo-Space
  * @version 0
- *          <p>
- *          created 11/28/16
+ * 
+ * created 12/18/16
  */
 public abstract class Operation extends State {
 }

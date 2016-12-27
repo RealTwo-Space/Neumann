@@ -91,6 +91,8 @@ public class Vector64 implements Vector<Double>{
     public Matrix64 toMatrix () {
         double[][] mat = new double[1][];
         mat[0] = this.vector;
+        Matrix64 res = new Matrix64(mat);
+        res.transpose();
         return new Matrix64(mat);
     }
 
