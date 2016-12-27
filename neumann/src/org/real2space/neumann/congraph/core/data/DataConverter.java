@@ -32,16 +32,16 @@ public class DataConverter {
 
     public static Data convert (Object value) {
         if (value instanceof Double) {
-            return convert((Double)value);
+            return convert((double)value);
         }
         else if (value instanceof Float) {
-            return convert((Float)value);
+            return convert((float)value);
         }
         else if (value instanceof Matrix) {
             return convert((Matrix)value);
         }
         else if (value instanceof Vector) {
-            return convert(value);
+            return convert((Vector)value);
         }
 
         throw new NotImplementedException();

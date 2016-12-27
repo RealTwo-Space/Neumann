@@ -74,5 +74,7 @@ public interface Matrix<E> extends DeepCopy <Matrix<E>> {
      * Transpose this matrix
      * @return void
      */
-     public void inverse ();
+    public void inverse ();
+
+    public Matrix<E> deepCopy();
 }

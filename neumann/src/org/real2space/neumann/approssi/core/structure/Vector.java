@@ -49,4 +49,6 @@ public interface Vector<E> extends DeepCopy<Vector<E>> {
      * @return Matrix<E>
      */
     public Matrix<E> toMatrix ();
+
+    public Vector<E> deepCopy();
 }

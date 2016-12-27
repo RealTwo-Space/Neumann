@@ -1,8 +1,13 @@
 package org.real2space.neumann.congraph.core.graph;
 
+import org.real2space.neumann.approssi.core.function.Function;
 import org.real2space.neumann.approssi.core.structure.*;
 import org.real2space.neumann.congraph.core.operation.*;
 import org.real2space.neumann.congraph.core.data.*;
+
+import java.lang.reflect.Array;
+import java.util.HashMap;
+
 /**
  * Project Neumann
  *
@@ -153,10 +158,16 @@ public class Congraph {
         return node;
     }
     
-    public Node function(Function func, HashMap args) {
-        Operation op = new FunctionOperation(fun, args);
+    public Node function(Function func, HashMap<String, Node> args) {
+        Operation op = new FunctionOperation(func, args);
         Node node = new Node(null, op);
-        Node[] children = args.values().toArray();
+
+        Object[] tempArray = args.values().toArray();
+        Node[] children = new Node[tempArray.length];
+        for (int i = 0, n = tempArray.length; i < n; i++) {
+            children[i] = (Node)tempArray[i];
+        }
+
         Group group = new Group(children);
         this.brain.addEdge(node, group);
         this.brain.addNode(node);

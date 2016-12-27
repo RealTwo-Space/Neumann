@@ -1,9 +1,11 @@
 package org.real2space.neumann.congraph.core.function;
 
+import org.real2space.neumann.approssi.core.function.Function;
 import org.real2space.neumann.approssi.core.structure.*;
-import org.real2space.neumann.congraph.core.operation.*;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.data.DataConverter;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 /**
  * Project Neumann
  *
@@ -14,25 +16,31 @@ import org.real2space.neumann.congraph.core.data.DataConverter;
  */
 
 public class CGFunction {
-    Function function;
+    private Function function;
     
     public CGFunction (Function function) {
         this.function = function;
     }
     
     public void changeArgument(String key, Data data) {
-        if (data instanceof Double) {
+
+        if (data.get() instanceof Double) {
             this.function.changeArgument(key, (Double)data.get());
+            return;
         }
-        else if (data instanceof Float) {
+        else if (data.get() instanceof Float) {
             this.function.changeArgument(key, (Float)data.get());
+            return;
         }
-        else if (data instanceof Matrix) {
+        else if (data.get() instanceof Matrix) {
             this.function.changeArgument(key, (Matrix)data.get());
+            return;
         }
-        else if (data instanceof Vector) {
+        else if (data.get() instanceof Vector) {
             this.function.changeArgument(key, (Vector)data.get());
+            return;
         }
+        System.out.println(data.get().getClass());
         throw new NotImplementedException();
     }
     

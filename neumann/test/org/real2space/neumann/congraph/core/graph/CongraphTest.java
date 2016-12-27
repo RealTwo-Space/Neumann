@@ -1,7 +1,12 @@
 package org.real2space.neumann.congraph.core.graph;
 
 import org.junit.Test;
+import org.real2space.neumann.approssi.core.function.*;
+import org.real2space.neumann.approssi.core.function.Variable;
+import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.value.Matrix64;
+
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -91,4 +96,52 @@ public class CongraphTest {
         cg.execute(a);
     }
 
+
+    private class MyFunction extends Function<Matrix> {
+        public MyFunction () {
+            super();
+            this.setDouble("x");
+            this.setDouble("y");
+            this.setDouble("z");
+            this.setDouble("w");
+            this.setMatrix("m");
+
+            result = new Variable<Matrix>();
+        }
+
+        @Override
+        public void execute() {
+            double x = getDouble("x");
+            double y = getDouble("y");
+            double z = getDouble("z");
+            double w = getDouble("w");
+            Matrix m = getMatrix("m").deepCopy();
+            m.multiply(x + y * z - w);
+            result.set(m);
+        }
+    }
+
+    @Test
+    public void functionTest () {
+        Congraph cg = new Congraph();
+        MyFunction mf = new MyFunction();
+
+        Node x = cg.constant(1.0);
+        Node y = cg.constant(2.0);
+        Node z = cg.constant(3.0);
+        Node w = cg.constant(4.0);
+        Matrix64 ma = new Matrix64(new double[][] {{1.0, 2.0}, {3.0, 4.0}});
+        Node m = cg.constant(ma);
+
+        HashMap<String, Node> arg = new HashMap<String, Node>();
+        arg.put("x", x);
+        arg.put("y", y);
+        arg.put("z", z);
+        arg.put("w", w);
+        arg.put("m", m);
+
+        Node fun = cg.function(mf, arg);
+
+        cg.execute(fun);
+    }
 }

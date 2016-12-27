@@ -68,4 +68,6 @@ public interface Complex<E> extends DeepCopy <Complex<E>>{
      * @return E
      */
     public E arg ();
+
+    public Complex<E> deepCopy();
 }

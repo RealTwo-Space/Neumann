@@ -4,7 +4,7 @@ import org.real2space.neumann.congraph.core.function.CGFunction;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.graph.Node;
 import org.real2space.neumann.congraph.core.graph.Operation;
-import org.real2space.neumann.approssi.core.function.function;
+import org.real2space.neumann.approssi.core.function.Function;
 
 import java.util.HashMap;
 

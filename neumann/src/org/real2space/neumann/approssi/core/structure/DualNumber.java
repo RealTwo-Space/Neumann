@@ -49,4 +49,6 @@ public interface DualNumber<E> extends DeepCopy<DualNumber<E>> {
      * @return void
      */
     public void divide (DualNumber<E> other);
+
+    public DualNumber<E> deepCopy();
 }
