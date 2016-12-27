@@ -17,15 +17,15 @@ public class CongraphTest {
     @Test
     public void superTest() {
         Congraph cg = new Congraph();
-        Node a = cg.doubleConstant(3.0);
+        Node a = cg.constant(3.0);
 
         Matrix64 m = new Matrix64(new double[][]{{1.0, 0.0}, {0.0, 1.0}});
-        Node b = cg.matrixConstant(m);
+        Node b = cg.constant(m);
 
         Node mulC = cg.multiply(b, a);
 
-        Node va = cg.doubleVariable(-4.0);
-        Node d = cg.doubleConstant(2.0);
+        Node va = cg.variable(-4.0);
+        Node d = cg.constant(2.0);
         Node mulB = cg.multiply(va, d);
         Node sub = cg.substitute(va, mulB);
 
@@ -35,11 +35,11 @@ public class CongraphTest {
         }
         */
 
-        Node n1 = cg.doubleVariable(0.0);
-        Node n2 = cg.doubleConstant(1.0);
+        Node n1 = cg.variable(0.0);
+        Node n2 = cg.constant(1.0);
         Node n3 = cg.add(n1, n2);
         Node n4 = cg.substitute(n1, n3);
-        Node n5 = cg.matrixConstant(m);
+        Node n5 = cg.constant(m);
         Node n6 = cg.multiply(n5, n4);
 
         /*
@@ -57,8 +57,8 @@ public class CongraphTest {
 
         Congraph cg = new Congraph();
 
-        Node ren1 = cg.doubleVariable(1.0); // n - 1
-        Node ren2 = cg.doubleVariable(1.0); // n
+        Node ren1 = cg.variable(1.0); // n - 1
+        Node ren2 = cg.variable(1.0); // n
         Node ren3 = cg.add(ren1, ren2);
         Node ren4 = cg.add(ren3, ren2);
         Node ren5 = cg.substitute(ren1, ren3);
@@ -86,7 +86,7 @@ public class CongraphTest {
     @Test
     public void oneNodeTest () {
         Congraph cg = new Congraph();
-        Node a = cg.floatConstant(1.0f);
+        Node a = cg.constant(1.0f);
 
         cg.execute(a);
     }
