@@ -30,7 +30,7 @@ public class DualNumber64 implements DualNumber<Double> {
     
     /**
      * Gets a of (a + b epsilon).
-     * @param a DualNumber64
+     * @param dual DualNumber64
      * @return double
      */
     public static double a(DualNumber64 dual) {
@@ -43,7 +43,7 @@ public class DualNumber64 implements DualNumber<Double> {
     
     /**
      * Gets an imaginary part of a.
-     * @param a DualNumber64
+     * @param dual DualNumber64
      * @return double
      */
     public static double b(DualNumber64 dual) {
@@ -120,7 +120,7 @@ public class DualNumber64 implements DualNumber<Double> {
     public void divide(DualNumber<Double> other) {
         DualNumber64 temp = (DualNumber64)other;
         
-        tempad = 1.0 / temp.a;
+        double tempad = 1.0 / temp.a;
         double tempa = this.a * tempad;
         this.b = (this.b * temp.a - this.a * temp.b) * tempad * tempad;
         this.a = tempa;

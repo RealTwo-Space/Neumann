@@ -138,7 +138,7 @@ public class MathDual64 {
         double a = DualNumber64.a(value);
         double b = DualNumber64.b(value);
         double invz2 = Math64.sq(1.0 / a);
-        double invsqrt = b / Math64(1.0 - invz2);
+        double invsqrt = b / Math64.sqrt(1.0 - invz2);
         return new DualNumber64(Math64.arcsec(a), invz2 * invsqrt);
     }
     
@@ -146,12 +146,12 @@ public class MathDual64 {
         double a = DualNumber64.a(value);
         double b = DualNumber64.b(value);
         double invz2 = Math64.sq(1.0 / a);
-        double invsqrt = b / Math64(1.0 - invz2);
-        return new DualNumber64(Math64.arcsc(a), - invz2 * invsqrt);
+        double invsqrt = b / Math64.sqrt(1.0 - invz2);
+        return new DualNumber64(Math64.arccsc(a), - invz2 * invsqrt);
     }
     
     public static DualNumber64 arccot(DualNumber64 value) {
-        rdouble a = DualNumber64.a(value);
+        double a = DualNumber64.a(value);
         double b = DualNumber64.b(value);
         double inv = b / (1.0 + a * a);
         return new DualNumber64(Math64.arccot(a), - inv);
@@ -223,15 +223,15 @@ public class MathDual64 {
     public static DualNumber64 pow(DualNumber64 x, DualNumber64 y) {
         double a = DualNumber64.a(x);
         double b = DualNumber64.b(x);
-        double y = a * a;
-        return new DualNumber64(Math64.pow(a, a), b * y * Math64.ln(a));
+        double ty = a * a;
+        return new DualNumber64(Math64.pow(a, a), b * ty * Math64.ln(a));
     }
     
     // x^y = x^y log x
     public static DualNumber64 pow(double x, DualNumber64 y) {
-        double a = DualNumber64.a(x);
-        double b = DualNumber64.b(x);
-        double xy = Math64.pow(a, y);
+        double a = DualNumber64.a(y);
+        double b = DualNumber64.b(y);
+        double xy = Math64.pow(x, a);
         return new DualNumber64(xy, b * xy * Math64.ln(a));
     }
     
@@ -248,7 +248,6 @@ public class MathDual64 {
         double b = DualNumber64.b(value);
         double tx = b / Math64.ln(x);
         return new DualNumber64(Math64.log(x, a), tx / a);
-        DualNumber64 output = ln(value);
     }
     
     // logx = 1/x
@@ -264,6 +263,5 @@ public class MathDual64 {
         double b = DualNumber64.b(value);
         double te = b / Math64.ln(10);
         return new DualNumber64(Math64.log10(a), te / a);
-        DualNumber64 output = ln(value);
     }
 }

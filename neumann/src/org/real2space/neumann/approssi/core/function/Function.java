@@ -42,6 +42,10 @@ public abstract class Function<E> {
     public void changeArgument (String var, Function va) {
         this.argument.get(var).set(va);
     }
+
+    public void changeArgument (String var, DualNumber va) {
+        this.argument.get(var).set(va);
+    }
     
     public void setArgument (String var, Float va) {
         this.argument.put(var, new Variable<Float>(va));
@@ -65,6 +69,10 @@ public abstract class Function<E> {
     
     public void setArgument (String var, Function va) {
         this.argument.put(var, new Variable<Function>(va));
+    }
+
+    public void setArgument (String var, DualNumber va) {
+        this.argument.put(var, new Variable<DualNumber>(va));
     }
     
     public void setFloat (String var) {
@@ -90,6 +98,10 @@ public abstract class Function<E> {
     public void setFunction (String var) {
         this.argument.put(var, new Variable<Function>());
     }
+
+    public void setDualNumber(String var) {
+        this.argument.put(var, new Variable<DualNumber>());
+    }
     
     public Float getFloat(String var) {
         return (Float)this.argument.get(var).get();
@@ -114,7 +126,12 @@ public abstract class Function<E> {
     public Function getFunction(String var) {
         return (Function)this.argument.get(var).get();
     }
-    
+
+    public DualNumber getDualNumber(String var) {
+        return (DualNumber)this.argument.get(var).get();
+    }
+
+
     public Variable getArgument(String var) {
         return this.argument.get(var);
     }

@@ -11,15 +11,15 @@ import org.real2space.neumann.approssi.core.structure.DualNumber;
  */
 
 public class DualNumber32 implements DualNumber<Float> {
-    private double a;
-    private double b;
+    private float a;
+    private float b;
 
-    public DualNumber32(double a, double b) {
+    public DualNumber32(float a, float b) {
         this.a = a;
         this.b = b;
     }
     
-    public DualNumber32(double a) {
+    public DualNumber32(float a) {
         this.a = a;
         this.b = 1.0f;
     }
@@ -30,10 +30,10 @@ public class DualNumber32 implements DualNumber<Float> {
     
     /**
      * Gets a of (a + b epsilon).
-     * @param a DualNumber32
+     * @param dual DualNumber32
      * @return double
      */
-    public static double a(DualNumber32 dual) {
+    public static float a(DualNumber32 dual) {
         return dual.a;
     }
     
@@ -43,10 +43,10 @@ public class DualNumber32 implements DualNumber<Float> {
     
     /**
      * Gets an imaginary part of a.
-     * @param a DualNumber32
+     * @param dual DualNumber32
      * @return double
      */
-    public static double b(DualNumber32 dual) {
+    public static float b(DualNumber32 dual) {
         return dual.b;
     }
     
@@ -96,7 +96,7 @@ public class DualNumber32 implements DualNumber<Float> {
     public void multiply(DualNumber<Float> other) {
         DualNumber32 temp = (DualNumber32)other;
         
-        double tempa = this.a * temp.a;
+        float tempa = this.a * temp.a;
         this.b = this.a * temp.b + this.b * temp.a;
         this.a = tempa;
 
@@ -120,8 +120,8 @@ public class DualNumber32 implements DualNumber<Float> {
     public void divide(DualNumber<Float> other) {
         DualNumber32 temp = (DualNumber32)other;
         
-        tempad = 1.0f / temp.a;
-        double tempa = this.a * tempad;
+        float tempad = 1.0f / temp.a;
+        float tempa = this.a * tempad;
         this.b = (this.b * temp.a - this.a * temp.b) * tempad * tempad;
         this.a = tempa;
     }

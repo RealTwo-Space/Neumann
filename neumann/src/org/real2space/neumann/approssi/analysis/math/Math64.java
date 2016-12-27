@@ -95,7 +95,7 @@ public class Math64 {
     }
     
     public static double arccosh(double value) {
-        return ln(value + sqrt(sq(value) - 1.0);
+        return ln(value + sqrt(sq(value) - 1.0));
     }
     
     public static double arctanh(double value) {
@@ -146,7 +146,7 @@ public class Math64 {
         return Math.abs(value);
     }
     
-    public static double max(double values..) {
+    public static double max(float[] values) {
         double max = values[0];
         for (int i = 1, n = values.length; i < n; i++) {
             max = max(max, values[i]);
@@ -158,7 +158,7 @@ public class Math64 {
         return Math.max(a, b);
     }
     
-    public static double min(double values..) {
+    public static double min(float[] values) {
         double min = values[0];
         for (int i = 1, n = values.length; i < n; i++) {
             min = min(min, values[i]);

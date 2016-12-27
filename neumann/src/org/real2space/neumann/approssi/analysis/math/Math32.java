@@ -121,7 +121,7 @@ public class Math32 {
     }
     
     public static float pow(float a, float b) {
-        return (float)Math64.csc(value);
+        return (float)Math64.pow(a, b);
     }
     
     public static float exp(float value) {
@@ -133,7 +133,7 @@ public class Math32 {
     }
     
     public static float ln(float value) {
-        return (float)Math64.log(value);
+        return (float)Math64.ln(value);
     }
 
     public static float log10(float value) {
@@ -144,7 +144,7 @@ public class Math32 {
         return (float)Math64.abs(value);
     }
     
-    public static float max(float values..) {
+    public static float max(float... values) {
         return (float)Math64.max(values);
     }
     
@@ -152,7 +152,7 @@ public class Math32 {
         return (float)Math64.max(a, b);
     }
     
-    public static float min(float values..) {
+    public static float min(float... values) {
         return (float)Math64.min(values);
     }
     
