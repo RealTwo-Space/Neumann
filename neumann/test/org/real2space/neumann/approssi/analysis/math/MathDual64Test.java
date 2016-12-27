@@ -31,6 +31,21 @@ public class MathDual64Test {
         }
 
     }
+
+    private class MyDerivative extends Function<Double> {
+        public MyDerivative () {
+            super();
+            result = new Variable<Double>();
+            setDualNumber("x");
+        }
+
+        @Override
+        public void execute () {
+            DualNumber64 x = (DualNumber64)getDualNumber("x");
+            result.set(MathDual64.pow(x, 3.0).b());
+        }
+    }
+
     @Test
     public void test1() {
         MyFunction func = new MyFunction();
@@ -43,8 +58,8 @@ public class MathDual64Test {
         // - sinxy - yx * (cosxy) -> - sin(PI / 24) - PI/24 * cos(PI/24)
         // cosxy -> - sinxy
         // f(x*y) -> y * fx(x*y) -> fx(x*y) + y * x * fxy(x*y)
-        //
-        // (x + y) * f'(x*y)
+
+        // f(x + e, y + e') = f(x,y) + (efx(x, y)x + e'fy(x, y)y) + (e^2fxx(x, y)x^2 + 2ee'fxy(x, y)xy + e'^2fyy(x, y)y^2)/2
         func.changeArgument("x", xe);
         func.changeArgument("y", ye);
         func.execute();
@@ -56,4 +71,25 @@ public class MathDual64Test {
 
     }
 
+    @Test
+    public void test2 () {
+        // (x + y) * f'(x*y)
+        // f(e + x) = f(x) + e*f'(x)
+        // f'(e + x) = f'(x) + e*f''(x)
+
+        DualNumber64 x = new DualNumber64(2.0, 1.0);
+        DualNumber64 xpow = MathDual64.pow(x, 3.0);
+        System.out.println(xpow);
+    }
+
+    @Test
+    public void test3 () {
+        // f(x) = x^3
+        // f'(x) = 3 x^2
+        MyDerivative md = new MyDerivative();
+        DualNumber64 x = new DualNumber64(5.0);
+        md.changeArgument("x", x);
+        md.execute();
+        System.out.println(md.getResult());
+    }
 }
