@@ -17,6 +17,7 @@ public class Congraph {
         this.brain = new Brain();
     }
     
+    /*
     public Node Constant(Data data) {
         Data nodeData = data.deepCopy();
         Constant con = new Constant(nodeData);
@@ -24,8 +25,9 @@ public class Congraph {
         this.brain.addNode(node);
         return node;
     }
+    */
     
-    public Node floatConstant (float constant) {
+    public Node constant (float constant) {
         Data data = new FloatData(constant);
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -33,7 +35,7 @@ public class Congraph {
         return node;
     }
     
-    public Node doubleConstant (double constant) {
+    public Node constant (double constant) {
         Data data = new DoubleData(constant);
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -41,7 +43,7 @@ public class Congraph {
         return node;
     }
     
-    public Node vectorConstant (Vector constant) {
+    public Node constant (Vector constant) {
         Data data = new VectorData((Vector)constant.deepCopy());
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -49,7 +51,7 @@ public class Congraph {
         return node;
     }
     
-    public Node matrixConstant (Matrix constant) {
+    public Node constant (Matrix constant) {
         Data data = new MatrixData((Matrix)constant.deepCopy());
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -65,7 +67,7 @@ public class Congraph {
         return node;
     }
     
-    public Node floatVariable (float variable) {
+    public Node variable (float variable) {
         Variable var = new Variable();
         Data data = new FloatData(variable);
         Node node = new Node(data, var);
@@ -74,7 +76,7 @@ public class Congraph {
         return node;
     }
     
-    public Node doubleVariable (double variable) {
+    public Node variable (double variable) {
         Variable var = new Variable();
         Data data = new DoubleData(variable);
         Node node = new Node(data, var);
@@ -83,7 +85,7 @@ public class Congraph {
         return node;
     }
     
-    public Node vectorVariable (Vector variable) {
+    public Node variable (Vector variable) {
         Variable var = new Variable();
         Data data = new VectorData((Vector)variable.deepCopy());
         Node node = new Node(data, var);
@@ -92,7 +94,7 @@ public class Congraph {
         return node;
     }
     
-    public Node matrixVariable (Matrix variable) {
+    public Node variable (Matrix variable) {
         Variable var = new Variable();
         Data data = new MatrixData((Vector)variable.deepCopy());
         Node node = new Node(data, var);
@@ -145,6 +147,16 @@ public class Congraph {
         Operation op = new SubstituteOperation(nodeA, nodeB);
         Node node = new Node(null, op);
         Node[] children = {nodeA, nodeB};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+    
+    public Node function(Function func, HashMap args) {
+        Operation op = new FunctionOperation(fun, args);
+        Node node = new Node(null, op);
+        Node[] children = args.values().toArray();
         Group group = new Group(children);
         this.brain.addEdge(node, group);
         this.brain.addNode(node);
