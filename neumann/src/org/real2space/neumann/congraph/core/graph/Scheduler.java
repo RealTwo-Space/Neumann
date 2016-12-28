@@ -76,11 +76,11 @@ public class Scheduler {
         for (int i = 0, n = nodes.length; i < n; i++) {
             node = nodes[i];
             currentBelongings = belonging.get(node);
-            if (!belongings.containsKey(node)) {
-                belongings.put(node, layer);
+            if (!belonging.containsKey(node)) {
+                belonging.put(node, layer);
                 layer.addNode(node);
             } else if (layers.indexOf(currentBelongings) < layers.indexOf(layer)) {
-                belongings.put(node, layer);
+                belonging.put(node, layer);
                 currentBelongings.removeNode(node);
                 layer.addNode(node);
             }
