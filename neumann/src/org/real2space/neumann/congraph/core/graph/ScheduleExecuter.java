@@ -24,14 +24,25 @@ class ScheduleExecuter {
     
     protected void executeSchedule(Schedule schedule) {
         // many fors schedule => layers => group => node.execute()
+        // new fors schedule => layers => node.execute()
         LinkedList<Layer> layers = schedule.getLayers();
         Layer layer;
+        HashSet<Node> nodes;
+        /*
         HashSet<Group> groups;
         Group group;
         Node[] nodes;
+        */
 
         for (ListIterator<Layer> itL = layers.listIterator(layers.size()); itL.hasPrevious();){
             layer = itL.previous();
+            
+            nodes = layer.getNodes();
+            
+            for (Node node : nodes) {
+                node.execute();
+            }
+            /*
             groups = layer.getGroups();
             for (Iterator<Group> itG = groups.iterator(); itG.hasNext();) {
                 group = itG.next();
@@ -40,6 +51,7 @@ class ScheduleExecuter {
                     nodes[i].execute();
                 }
             }
+            */
         }
 
         schedule.getOrigin().execute();

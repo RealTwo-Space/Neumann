@@ -11,17 +11,21 @@ import java.util.HashSet;
  * created 12/02/16
  */
 class Layer {
-    private HashSet<Group> groups;
+    private HashSet<Node> nodes;
     
     protected Layer() {
-        this.groups = new HashSet<Group>();
+        this.nodes = new HashSet<Node>();
     }
     
-    protected void addGroup (Group group) {
-        this.groups.add(group);
+    protected void addNode(Node node) {
+        this.nodes.add(node);
     }
     
-    protected HashSet<Group> getGroups() {
-        return this.groups;
+    protected void removeNode(Node node) {
+        this.nodes.remove(node);
+    }
+    
+    protected HashSet<Node> getNodes() {
+        return this.nodes;
     }
 }
