@@ -2,6 +2,7 @@ package org.real2space.neumann.congraph.core.data;
 
 import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.structure.Vector;
+import org.real2space.neumann.approssi.core.structure.DualNumber;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -29,6 +30,10 @@ public class DataConverter {
     public static Data<Vector> convert(Vector value) {
         return new VectorData(value);
     }
+    
+    public static Data<DualNumber> convert(DualNumber value) {
+        return new DualNumberData(value);
+    }
 
     public static Data convert (Object value) {
         if (value instanceof Double) {
@@ -42,6 +47,9 @@ public class DataConverter {
         }
         else if (value instanceof Vector) {
             return convert((Vector)value);
+        }
+        else if (value instanceof DualNumber) {
+            return convert((DualNumber)value);
         }
 
         throw new NotImplementedException();

@@ -32,7 +32,7 @@ public class Congraph {
     }
     */
     
-    public Node constant (float constant) {
+    public Node constant(float constant) {
         Data data = new FloatData(constant);
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -40,7 +40,7 @@ public class Congraph {
         return node;
     }
     
-    public Node constant (double constant) {
+    public Node constant(double constant) {
         Data data = new DoubleData(constant);
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -48,7 +48,7 @@ public class Congraph {
         return node;
     }
     
-    public Node constant (Vector constant) {
+    public Node constant(Vector constant) {
         Data data = new VectorData((Vector)constant.deepCopy());
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -56,7 +56,7 @@ public class Congraph {
         return node;
     }
     
-    public Node constant (Matrix constant) {
+    public Node constant(Matrix constant) {
         Data data = new MatrixData((Matrix)constant.deepCopy());
         Constant con = new Constant(data);
         Node node = new Node (data, con);
@@ -64,7 +64,15 @@ public class Congraph {
         return node;
     }
     
-    public Node variable (Data data) {
+    public Node constant(DualNumber constant) {
+        Data data = new DualNumberData((DualNumber)constant.deepCopy());
+        Constant con = new Constant(data);
+        Node node = new Node (data, con);
+        this.brain.addNode(node);
+        return node;
+    }
+    
+    public Node variable(Data data) {
         Variable var = new Variable();
         Node node = new Node(data.deepCopy(), var);
         var.setMonomialArgument(node);
@@ -72,7 +80,7 @@ public class Congraph {
         return node;
     }
     
-    public Node variable (float variable) {
+    public Node variable(float variable) {
         Variable var = new Variable();
         Data data = new FloatData(variable);
         Node node = new Node(data, var);
@@ -81,7 +89,7 @@ public class Congraph {
         return node;
     }
     
-    public Node variable (double variable) {
+    public Node variable(double variable) {
         Variable var = new Variable();
         Data data = new DoubleData(variable);
         Node node = new Node(data, var);
@@ -90,7 +98,7 @@ public class Congraph {
         return node;
     }
     
-    public Node variable (Vector variable) {
+    public Node variable(Vector variable) {
         Variable var = new Variable();
         Data data = new VectorData((Vector)variable.deepCopy());
         Node node = new Node(data, var);
@@ -99,7 +107,7 @@ public class Congraph {
         return node;
     }
     
-    public Node variable (Matrix variable) {
+    public Node variable(Matrix variable) {
         Variable var = new Variable();
         Data data = new MatrixData((Vector)variable.deepCopy());
         Node node = new Node(data, var);
@@ -108,7 +116,16 @@ public class Congraph {
         return node;
     }
     
-    public Node add (Node nodeA, Node nodeB) {
+    public Node variable(DualNumber variable) {
+        Variable var = new Variable();
+        Data data = new DualNumberData((DualNumber)variable.deepCopy());
+        Node node = new Node(data, var);
+        var.setMonomialArgument(node);
+        this.brain.addNode(node);
+        return node;
+    }
+    
+    public Node add(Node nodeA, Node nodeB) {
         Operation op = new AddOperation(nodeA, nodeB);
         Node node = new Node(null, op);
         Node[] children = {nodeA, nodeB};
@@ -118,7 +135,7 @@ public class Congraph {
         return node;
     }
     
-    public Node subtract (Node nodeA, Node nodeB) {
+    public Node subtract(Node nodeA, Node nodeB) {
         Operation op = new SubtractOperation(nodeA, nodeB);
         Node node = new Node(null, op);
         Node[] children = {nodeA, nodeB};
@@ -128,7 +145,7 @@ public class Congraph {
         return node;
     }
     
-    public Node multiply (Node nodeA, Node nodeB) {
+    public Node multiply(Node nodeA, Node nodeB) {
         Operation op = new MultiplyOperation(nodeA, nodeB);
         Node node = new Node(null, op);
         Node[] children = {nodeA, nodeB};
@@ -138,7 +155,7 @@ public class Congraph {
         return node;
     }
     
-    public Node divide (Node nodeA, Node nodeB) {
+    public Node divide(Node nodeA, Node nodeB) {
         Operation op = new DivideOperation(nodeA, nodeB);
         Node node = new Node(null, op);
         Node[] children = {nodeA, nodeB};
