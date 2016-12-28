@@ -12,7 +12,7 @@ import java.util.Arrays;
  *          created     2016/11/14
  */
 
-public class Vector64 implements Vector<Double>{
+public class Vector64 implements Vector<Double> {
     private double[] vector;
 
     public Vector64 (double[] vector) {
