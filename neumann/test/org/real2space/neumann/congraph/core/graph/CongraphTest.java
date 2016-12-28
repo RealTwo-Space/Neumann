@@ -3,7 +3,9 @@ package org.real2space.neumann.congraph.core.graph;
 import org.junit.Test;
 import org.real2space.neumann.approssi.core.function.*;
 import org.real2space.neumann.approssi.core.function.Variable;
+import org.real2space.neumann.approssi.core.structure.DualNumber;
 import org.real2space.neumann.approssi.core.structure.Matrix;
+import org.real2space.neumann.approssi.core.value.DualNumber64;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 
 import java.util.HashMap;
@@ -143,5 +145,52 @@ public class CongraphTest {
         Node fun = cg.function(mf, arg);
 
         cg.execute(fun);
+    }
+
+    @Test
+    public void dualNumberTest () {
+        Congraph cg = new Congraph();
+        DualNumber da = new DualNumber64(3.0);
+        DualNumber db = new DualNumber64(2.0, 0.0);
+
+        Node a = cg.variable(da);
+        Node b = cg.variable(db);
+
+        Node c = cg.add(a, b);
+
+        cg.execute(c); // 5.0 + 1.0e
+    }
+
+    @Test
+    public void kukuTest () {
+        Congraph cg = new Congraph ();
+
+        /*
+        Node g1 = cg.constant(4.0);
+        Node g2 = cg.constant(2.0);
+        Node g3 = cg.constant(3.0);
+        */
+
+        Node g1 = cg.constant(new DualNumber64(4.0, 1.0));
+        Node g2 = cg.constant(new DualNumber64(2.0, 0));
+        Node g3 = cg.constant(new DualNumber64(3.0, 0));
+
+        Node v4 = cg.multiply(g1, g2);
+        Node v3 = cg.subtract(v4, g2);
+        Node v1 = cg.add(g1, v3);
+        Node v2 = cg.divide(v3, g3);
+        Node o = cg.multiply(v1, v2);
+
+        cg.execute(o);
+        /*
+        System.out.println("g1 " + g1.getData());
+        System.out.println("g2 " + g2.getData());
+        System.out.println("g3 " + g3.getData());
+        System.out.println("v1 " + v1.getData());
+        System.out.println("v2 " + v2.getData());
+        System.out.println("v3 " + v3.getData());
+        System.out.println("v4 " + v4.getData());
+        System.out.println("o  " + o.getData());
+        */
     }
 }

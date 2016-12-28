@@ -35,6 +35,7 @@ public class DataConverter {
         return new DualNumberData(value);
     }
 
+
     public static Data convert (Object value) {
         if (value instanceof Double) {
             return convert((double)value);
