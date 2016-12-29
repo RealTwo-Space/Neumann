@@ -22,6 +22,15 @@ public class Matrix64 implements Matrix<Double>{
         }
     }
 
+    public Matrix64(int row, int column) {
+        this.matrix = new double[row][column];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                this.matrix[i][j] = 0.0;
+            }
+        }
+    }
+
     private void checkDimensionAdd (Matrix64 other) {
         if (this.matrix.length != other.matrix.length || this.matrix[0].length != other.matrix[0].length) {
             throw new ArithmeticException("Wrong Dimension");
@@ -80,11 +89,12 @@ public class Matrix64 implements Matrix<Double>{
         this.checkDimensionMult(temp);
 
         int N = this.matrix.length;
+        int K = this.matrix[0].length;
         int M = temp.matrix[0].length;
         double[][] mat = new double[N][M];
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                for (int k = 0; k < M; k++) {
+            for (int j = 0; j < M; j++) {
+                for (int k = 0; k < K; k++) {
                     mat[i][j] += this.matrix[i][k] * temp.matrix[k][j];
                 }
             }
@@ -111,7 +121,7 @@ public class Matrix64 implements Matrix<Double>{
     /**
      * Divide this matrix by scalar
      * @param scalar Double
-     * @return Double
+     * @return void
      */
     public void divide (Double scalar) {
         double sca = 1 / scalar;
@@ -175,6 +185,22 @@ public class Matrix64 implements Matrix<Double>{
 
     }
 
+    public int getRow() {
+        return this.matrix.length;
+    }
+
+    public int getColumn() {
+        return this.matrix[0].length;
+    }
+
+    public double[][] get() {
+        return this.matrix;
+    }
+
+    public double get(int row, int column) {
+        return this.matrix[row][column];
+    }
+
     public Matrix64 deepCopy () {
         return new Matrix64(this.matrix);
     }
@@ -184,16 +210,54 @@ public class Matrix64 implements Matrix<Double>{
 
         int N = matrix.length;
         int M = matrix[0].length;
+        output.append("[[");
         for (int i = 0; i < N; i++) {
-            output.append("| ");
+            if (i != 0) {
+                output.append(" [");
+            }
+
             for (int j = 0; j < M; j++) {
                 output.append(matrix[i][j]);
+
                 if (j != M - 1) {
-                    output.append("\t");
+                    output.append(", ");
+                }
+                else {
+                    if (i != N - 1) {
+                        output.append("],\n");
+                    }
+
                 }
             }
-            output.append(" |\n");
         }
+        output.append("]]");
         return output.toString();
     }
+    /*
+
+    String output = "{{";
+
+		for (int i = 0; i < matrix.length; i++) {
+			if (i != 0) {
+				output += " {";
+			}
+
+			for (int j = 0; j < matrix[0].length; j++) {
+				output += matrix[i][j];
+				if (j != matrix[0].length - 1) {
+					output += ", ";
+				}
+				else {
+					if (i != matrix.length - 1) {
+						output += "},\n";
+					}
+					else {
+						output += "}}";
+					}
+				}
+			}
+		}
+
+		return output;
+     */
 }

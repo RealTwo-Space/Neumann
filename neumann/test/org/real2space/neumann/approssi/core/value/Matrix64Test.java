@@ -1,6 +1,7 @@
 package org.real2space.neumann.approssi.core.value;
 
 import org.junit.Test;
+import org.real2space.neumann.approssi.core.structure.Matrix;
 
 import static org.junit.Assert.*;
 
@@ -14,7 +15,13 @@ import static org.junit.Assert.*;
 public class Matrix64Test {
     @Test
     public void multiply() throws Exception {
-
+        Matrix64 a, b;
+        double[][] da = {{1,1},{1,1},{2,2}};
+        double[][] db = {{4,4,4,4},{1,1,1,1}};
+        a = new Matrix64(da);
+        b = new Matrix64(db);
+        a.multiply(b);
+        System.out.print(a);
     }
 
     public void performanceTestAdd() throws Exception {
