@@ -32,4 +32,8 @@ class Graph {
     protected Group getChildren(Node node) {
         return this.edges.get(node);
     }
+    
+    protected HashSet<Node> getNodes() {
+        return this.nodes;
+    }
 }
