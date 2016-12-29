@@ -8,11 +8,11 @@ import org.real2space.neumann.approssi.core.value.Matrix64;
  * Created by ryosukesuzuki on 2016/12/29.
  */
 
-public class Tensor {
+public class Tensor64 {
     private final Matrix64[][] tensor;
     private final int rank;
 
-    public Tensor(Matrix64[][] tensor) {
+    public Tensor64(Matrix64[][] tensor) {
         int N = tensor.length;
         int M = tensor[0].length;
         if (N != 1 || M != 1) {
@@ -29,13 +29,13 @@ public class Tensor {
         }
     }
 
-    public Tensor(Matrix64 mat) {
+    public Tensor64(Matrix64 mat) {
         this.tensor = new Matrix64[1][1];
         this.tensor[0][0] = mat.deepCopy();
         this.rank = 2;
     }
 
-    public Tensor(int row, int column) {
+    public Tensor64(int row, int column) {
         if (row != 1 || column != 1) {
             this.rank = 4;
         } else {
@@ -60,10 +60,10 @@ public class Tensor {
         return this.tensor[row][column];
     }
 
-    public Tensor divide(double other) {
+    public Tensor64 divide(double other) {
         int N = this.tensor.length;
         int M = this.tensor[0].length;
-        Tensor tensor = new Tensor(this.tensor);
+        Tensor64 tensor = new Tensor64(this.tensor);
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 tensor.tensor[i][j].divide(other);
@@ -72,10 +72,10 @@ public class Tensor {
         return tensor;
     }
 
-    public Tensor multiply(double other) {
+    public Tensor64 multiply(double other) {
         int N = this.tensor.length;
         int M = this.tensor[0].length;
-        Tensor tensor = new Tensor(this.tensor);
+        Tensor64 tensor = new Tensor64(this.tensor);
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 tensor.tensor[i][j].multiply(other);
@@ -84,7 +84,7 @@ public class Tensor {
         return tensor;
     }
     // tensor * tensor
-    public Tensor multiply(Tensor other) {
+    public Tensor64 multiply(Tensor64 other) {
         if (this.rank == 2) {
             if (other.rank == 2) {
                 return multiplyWithRank2AndRank2(other);
@@ -102,14 +102,14 @@ public class Tensor {
     }
 
     // this(matrix) * other(tensor)
-    private Tensor multiplyWithRank2AndRank2(Tensor other) {
+    private Tensor64 multiplyWithRank2AndRank2(Tensor64 other) {
         Matrix64 matA = this.tensor[0][0].deepCopy();
         matA.multiply(other.tensor[0][0]);
-        return new Tensor(matA);
+        return new Tensor64(matA);
     }
 
     // this(matrix) * other(tensor)
-    private Tensor multiplyWithRank2AndRank4(Tensor other) {
+    private Tensor64 multiplyWithRank2AndRank4(Tensor64 other) {
         Matrix64 mat = this.tensor[0][0];
         // mat   (n, k)
         // other (k, m)
@@ -129,11 +129,11 @@ public class Tensor {
                 }
             }
         }
-        return new Tensor(tensor);
+        return new Tensor64(tensor);
     }
 
     // this(tensor) * other(matrix)
-    private Tensor multiplyWithRank4AndRank2(Tensor other) {
+    private Tensor64 multiplyWithRank4AndRank2(Tensor64 other) {
         Matrix64 mat = other.tensor[0][0];
 
         int N = this.tensor.length;
@@ -152,14 +152,14 @@ public class Tensor {
                 }
             }
         }
-        return new Tensor(tensor);
+        return new Tensor64(tensor);
     }
 
-    private Tensor multiplyWithRank4AndRank4(Tensor other) {
+    private Tensor64 multiplyWithRank4AndRank4(Tensor64 other) {
         int N = this.tensor.length;
         int K = this.tensor[0].length;
         int M = other.getColumn();
-        Tensor tensor = new Tensor(N, M);
+        Tensor64 tensor = new Tensor64(N, M);
         Matrix64 mat;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
@@ -173,11 +173,11 @@ public class Tensor {
         return tensor;
     }
 
-    public Tensor add(Tensor other) {
+    public Tensor64 add(Tensor64 other) {
 
         int N = this.tensor.length;
         int M = this.tensor[0].length;
-        Tensor tensor = new Tensor(this.tensor);
+        Tensor64 tensor = new Tensor64(this.tensor);
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 tensor.tensor[i][j].add(other.tensor[i][j]);
@@ -186,10 +186,10 @@ public class Tensor {
         return tensor;
     }
 
-    public Tensor subtract(Tensor other) {
+    public Tensor64 subtract(Tensor64 other) {
         int N = this.tensor.length;
         int M = this.tensor[0].length;
-        Tensor tensor = new Tensor(this.tensor);
+        Tensor64 tensor = new Tensor64(this.tensor);
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
                 tensor.tensor[i][j].subtract(other.tensor[i][j]);
@@ -198,7 +198,7 @@ public class Tensor {
         return tensor;
     }
 
-    public Tensor transpose() {
+    public Tensor64 transpose() {
         if (this.rank == 4) {
             return transposeRank4();
         } else if (this.rank == 2) {
@@ -207,7 +207,7 @@ public class Tensor {
         return null;
     }
 
-    private Tensor transposeRank4() {
+    private Tensor64 transposeRank4() {
         int N = this.tensor.length;
         int M = this.tensor[0].length;
         Matrix64[][] tensor = new Matrix64[M][N];
@@ -216,11 +216,11 @@ public class Tensor {
                 tensor[j][i] = this.tensor[i][j];
             }
         }
-        return new Tensor(tensor);
+        return new Tensor64(tensor);
     }
 
-    private Tensor transposeRank2() {
-        Tensor tensor = new Tensor(this.tensor);
+    private Tensor64 transposeRank2() {
+        Tensor64 tensor = new Tensor64(this.tensor);
         tensor.tensor[0][0].transpose();
         return tensor;
     }
@@ -238,8 +238,8 @@ public class Tensor {
         return this.rank;
     }
 
-    public Tensor deepCopy() {
-        return new Tensor(this.tensor);
+    public Tensor64 deepCopy() {
+        return new Tensor64(this.tensor);
     }
 
     public String toString() {
