@@ -2,7 +2,6 @@ package org.real2space.neumann.congraph.core.backpropagate;
 
 import org.junit.Test;
 import org.real2space.neumann.approssi.core.value.Matrix64;
-import org.real2space.neumann.congraph.core.bbackpropagate.Tensor;
 
 /**
  * Created by ryosukesuzuki on 2016/12/30.

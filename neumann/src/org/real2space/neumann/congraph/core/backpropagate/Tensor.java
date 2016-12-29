@@ -1,4 +1,4 @@
-package org.real2space.neumann.congraph.core.bbackpropagate;
+package org.real2space.neumann.congraph.core.backpropagate;
 
 import org.real2space.neumann.approssi.analysis.math.MathMat64;
 
