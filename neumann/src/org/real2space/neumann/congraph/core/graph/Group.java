@@ -20,4 +20,12 @@ class Group {
     protected Node[] getNodes() {
         return this.nodes;
     }
+
+    protected Node getNode(int index) {
+        return this.nodes[index];
+    }
+
+    protected int size() {
+        return this.nodes.length;
+    }
 }

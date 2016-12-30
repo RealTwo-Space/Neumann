@@ -10,4 +10,5 @@ package org.real2space.neumann.congraph.core.data;
  */
  
 public interface NumberData<F> extends Data<F> {
+    Data<F> ONE();
 }

@@ -35,6 +35,18 @@ public class MatrixC32 implements Matrix<Complex32> {
         }
     }
 
+    public int getRow() {
+        return this.matrix.length;
+    }
+
+    public int getColumn() {
+        return this.matrix[0].length;
+    }
+
+    public Complex32 get(int row, int column) {
+        return this.matrix[row][column];
+    }
+
     /**
      * Add other matrix to this
      * @param other Matrix<Complex32>

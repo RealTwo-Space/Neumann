@@ -6,6 +6,6 @@ import org.real2space.neumann.congraph.core.data.MatrixData;
 /**
  * Created by ryosukesuzuki on 2016/12/30.
  */
-public class Util {
+public class MathTensor64 {
 
 }

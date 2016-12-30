@@ -15,7 +15,17 @@ public class FloatData implements NumberData<Float> {
     public FloatData (float data) {
         this.data = data;
     }
-    
+
+    @Override
+    public Data<Float> ZERO() {
+        return new FloatData(0f);
+    }
+
+    @Override
+    public Data<Float> ONE() {
+        return new FloatData(1.0f);
+    }
+
     public Data<Float> add(Data a) {
         float output = this.data;
         output += (float)a.get();

@@ -15,6 +15,18 @@ public class DoubleData implements NumberData<Double> {
     public DoubleData (double data) {
         this.data = data;
     }
+
+    public DoubleData(Double data) {
+        this.data = data;
+    }
+
+    public Data<Double> ZERO() {
+        return new DoubleData(0.0);
+    }
+
+    public Data<Double> ONE() {
+        return new DoubleData(1.0);
+    }
     
     public Data<Double> add(Data a) {
         double output = this.data;

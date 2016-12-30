@@ -17,7 +17,14 @@ public class VectorData<F> implements Data<Vector<F>> {
     public VectorData (Vector<F> data) {
         this.data = data;
     }
-    
+
+    @Override
+    public Data<Vector<F>> ZERO() {
+        Vector output = this.data.deepCopy();
+        output.multiply(0.0);
+        return new VectorData<F>(output);
+    }
+
     public Data<Vector<F>> add(Data a) {
         Vector output = this.data.deepCopy();
         output.add((Vector)a.get());
@@ -44,7 +51,7 @@ public class VectorData<F> implements Data<Vector<F>> {
         return new VectorData<F>(output);
     }
     
-    public Vector<F> get () {
+    public Vector<F> get() {
         return this.data;
     }
     

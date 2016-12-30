@@ -11,6 +11,7 @@ import org.real2space.neumann.approssi.core.util.DeepCopy;
  */
  
 public interface Data<E> extends DeepCopy<Data<E>> {
+    public Data<E> ZERO();
     public Data<E> add(Data a);
     public Data<E> subtract(Data a);
     public Data<E> multiply(Data a);

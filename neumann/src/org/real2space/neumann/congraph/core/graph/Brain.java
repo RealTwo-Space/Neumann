@@ -24,6 +24,14 @@ public class Brain {
         this.schedule = this.scheduler.createSchedule(origin, this.graph);
         this.scheduleExecuter.executeSchedule(this.schedule);
     }
+
+    public Graph getGraph() {
+        return this.graph;
+    }
+
+    public Scheduler getScheduler() {
+        return this.scheduler;
+    }
     
     public void addNode(Node node) {
         this.graph.addNode(node);

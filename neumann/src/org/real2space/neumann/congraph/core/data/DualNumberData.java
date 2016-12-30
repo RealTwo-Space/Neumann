@@ -17,7 +17,12 @@ public class DualNumberData<F> implements Data<DualNumber<F>> {
     public DualNumberData (DualNumber<F> data) {
         this.data = data;
     }
-    
+
+    @Override
+    public Data<DualNumber<F>> ZERO() {
+        return null;
+    }
+
     public Data<DualNumber<F>> add(Data a) {
         DualNumber output = this.data.deepCopy();
         output.add((DualNumber)a.get());

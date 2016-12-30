@@ -197,8 +197,12 @@ public class Matrix64 implements Matrix<Double>{
         return this.matrix;
     }
 
-    public double get(int row, int column) {
+    public Double get(int row, int column) {
         return this.matrix[row][column];
+    }
+
+    public void set(int row, int column, double value) {
+        this.matrix[row][column] = value;
     }
 
     public Matrix64 deepCopy () {

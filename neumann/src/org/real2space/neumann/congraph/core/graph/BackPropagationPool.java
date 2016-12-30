@@ -4,6 +4,8 @@ import org.real2space.neumann.congraph.core.data.Data;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
+
 /**
  * Project Neumann
  *
@@ -25,18 +27,33 @@ public class BackPropagationPool {
         HashSet<Node> nodes;
         Node origin = this.schedule.getOrigin();
         // set to zero
-        partials.put(origin, origin.getData());
+        partials.put(origin, null);
         for (Layer layer : layers) {
             nodes = layer.getNodes();
             for (Node node : nodes) {
-                // set to zero
-                partials.put(node, node.getData());
+                partials.put(node, null);
             }
+        }
+    }
+
+    public void reflesh() {
+        /* reflesh all data to zero */
+        for(Map.Entry<Node, Data> e : partials.entrySet()) {
+            partials.put(e.getKey(), e.getKey().refData().ZERO());
         }
     }
     
     public Data getData(Node node) {
         return this.partials.get(node);
+    }
+
+    public void addData(Node node, Data data) {
+        Data add = this.partials.get(node).add(data);
+        this.partials.put(node, add);
+    }
+
+    public Schedule getSchedule() {
+        return this.schedule;
     }
 }
 

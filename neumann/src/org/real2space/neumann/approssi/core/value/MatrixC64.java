@@ -35,6 +35,18 @@ public class MatrixC64 implements Matrix<Complex64> {
         }
     }
 
+    public int getRow() {
+        return this.matrix.length;
+    }
+
+    public int getColumn() {
+        return this.matrix[0].length;
+    }
+
+    public Complex64 get(int row, int column) {
+        return this.matrix[row][column];
+    }
+
     /**
      * Add other matrix to this
      * @param other Matrix<Complex64>

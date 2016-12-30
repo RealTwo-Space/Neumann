@@ -12,7 +12,7 @@ import java.util.HashSet;
  * created 12/02/16
  */
  
-class Graph {
+public class Graph {
     private HashSet<Node> nodes;
     private HashMap<Node, Group> edges;
     

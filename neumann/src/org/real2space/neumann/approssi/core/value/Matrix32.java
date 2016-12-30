@@ -34,6 +34,18 @@ public class Matrix32 implements Matrix<Float> {
         }
     }
 
+    public int getRow() {
+        return this.matrix.length;
+    }
+
+    public int getColumn() {
+        return this.matrix[0].length;
+    }
+
+    public Float get(int row, int column) {
+        return this.matrix[row][column];
+    }
+
     /**
      * Add other matrix to this
      * @param other Matrix<Float>

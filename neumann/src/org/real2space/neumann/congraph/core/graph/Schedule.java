@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * 
  * created 12/02/16
  */
-class Schedule {
+public class Schedule {
     private Node origin;
     private LinkedList<Layer> layers;
     

@@ -69,4 +69,24 @@ public class Tensor64Test {
         System.out.println(out + " = result" + ", rank: " + out.getRank());
     }
 
+    @Test
+    public void toMatrix() throws Exception {
+        Matrix64 a11, a12, a21, a22;
+        Matrix64 b;
+        Tensor64 ta, tb;
+        a11 = new Matrix64(new double[][]{{1, 1}});
+        a12 = new Matrix64(new double[][]{{2, 2}});
+        a21 = new Matrix64(new double[][]{{3, 4}});
+        a22 = new Matrix64(new double[][]{{2, 1}});
+        b = new Matrix64(new double[][]{{2, 3}});
+        ta = new Tensor64(new Matrix64[][]{{a11,a12},{a21, a22}});
+        tb = new Tensor64(b);
+
+        Tensor64 out = tb.multiply(ta);
+        System.out.println(ta + ", rank: " + ta.getRank());
+        System.out.println(tb + ", rank: " + tb.getRank());
+        System.out.println(out + " = result" + ", rank: " + out.getRank());
+        System.out.println(out.toMatrix());
+    }
+
 }

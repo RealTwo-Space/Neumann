@@ -29,6 +29,10 @@ public class TensorData implements Data<Tensor64> {
         this.data = new Tensor64(row, column);
     }
 
+    public Data<Tensor64> ZERO() {
+        return null;
+    }
+
     public Data<Tensor64> add(Data a) {
         return new TensorData(this.data.add((Tensor64)a.get()));
     }

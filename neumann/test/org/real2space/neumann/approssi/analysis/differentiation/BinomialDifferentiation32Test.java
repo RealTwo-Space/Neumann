@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  *          <p>
  *          created 12/12/16
  */
-public class Differentiation32Test {
+public class BinomialDifferentiation32Test {
     private class MyFunction extends Function<Double> {
 
         public MyFunction () {

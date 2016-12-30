@@ -10,6 +10,11 @@ import org.real2space.neumann.approssi.core.util.DeepCopy;
  */ 
 
 public interface Matrix<E> extends DeepCopy <Matrix<E>> {
+
+    public int getRow();
+    public int getColumn();
+    public E get(int row, int column);
+
     /**
      * Add other matrix to this
      * @param other Matrix<E>

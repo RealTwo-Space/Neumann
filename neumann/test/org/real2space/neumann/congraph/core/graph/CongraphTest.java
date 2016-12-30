@@ -193,4 +193,40 @@ public class CongraphTest {
         System.out.println("o  " + o.getData());
         */
     }
+
+    @Test
+    public void backPropTest() {
+        Congraph cg = new Congraph();
+
+        Node x = cg.constant(4.0);
+        Node a = cg.constant(2.0);
+        Node y = cg.multiply(a, x);
+        Node dx = cg.partialDiff(y, x);
+        Node da = cg.partialDiff(y, a);
+        Node dy = cg.partialDiff(y, y);
+
+        cg.execute(dx);
+        cg.execute(da);
+        cg.execute(dy);
+    }
+
+    @Test
+    public void backPropTest2() {
+        Congraph cg = new Congraph();
+
+        double[][] w = {{1,2,3}};
+        double[][] x = {{1}, {2}, {30}};
+        Matrix64 matW = new Matrix64(w);
+        Matrix64 matX = new Matrix64(x);
+        Node W = cg.constant(matW);
+        Node X = cg.constant(matX);
+        Node y = cg.multiply(W, X);
+        Node dx = cg.partialDiff(y, W);
+        Node da = cg.partialDiff(y, X);
+        Node dy = cg.partialDiff(y, y);
+
+        cg.execute(dx);
+        cg.execute(da);
+        cg.execute(dy);
+    }
 }

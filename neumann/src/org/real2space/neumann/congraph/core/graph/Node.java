@@ -1,5 +1,8 @@
 package org.real2space.neumann.congraph.core.graph;
 import org.real2space.neumann.congraph.core.data.Data;
+import org.real2space.neumann.congraph.core.data.DoubleData;
+import org.real2space.neumann.congraph.core.data.MatrixData;
+
 /**
  * Project Neumann
  *
@@ -19,6 +22,17 @@ public class Node {
     
     protected void execute() {
         this.data = this.state.execute();
+        if (this.data instanceof MatrixData) {
+            MatrixData md = (MatrixData)this.data;
+            Data dd = md.toScalar();
+            if (dd != null) {
+                this.data = dd;
+            }
+        }
+    }
+
+    public State getState() {
+        return this.state;
     }
     
     // return refenrence
@@ -27,7 +41,7 @@ public class Node {
     }
     
     public Data getData() {
-        return data.deepCopy();
+        return this.data.deepCopy();
     }
     
     public void setData(Data data) {

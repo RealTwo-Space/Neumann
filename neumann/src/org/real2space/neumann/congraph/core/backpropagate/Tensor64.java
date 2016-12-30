@@ -2,6 +2,7 @@ package org.real2space.neumann.congraph.core.backpropagate;
 
 import org.real2space.neumann.approssi.analysis.math.MathMat64;
 
+import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 
 /**
@@ -58,6 +59,31 @@ public class Tensor64 {
 
     public Matrix64 get(int row, int column) {
         return this.tensor[row][column];
+    }
+
+    public double get(int row, int column, int mrow, int mcolumn) {
+        return this.tensor[row][column].get(mrow, mcolumn);
+    }
+
+    public Matrix64 toMatrix() {
+        int N = getRow();
+        int M = getColumn();
+        int K = this.tensor[0][0].getRow();
+        int L = this.tensor[0][0].getColumn();
+
+        double[][] res = new double[N * K][M * L];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                for (int k = 0; k < K; k++) {
+                    for (int l = 0; l < L; l++) {
+                        res[i * K + k][j * L + l] = this.tensor[i][j].get(k, l);
+                    }
+                }
+            }
+        }
+        //System.out.println("aa");
+        return new Matrix64(res);
     }
 
     public Tensor64 divide(double other) {
@@ -225,6 +251,13 @@ public class Tensor64 {
         return tensor;
     }
 
+    public int getMRow() {
+        return this.tensor[0][0].getRow();
+    }
+
+    public int getMColumn() {
+        return this.tensor[0][0].getColumn();
+    }
 
     public int getRow() {
         return this.tensor.length;

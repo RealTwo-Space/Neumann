@@ -18,8 +18,11 @@ import java.util.HashMap;
  */
 public class Congraph {
     private Brain brain;
+    private HashMap<Node, BackPropagationPool> backPropPools;
+
     public Congraph() {
         this.brain = new Brain();
+        this.backPropPools = new HashMap<Node, BackPropagationPool>();
     }
     
     /*
@@ -185,6 +188,25 @@ public class Congraph {
             children[i] = (Node)tempArray[i];
         }
 
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    // target wo by de partial diff sita atai wo kaesu
+    public Node partialDiff(Node target, Node by) {
+        BackPropagationPool pool;
+        if (backPropPools.containsKey(target)) {
+            pool = backPropPools.get(target);
+        } else {
+            Schedule schedule = brain.getScheduler().createSchedule(target, brain.getGraph());
+            pool = new BackPropagationPool(schedule);
+            backPropPools.put(target, pool);
+        }
+        Operation op = new PartialDifferentiateOperation(by, pool, brain.getGraph());
+        Node node = new Node(null, op);
+        Node[] children = {target, by};
         Group group = new Group(children);
         this.brain.addEdge(node, group);
         this.brain.addNode(node);

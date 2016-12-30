@@ -1,21 +1,40 @@
 package org.real2space.neumann.congraph.core.backpropagate.differentiation;
 
+import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.graph.Operation;
-import org.real2space.neumann.congraph.core.graph.State;
 import org.real2space.neumann.congraph.core.operation.AddOperation;
+import org.real2space.neumann.congraph.core.operation.DivideOperation;
+import org.real2space.neumann.congraph.core.operation.MultiplyOperation;
+import org.real2space.neumann.congraph.core.operation.SubtractOperation;
+
 
 /**
  * Created by ryosukesuzuki on 2016/12/30.
  */
+
 public enum Diff {
-    ADD(new Add(), new AddOperation(null, null));
+    ADD(new Add(), new AddOperation(null, null)),
+    SUBTRACT(new Subtract(), new SubtractOperation(null, null)),
+    MULTIPLY(new Multiply(), new MultiplyOperation(null, null)),
+    DIVIDE(new Divide(), new DivideOperation(null, null));
 
-    private final Differentiation diff;
+    private final BinomialDifferentiation biDiff;
     private final Operation op;
+    private final MonomialDifferentiation monoDiff;
+    private final int size;
 
-    private Diff(final Differentiation diff, final Operation op) {
-        this.diff = diff;
+    private Diff(final BinomialDifferentiation diff, final Operation op) {
+        this.biDiff = diff;
         this.op = op;
+        this.monoDiff = null;
+        this.size = 2;
+    }
+
+    private Diff(final MonomialDifferentiation diff, final Operation op) {
+        this.monoDiff = diff;
+        this.op = op;
+        this.biDiff = null;
+        this.size = 1;
     }
 
     public static Diff valueOf(Operation op) {
@@ -31,8 +50,18 @@ public enum Diff {
         return this.op;
     }
 
-    public Differentiation getDifferentiation() {
-        return this.diff;
+    public Data[] execute(Data... datas) {
+        if (this.size == 1) {
+            return new Data[] {this.monoDiff.execute(datas[0])};
+        } else if (this.size == 2) {
+            return this.biDiff.execute(datas[0], datas[1]);
+        }
+
+        return null;
+    }
+
+    public int getSize() {
+        return this.size;
     }
 
 }
