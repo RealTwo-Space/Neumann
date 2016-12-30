@@ -1,10 +1,8 @@
 package org.real2space.neumann.congraph.core.data;
 
 import org.junit.Test;
-import org.real2space.neumann.congraph.core.graph.Congraph;
+import org.real2space.neumann.congraph.core.graph.CongraphInterface;
 import org.real2space.neumann.congraph.core.graph.Node;
-
-import static org.junit.Assert.*;
 
 /**
  * Project Neumann
@@ -17,7 +15,7 @@ import static org.junit.Assert.*;
 public class DataTypeConverterTest {
     @Test
     public void dataConvertTest () {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
         Node a = cg.constant(1.0);
 
         System.out.println(a.refData());

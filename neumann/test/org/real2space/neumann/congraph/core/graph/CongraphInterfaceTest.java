@@ -10,8 +10,6 @@ import org.real2space.neumann.approssi.core.value.Matrix64;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
-
 /**
  * Project Neumann
  *
@@ -20,10 +18,10 @@ import static org.junit.Assert.*;
  *
  * created 12/24/16
  */
-public class CongraphTest {
+public class CongraphInterfaceTest {
     @Test
     public void superTest() {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
         Node a = cg.constant(3.0);
 
         Matrix64 m = new Matrix64(new double[][]{{1.0, 0.0}, {0.0, 1.0}});
@@ -62,7 +60,7 @@ public class CongraphTest {
     @Test
     public void goldenRatioTest () {
 
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
 
         Node ren1 = cg.variable(1.0); // n - 1
         Node ren2 = cg.variable(1.0); // n
@@ -92,7 +90,7 @@ public class CongraphTest {
 
     @Test
     public void oneNodeTest () {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
         Node a = cg.constant(1.0f);
 
         cg.execute(a);
@@ -125,7 +123,7 @@ public class CongraphTest {
 
     @Test
     public void functionTest () {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
         MyFunction mf = new MyFunction();
 
         Node x = cg.constant(1.0);
@@ -149,7 +147,7 @@ public class CongraphTest {
 
     @Test
     public void dualNumberTest () {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
         DualNumber da = new DualNumber64(3.0);
         DualNumber db = new DualNumber64(2.0, 0.0);
 
@@ -163,7 +161,7 @@ public class CongraphTest {
 
     @Test
     public void kukuTest () {
-        Congraph cg = new Congraph ();
+        CongraphInterface cg = new CongraphInterface();
 
         /*
         Node g1 = cg.constant(4.0);
@@ -196,7 +194,7 @@ public class CongraphTest {
 
     @Test
     public void normSqTest() {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
 
         double[][] y = {{3},{3},{3}};
         double[][] ydasg = {{1}, {2}, {3}};
@@ -215,7 +213,7 @@ public class CongraphTest {
 
     @Test
     public void backPropTest() {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
 
         Node x = cg.constant(4.0);
         Node a = cg.constant(2.0);
@@ -231,7 +229,7 @@ public class CongraphTest {
 
     @Test
     public void backPropTest2() {
-        Congraph cg = new Congraph();
+        CongraphInterface cg = new CongraphInterface();
 
         double[][] w = {{1,2,3}};
         double[][] x = {{1}, {2}, {30}};

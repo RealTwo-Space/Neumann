@@ -16,11 +16,11 @@ import java.util.HashMap;
  * 
  * created 12/24/16
  */
-public class Congraph {
+public class CongraphInterface {
     private Brain brain;
     private HashMap<Node, BackPropagationPool> backPropPools;
 
-    public Congraph() {
+    public CongraphInterface() {
         this.brain = new Brain();
         this.backPropPools = new HashMap<Node, BackPropagationPool>();
     }
