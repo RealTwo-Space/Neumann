@@ -195,6 +195,25 @@ public class CongraphTest {
     }
 
     @Test
+    public void normSqTest() {
+        Congraph cg = new Congraph();
+
+        double[][] y = {{3},{3},{3}};
+        double[][] ydasg = {{1}, {2}, {3}};
+        Matrix64 matY = new Matrix64(y);
+        Matrix64 matYd = new Matrix64(ydasg);
+
+        Node Y = cg.constant(matY);
+        Node Yd = cg.constant(matYd);
+        Node S = cg.subtract(Y, Yd);
+        Node E = cg.normSquared(S);
+        Node dx = cg.partialDiff(E, Y);
+
+        cg.execute(E);
+        cg.execute(dx);
+    }
+
+    @Test
     public void backPropTest() {
         Congraph cg = new Congraph();
 

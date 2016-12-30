@@ -2,10 +2,7 @@ package org.real2space.neumann.congraph.core.backpropagate.differentiation;
 
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.graph.Operation;
-import org.real2space.neumann.congraph.core.operation.AddOperation;
-import org.real2space.neumann.congraph.core.operation.DivideOperation;
-import org.real2space.neumann.congraph.core.operation.MultiplyOperation;
-import org.real2space.neumann.congraph.core.operation.SubtractOperation;
+import org.real2space.neumann.congraph.core.operation.*;
 
 
 /**
@@ -16,7 +13,8 @@ public enum Diff {
     ADD(new Add(), new AddOperation(null, null)),
     SUBTRACT(new Subtract(), new SubtractOperation(null, null)),
     MULTIPLY(new Multiply(), new MultiplyOperation(null, null)),
-    DIVIDE(new Divide(), new DivideOperation(null, null));
+    DIVIDE(new Divide(), new DivideOperation(null, null)),
+    NORM_SQUARED(new NormSquared(), new NormSquaredOperation(null));
 
     private final BinomialDifferentiation biDiff;
     private final Operation op;

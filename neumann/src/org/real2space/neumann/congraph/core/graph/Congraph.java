@@ -212,6 +212,16 @@ public class Congraph {
         this.brain.addNode(node);
         return node;
     }
+
+    public Node normSquared(Node nodeA) {
+        Operation op = new NormSquaredOperation(nodeA);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
     
     public void execute(Node node) {
         this.brain.execute(node);

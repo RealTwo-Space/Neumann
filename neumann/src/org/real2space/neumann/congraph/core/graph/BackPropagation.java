@@ -65,12 +65,12 @@ public class BackPropagation {
 
         for (int i = 0; i < argSize; i++) {
             diffData = diffDatas[i];
+
             if (nodeData instanceof NumberData) {
                 if (diffData instanceof NumberData) {
                     output = nodeData.multiply(diffData);
                 } else {
-                    MatrixData trans = (MatrixData)diffData;
-                    diffData = trans.transpose();
+
                     output = diffData.multiply(nodeData);
                 }
             } else {
