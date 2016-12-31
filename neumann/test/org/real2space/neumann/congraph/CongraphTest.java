@@ -43,23 +43,23 @@ public class CongraphTest {
     }
 
     @Test
-    public void findPartials() {
+    public void gradientDescentTest() {
         // find W s.t. minimize E = || y - yd ||^2
         Congraph cg = new Congraph(999L);
-        CNode x = cg.constant(cg.util.normalRandoms(2, 1));
-        CNode W = cg.variable(cg.util.normalRandoms(3, 2));
-        CNode b = cg.constant(cg.util.normalRandoms(3, 1));
-        CNode yd = cg.constant(cg.util.normalRandoms(3,1));
+        CNode x = cg.constant(cg.util.normalRandoms(4, 1));
+        CNode W = cg.variable(cg.util.normalRandoms(8, 4));
+        CNode b = cg.variable(cg.util.normalRandoms(8, 1, 100.0, 20.0));
+        CNode yd = cg.constant(cg.util.normalRandoms(8,1));
         CNode y = W.multiply(x).add(b);
         CNode E = y.subtract(yd).normSq();
         CNode r = cg.constant(0.03);
         CNode newW = cg.subtract(W, E.partialDiff(W).multiply(r));
         CNode out = cg.substitute(W, newW);
-        for (int i = 0; i < 100; i++) {
+
+        for (int i = 0; i < 300; i++) {
             out.execute();
-            if (i % 10 == 0) {
+            if (i % 30 == 0) {
                 System.out.println("Error : " + E);
-                //System.out.println("W = \n" + out);
             }
         }
     }
