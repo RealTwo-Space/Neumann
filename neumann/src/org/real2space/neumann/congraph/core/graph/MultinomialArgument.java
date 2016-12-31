@@ -8,18 +8,18 @@ import org.real2space.neumann.congraph.core.data.Data;
  * 
  * created 11/29/16
  */
-class MultinomialArgument extends Argument {
+public class MultinomialArgument extends Argument {
     private Node[] args;
     
-    protected MultinomialArgument(Node[] args) {
+    public MultinomialArgument(Node[] args) {
         this.args = args;
     }
     
-    protected Data getDataAt(int index) {
+    public Data getDataAt(int index) {
         return this.args[index].refData();
     }
     
-    protected int getSize() {
+    public int getSize() {
         return this.args.length;
     }
 }

@@ -1,31 +1,23 @@
 package org.real2space.neumann.congraph.core.operation;
 
-import org.real2space.neumann.congraph.core.graph.Graph;
 import org.real2space.neumann.congraph.core.data.Data;
-import org.real2space.neumann.congraph.core.graph.BackPropagation;
-import org.real2space.neumann.congraph.core.graph.BackPropagationPool;
-import org.real2space.neumann.congraph.core.graph.Node;
-import org.real2space.neumann.congraph.core.graph.Operation;
+import org.real2space.neumann.congraph.core.data.DoubleData;
+import org.real2space.neumann.congraph.core.graph.*;
 
 /**
- * Created by ryosukesuzuki on 2016/12/31.
+ * Created by ryosukesuzuki on 2017/01/01.
  */
 public class PartialDifferentiateOperation extends Operation {
-
-    private Node target;
     private BackPropagationPool pool;
-    private static BackPropagation backprop = BackPropagation.getInstance();
-    private Graph graph;
+    private Node target;
 
-    public PartialDifferentiateOperation(Node target, BackPropagationPool pool, Graph graph) {
-        this.target = target;
+    public PartialDifferentiateOperation(Node target, BackPropagationPool pool) {
         this.pool = pool;
-        this.graph = graph;
+        this.target = target;
     }
 
     @Override
     public Data execute() {
-        this.backprop.execute(this.pool, this.graph);
         return this.pool.getData(this.target);
     }
 }

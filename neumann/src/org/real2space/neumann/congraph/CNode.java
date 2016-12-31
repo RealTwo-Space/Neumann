@@ -9,11 +9,11 @@ import org.real2space.neumann.congraph.core.graph.Node;
  */
 public class CNode {
     private final Node node;
-    private final CongraphInterface cgi;
+    private final Congraph cg;
 
-    CNode(Node node, CongraphInterface cgi) {
+    CNode(Node node, Congraph cg) {
         this.node = node;
-        this.cgi = cgi;
+        this.cg = cg;
     }
 
     Node getNode() {
@@ -21,42 +21,43 @@ public class CNode {
     }
 
     public CNode add(CNode nodeB) {
-        Node node = this.cgi.add(this.node, nodeB.getNode());
-        return new CNode(node, this.cgi);
+        return cg.add(this, nodeB);
     }
 
     public CNode subtract(CNode nodeB) {
-        Node node = this.cgi.subtract(this.node, nodeB.getNode());
-        return new CNode(node, this.cgi);
+        return cg.subtract(this, nodeB);
     }
 
     public CNode multiply(CNode nodeB) {
-        Node node = this.cgi.multiply(this.node, nodeB.getNode());
-        return new CNode(node, this.cgi);
+        return cg.multiply(this, nodeB);
     }
 
     public CNode divide(CNode nodeB) {
-        Node node = this.cgi.divide(this.node, nodeB.getNode());
-        return new CNode(node, this.cgi);
+        return cg.divide(this, nodeB);
     }
 
     public CNode substitute(CNode nodeB) {
-        Node node = this.cgi.substitute(this.node, nodeB.getNode());
-        return new CNode(node, this.cgi);
+        return cg.substitute(this, nodeB);
+    }
+
+    public CNode incrementalSubstitute(CNode node) {
+        return cg.incrementalSubstitute(this, node);
+    }
+
+    public CNode decrementalSubstitute(CNode node) {
+        return cg.decrementalSubstitute(this, node);
     }
 
     public CNode normSq() {
-        Node node = this.cgi.normSquared(this.node);
-        return new CNode(node, this.cgi);
+        return cg.normSq(this);
     }
 
     public CNode partialDiff(CNode by) {
-        Node node = this.cgi.partialDiff(this.node, by.getNode());
-        return new CNode(node, this.cgi);
+        return cg.partialDiff(this, by);
     }
 
     public void execute() {
-        this.cgi.execute(this.node);
+        cg.execute(this);
     }
 
     public Data getData() {
@@ -64,6 +65,6 @@ public class CNode {
     }
 
     public String toString() {
-        return "" + this.node;
+        return this.node.toString();
     }
 }

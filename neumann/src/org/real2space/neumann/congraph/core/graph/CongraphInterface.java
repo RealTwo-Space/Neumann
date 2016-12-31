@@ -5,7 +5,6 @@ import org.real2space.neumann.approssi.core.structure.*;
 import org.real2space.neumann.congraph.core.operation.*;
 import org.real2space.neumann.congraph.core.data.*;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 
 /**
@@ -18,10 +17,12 @@ import java.util.HashMap;
  */
 public class CongraphInterface {
     private Brain brain;
+    private HashMap<Node, Node> backProps;
     private HashMap<Node, BackPropagationPool> backPropPools;
 
     public CongraphInterface() {
         this.brain = new Brain();
+        this.backProps = new HashMap<Node, Node>();
         this.backPropPools = new HashMap<Node, BackPropagationPool>();
     }
     
@@ -194,19 +195,33 @@ public class CongraphInterface {
         return node;
     }
 
+    public Node backPropagate(Node target) {
+        BackPropagationPool pool;
+        Schedule schedule = brain.getScheduler().createSchedule(target, brain.getGraph());
+        pool = new BackPropagationPool(schedule);
+        Operation op = new BackPropagateOperation(pool, brain.getGraph());
+        Node node = new Node(null, op);
+        Node[] children = {target};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        this.backPropPools.put(target, pool);
+        this.backProps.put(target, node);
+
+        return node;
+    }
+
     // target wo by de partial diff sita atai wo kaesu
     public Node partialDiff(Node target, Node by) {
-        BackPropagationPool pool;
-        if (backPropPools.containsKey(target)) {
-            pool = backPropPools.get(target);
+        Node backProp;
+        if (backProps.containsKey(target)) {
+            backProp = backProps.get(target);
         } else {
-            Schedule schedule = brain.getScheduler().createSchedule(target, brain.getGraph());
-            pool = new BackPropagationPool(schedule);
-            backPropPools.put(target, pool);
+            backProp = backPropagate(target);
         }
-        Operation op = new PartialDifferentiateOperation(by, pool, brain.getGraph());
+        Operation op = new PartialDifferentiateOperation(by, this.backPropPools.get(target));
         Node node = new Node(null, op);
-        Node[] children = {target, by};
+        Node[] children = {backProp, by};
         Group group = new Group(children);
         this.brain.addEdge(node, group);
         this.brain.addNode(node);
@@ -218,6 +233,15 @@ public class CongraphInterface {
         Node node = new Node(null, op);
         Node[] children = {nodeA};
         Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    public Node batch(Node... nodes) {
+        Operation op = new BatchOperation(nodes);
+        Node node = new Node(null, op);
+        Group group = new Group(nodes);
         this.brain.addEdge(node, group);
         this.brain.addNode(node);
         return node;
