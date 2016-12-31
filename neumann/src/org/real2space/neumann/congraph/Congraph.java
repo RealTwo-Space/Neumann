@@ -9,9 +9,16 @@ import org.real2space.neumann.congraph.core.graph.Node;
  */
 public class Congraph {
     private final CongraphInterface cgi;
+    public final CUtil util;
 
     public Congraph() {
         this.cgi = new CongraphInterface();
+        this.util = new CUtil(this);
+    }
+
+    public Congraph(long randomSeed) {
+        this.cgi = new CongraphInterface();
+        this.util = new CUtil(this, randomSeed);
     }
 
     public CNode constant(double value) {

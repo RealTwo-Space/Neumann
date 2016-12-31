@@ -62,4 +62,8 @@ public class CNode {
     public Data getData() {
         return this.node.getData();
     }
+
+    public String toString() {
+        return "" + this.node;
+    }
 }

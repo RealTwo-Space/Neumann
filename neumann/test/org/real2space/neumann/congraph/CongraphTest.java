@@ -44,18 +44,24 @@ public class CongraphTest {
 
     @Test
     public void findPartials() {
-        Congraph cg = new Congraph();
-        CNode x = cg.constant(new double[][]{{5}, {6}});
-        CNode W = cg.constant(new double[][]{{1, 2}, {2, 3}, {3, 4}});
-        CNode b = cg.constant(new double[][]{{-3}, {-2}, {-1}});
-        CNode yd = cg.constant(new double[][]{{-3},{22},{-45}});
-        CNode y = W.multiply(x);
-        //CNode m = y.subtract(yd);
-        CNode E = y.normSq();
-        //m.execute();
-        //E.execute();
-        E.partialDiff(W).execute();
-        E.partialDiff(x).execute();
+        // find W s.t. minimize E = || y - yd ||^2
+        Congraph cg = new Congraph(999L);
+        CNode x = cg.constant(cg.util.normalRandoms(2, 1));
+        CNode W = cg.variable(cg.util.normalRandoms(3, 2));
+        CNode b = cg.constant(cg.util.normalRandoms(3, 1));
+        CNode yd = cg.constant(cg.util.normalRandoms(3,1));
+        CNode y = W.multiply(x).add(b);
+        CNode E = y.subtract(yd).normSq();
+        CNode r = cg.constant(0.03);
+        CNode newW = cg.subtract(W, E.partialDiff(W).multiply(r));
+        CNode out = cg.substitute(W, newW);
+        for (int i = 0; i < 100; i++) {
+            out.execute();
+            if (i % 10 == 0) {
+                System.out.println("Error : " + E);
+                //System.out.println("W = \n" + out);
+            }
+        }
     }
 
 }

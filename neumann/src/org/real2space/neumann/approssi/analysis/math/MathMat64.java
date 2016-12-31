@@ -14,5 +14,4 @@ public class MathMat64 {
         return new Matrix64(mat.getRow(), mat.getColumn());
     }
 
-
 }

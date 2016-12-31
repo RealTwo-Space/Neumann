@@ -112,7 +112,7 @@ public class CongraphInterface {
     
     public Node variable(Matrix variable) {
         Variable var = new Variable();
-        Data data = new MatrixData((Vector)variable.deepCopy());
+        Data data = new MatrixData((Matrix) variable.deepCopy());
         Node node = new Node(data, var);
         var.setMonomialArgument(node);
         this.brain.addNode(node);
@@ -225,6 +225,6 @@ public class CongraphInterface {
     
     public void execute(Node node) {
         this.brain.execute(node);
-        System.out.println(node);
+        //System.out.println(node);
     }
 }
