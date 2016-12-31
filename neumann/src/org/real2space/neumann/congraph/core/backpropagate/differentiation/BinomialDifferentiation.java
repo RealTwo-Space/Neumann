@@ -8,5 +8,5 @@ import org.real2space.neumann.congraph.core.graph.State;
  */
 public interface BinomialDifferentiation {
     // ここのexecuteの引数とか色々を考える．２つのNodeを渡してやるのかどうか．．
-    Data[] execute(Data a, Data b);
+    Data[] execute(Data own, Data a, Data b);
 }

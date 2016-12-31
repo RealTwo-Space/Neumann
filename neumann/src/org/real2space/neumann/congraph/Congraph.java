@@ -8,7 +8,7 @@ import org.real2space.neumann.congraph.core.graph.Node;
  * Created by ryosukesuzuki on 2016/12/31.
  */
 public class Congraph {
-    private CongraphInterface cgi;
+    private final CongraphInterface cgi;
 
     public Congraph() {
         this.cgi = new CongraphInterface();
@@ -75,7 +75,7 @@ public class Congraph {
     }
 
     public CNode partialDiff(CNode target, CNode by) {
-        Node node = this.cgi.divide(target.getNode(), by.getNode());
+        Node node = this.cgi.partialDiff(target.getNode(), by.getNode());
         return new CNode(node, this.cgi);
     }
 

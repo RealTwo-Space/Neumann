@@ -42,4 +42,20 @@ public class CongraphTest {
                 .execute();
     }
 
+    @Test
+    public void findPartials() {
+        Congraph cg = new Congraph();
+        CNode x = cg.constant(new double[][]{{5}, {6}});
+        CNode W = cg.constant(new double[][]{{1, 2}, {2, 3}, {3, 4}});
+        CNode b = cg.constant(new double[][]{{-3}, {-2}, {-1}});
+        CNode yd = cg.constant(new double[][]{{-3},{22},{-45}});
+        CNode y = W.multiply(x);
+        //CNode m = y.subtract(yd);
+        CNode E = y.normSq();
+        //m.execute();
+        //E.execute();
+        E.partialDiff(W).execute();
+        E.partialDiff(x).execute();
+    }
+
 }

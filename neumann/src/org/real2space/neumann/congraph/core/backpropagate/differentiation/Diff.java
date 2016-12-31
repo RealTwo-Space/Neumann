@@ -48,11 +48,11 @@ public enum Diff {
         return this.op;
     }
 
-    public Data[] execute(Data... datas) {
+    public Data[] execute(Data own, Data... datas) {
         if (this.size == 1) {
-            return new Data[] {this.monoDiff.execute(datas[0])};
+            return new Data[] {this.monoDiff.execute(own, datas[0])};
         } else if (this.size == 2) {
-            return this.biDiff.execute(datas[0], datas[1]);
+            return this.biDiff.execute(own, datas[0], datas[1]);
         }
 
         return null;

@@ -57,33 +57,18 @@ public class BackPropagation {
             refs[i] = children.getNode(i).refData();
         }
         Diff diff = Diff.valueOf((Operation)node.getState());
-        Data[] diffDatas = diff.execute(refs);
-
-        Data output;
-        Data diffData;
         Data nodeData = pool.getData(node);
+        Data[] outputs = diff.execute(nodeData, refs);
+
+        //System.out.println("=== start ===");
+        //System.out.println("node :\n" + node.getState());
+        //System.out.println("nodeData :\n" + nodeData);
 
         for (int i = 0; i < argSize; i++) {
-            diffData = diffDatas[i];
 
-            if (nodeData instanceof NumberData) {
-                if (diffData instanceof NumberData) {
-                    output = nodeData.multiply(diffData);
-                } else {
+            //System.out.println("output :\n" + outputs[i]);
 
-                    output = diffData.multiply(nodeData);
-                }
-            } else {
-                if (diffData instanceof NumberData) {
-                    output = nodeData.multiply(diffData);
-                } else {
-                    MatrixData trans = (MatrixData)diffData;
-                    diffData = trans.transpose();
-                    output = nodeData.multiply(diffData);
-                }
-            }
-
-            pool.addData(children.getNode(i), output);
+            pool.addData(children.getNode(i), outputs[i]);
         }
     }
 }

@@ -8,8 +8,8 @@ import org.real2space.neumann.congraph.core.graph.Node;
  * Created by ryosukesuzuki on 2016/12/31.
  */
 public class CNode {
-    private Node node;
-    private CongraphInterface cgi;
+    private final Node node;
+    private final CongraphInterface cgi;
 
     CNode(Node node, CongraphInterface cgi) {
         this.node = node;
@@ -47,6 +47,11 @@ public class CNode {
 
     public CNode normSq() {
         Node node = this.cgi.normSquared(this.node);
+        return new CNode(node, this.cgi);
+    }
+
+    public CNode partialDiff(CNode by) {
+        Node node = this.cgi.partialDiff(this.node, by.getNode());
         return new CNode(node, this.cgi);
     }
 
