@@ -3,6 +3,8 @@ package org.real2space.neumann.congraph.core.data;
 import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.structure.Vector;
 import org.real2space.neumann.approssi.core.value.Matrix64;
+import org.real2space.neumann.congraph.core.function.Activation;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 
 /**
  * Project Neumann
@@ -58,6 +60,60 @@ public class MatrixData<F> implements Data<Matrix<F>> {
         NumberData t = (NumberData)a;
         output.divide(a.get());
         return new MatrixData<F>(output);
+    }
+
+    public Data<Matrix<F>> entrywizeMultiply(Data a) {
+        Matrix output = this.data.deepCopy();
+        Matrix temp = (Matrix) a.get();
+        int N = output.getRow();
+        int M = output.getColumn();
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                output.set(i, j, (double)output.get(i, j) * (double)temp.get(i, j));
+            }
+        }
+        return new MatrixData(output);
+    }
+
+    public Data<Matrix<F>> entrywizeDivide(Data a) {
+        Matrix output = this.data.deepCopy();
+        Matrix temp = (Matrix) a.get();
+        int N = output.getRow();
+        int M = output.getColumn();
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                output.set(i, j, (double)output.get(i, j) / (double)temp.get(i, j));
+            }
+        }
+        return new MatrixData(output);
+    }
+
+    public Data<Matrix<F>> activate(ActivationFunction a) {
+        Matrix output = this.data.deepCopy();
+        int N = output.getRow();
+        int M = output.getColumn();
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                output.set(i, j, a.activate((double)output.get(i, j)));
+            }
+        }
+        return new MatrixData(output);
+    }
+
+    public Data<Matrix<F>> activateDiff(ActivationFunction a) {
+        Matrix output = this.data.deepCopy();
+        int N = output.getRow();
+        int M = output.getColumn();
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                output.set(i, j, a.activateDiff((double)output.get(i, j)));
+            }
+        }
+        return new MatrixData(output);
     }
 
     public Data<Matrix<F>> transpose() {

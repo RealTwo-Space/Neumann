@@ -1,6 +1,7 @@
 package org.real2space.neumann.congraph;
 
 import org.real2space.neumann.approssi.core.value.Matrix64;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.graph.CongraphInterface;
 import org.real2space.neumann.congraph.core.graph.Node;
 
@@ -19,6 +20,10 @@ public class Congraph {
     public Congraph(long randomSeed) {
         this.cgi = new CongraphInterface();
         this.util = new CUtil(this, randomSeed);
+    }
+
+    public void execute(CNode node) {
+        this.cgi.execute(node.getNode());
     }
 
     public CNode constant(double value) {
@@ -66,8 +71,18 @@ public class Congraph {
         return new CNode(node, this);
     }
 
+    public CNode entrywizeMultiply(CNode nodeA, CNode nodeB) {
+        Node node = this.cgi.entrywizeMultiply(nodeA.getNode(), nodeB.getNode());
+        return new CNode(node, this);
+    }
+
     public CNode divide(CNode nodeA, CNode nodeB) {
         Node node = this.cgi.divide(nodeA.getNode(), nodeB.getNode());
+        return new CNode(node, this);
+    }
+
+    public CNode entrywizeDivide(CNode nodeA, CNode nodeB) {
+        Node node = this.cgi.entrywizeDivide(nodeA.getNode(), nodeB.getNode());
         return new CNode(node, this);
     }
 
@@ -106,7 +121,25 @@ public class Congraph {
         return new CNode(node, this);
     }
 
-    public void execute(CNode node) {
-        this.cgi.execute(node.getNode());
+    public CNode activate(CNode nodeA, ActivationFunction func) {
+        Node node = this.cgi.activate(nodeA.getNode(), func);
+        return new CNode(node, this);
     }
+
+    public CNode sin(CNode nodeA) {
+        Node node = this.cgi.sin(nodeA.getNode());
+        return new CNode(node, this);
+    }
+
+    public CNode cos(CNode nodeA) {
+        Node node = this.cgi.cos(nodeA.getNode());
+        return new CNode(node, this);
+    }
+
+    public CNode tan(CNode nodeA) {
+        Node node = this.cgi.tan(nodeA.getNode());
+        return new CNode(node, this);
+    }
+
+
 }

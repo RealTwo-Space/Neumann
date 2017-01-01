@@ -14,6 +14,7 @@ public interface Matrix<E> extends DeepCopy <Matrix<E>> {
     public int getRow();
     public int getColumn();
     public E get(int row, int column);
+    public void set(int row, int column, E value);
 
     /**
      * Add other matrix to this
@@ -42,7 +43,7 @@ public interface Matrix<E> extends DeepCopy <Matrix<E>> {
      * @return void
      */
     public void multiply (E scalar);
-    
+
     /**
      * Divide this matrix by scalar
      * @param scalar E

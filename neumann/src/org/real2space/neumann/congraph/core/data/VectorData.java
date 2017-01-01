@@ -1,6 +1,8 @@
 package org.real2space.neumann.congraph.core.data;
 
 import org.real2space.neumann.approssi.core.structure.Vector;
+import org.real2space.neumann.congraph.core.function.Activation;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 
 /**
  * Project Neumann
@@ -49,6 +51,14 @@ public class VectorData<F> implements Data<Vector<F>> {
         NumberData t = (NumberData)a;
         output.divide(a.get());
         return new VectorData<F>(output);
+    }
+
+    public Data<Vector<F>> activate(ActivationFunction a) {
+        return null;
+    }
+
+    public Data<Vector<F>> activateDiff(ActivationFunction a) {
+        return null;
     }
     
     public Vector<F> get() {

@@ -1,6 +1,7 @@
 package org.real2space.neumann.congraph;
 
 import org.real2space.neumann.congraph.core.data.Data;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.graph.CongraphInterface;
 import org.real2space.neumann.congraph.core.graph.Node;
 
@@ -20,6 +21,18 @@ public class CNode {
         return this.node;
     }
 
+    public void execute() {
+        cg.execute(this);
+    }
+
+    public Data getData() {
+        return this.node.getData();
+    }
+
+    public String toString() {
+        return this.node.toString();
+    }
+
     public CNode add(CNode nodeB) {
         return cg.add(this, nodeB);
     }
@@ -32,8 +45,17 @@ public class CNode {
         return cg.multiply(this, nodeB);
     }
 
+    public CNode entrywizeMultiply(CNode nodeB) {
+        return cg.entrywizeMultiply(this, nodeB);
+    }
+
+
     public CNode divide(CNode nodeB) {
         return cg.divide(this, nodeB);
+    }
+
+    public CNode entrywizeDivide(CNode nodeB) {
+        return cg.entrywizeDivide(this, nodeB);
     }
 
     public CNode substitute(CNode nodeB) {
@@ -56,15 +78,21 @@ public class CNode {
         return cg.partialDiff(this, by);
     }
 
-    public void execute() {
-        cg.execute(this);
+    public CNode activate(ActivationFunction func) {
+        return cg.activate(this, func);
     }
 
-    public Data getData() {
-        return this.node.getData();
+    public CNode sin() {
+        return cg.sin(this);
     }
 
-    public String toString() {
-        return this.node.toString();
+    public CNode cos() {
+        return cg.cos(this);
     }
+
+    public CNode tan(CNode nodeA) {
+        return cg.tan(this);
+    }
+
+
 }

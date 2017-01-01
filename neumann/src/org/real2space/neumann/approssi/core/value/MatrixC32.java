@@ -47,6 +47,11 @@ public class MatrixC32 implements Matrix<Complex32> {
         return this.matrix[row][column];
     }
 
+    @Override
+    public void set(int row, int column, Complex32 value) {
+
+    }
+
     /**
      * Add other matrix to this
      * @param other Matrix<Complex32>

@@ -3,6 +3,8 @@ package org.real2space.neumann.congraph.core.backpropagate;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.data.NumberData;
+import org.real2space.neumann.congraph.core.function.Activation;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 
 import java.util.concurrent.TimeoutException;
 
@@ -55,6 +57,17 @@ public class TensorData implements Data<Tensor64> {
         output = this.data.divide((double)a.get());
         return new TensorData(output);
     }
+
+    @Override
+    public Data<Tensor64> activate(ActivationFunction func) {
+        return null;
+    }
+
+    @Override
+    public Data<Tensor64> activateDiff(ActivationFunction func) {
+        return null;
+    }
+
     public Tensor64 get() {
         return this.data;
     }

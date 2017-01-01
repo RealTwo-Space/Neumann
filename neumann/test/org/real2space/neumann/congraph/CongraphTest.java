@@ -1,6 +1,8 @@
 package org.real2space.neumann.congraph;
 
 import org.junit.Test;
+import org.real2space.neumann.approssi.analysis.math.Math64;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 
 import static org.junit.Assert.*;
 
@@ -113,6 +115,56 @@ public class CongraphTest {
         }
         System.out.println(E);
     }
+
+    @Test
+    public void sinTest() {
+        Congraph cg = new Congraph(999L);
+        CNode x =  cg.constant(cg.util.normalRandoms(3, 1, 0.0, 3.14));
+        CNode out = x.sin();
+        CNode norm = out.normSq();
+        CNode dx = norm.partialDiff(x);
+        dx.execute();
+        System.out.println(norm);
+    }
+
+    @Test
+    public void diffSinTest() {
+        Congraph cg = new Congraph(999L);
+        CNode x = cg.constant(Math64.PI/6.0);
+        CNode sinx = x.sin();
+        CNode cosx = x.cos();
+        CNode diffsinx = sinx.partialDiff(x);
+        cg.batch(
+                sinx,
+                cosx,
+                diffsinx
+        ).execute();
+        System.out.println("test");
+        System.out.println(sinx);
+        System.out.println(cosx);
+        System.out.println(diffsinx);
+    }
+
+    @Test
+    public void ActivateOpTest() {
+        Congraph cg = new Congraph();
+        CNode x = cg.constant(Math64.PI / 6.0);
+        CNode sinx = x.activate(new ActivationFunction() {
+            @Override
+            public double activate(double value) {
+                return Math64.sin(value);
+            }
+
+            @Override
+            public double activateDiff(double value) {
+                return Math64.cos(value);
+            }
+        });
+        CNode diff = sinx.partialDiff(x);
+        diff.execute();
+        System.out.println(diff);
+    }
+
 
 
 }

@@ -46,6 +46,10 @@ public class Matrix32 implements Matrix<Float> {
         return this.matrix[row][column];
     }
 
+    public void set(int row, int column, Float value) {
+        this.matrix[row][column] = value;
+    }
+
     /**
      * Add other matrix to this
      * @param other Matrix<Float>

@@ -47,6 +47,11 @@ public class MatrixC64 implements Matrix<Complex64> {
         return this.matrix[row][column];
     }
 
+    @Override
+    public void set(int row, int column, Complex64 value) {
+
+    }
+
     /**
      * Add other matrix to this
      * @param other Matrix<Complex64>

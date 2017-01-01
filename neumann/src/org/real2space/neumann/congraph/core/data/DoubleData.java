@@ -1,5 +1,8 @@
 package org.real2space.neumann.congraph.core.data;
 
+import org.real2space.neumann.congraph.core.function.Activation;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
+
 /**
  * Project Neumann
  *
@@ -50,6 +53,14 @@ public class DoubleData implements NumberData<Double> {
         double output = this.data;
         output /= (double)a.get();
         return new DoubleData(output);
+    }
+
+    public Data<Double> activate(ActivationFunction func) {
+        return new DoubleData(func.activate(this.data));
+    }
+
+    public Data<Double> activateDiff(ActivationFunction func) {
+        return new DoubleData(func.activateDiff(this.data));
     }
     
     public Double get() {

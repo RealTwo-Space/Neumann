@@ -2,6 +2,7 @@ package org.real2space.neumann.congraph.core.graph;
 
 import org.real2space.neumann.approssi.core.function.Function;
 import org.real2space.neumann.approssi.core.structure.*;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.operation.*;
 import org.real2space.neumann.congraph.core.data.*;
 
@@ -35,6 +36,11 @@ public class CongraphInterface {
         return node;
     }
     */
+
+    public void execute(Node node) {
+        this.brain.execute(node);
+        //System.out.println(node);
+    }
     
     public Node constant(float constant) {
         Data data = new FloatData(constant);
@@ -158,6 +164,26 @@ public class CongraphInterface {
         this.brain.addNode(node);
         return node;
     }
+
+    public Node entrywizeMultiply(Node nodeA, Node nodeB) {
+        Operation op = new EntrywizeMultiplyOperation(nodeA, nodeB);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA, nodeB};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    public Node entrywizeDivide(Node nodeA, Node nodeB) {
+        Operation op = new EntrywizeDivideOperation(nodeA, nodeB);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA, nodeB};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
     
     public Node divide(Node nodeA, Node nodeB) {
         Operation op = new DivideOperation(nodeA, nodeB);
@@ -246,9 +272,46 @@ public class CongraphInterface {
         this.brain.addNode(node);
         return node;
     }
-    
-    public void execute(Node node) {
-        this.brain.execute(node);
-        //System.out.println(node);
+
+    public Node activate(Node nodeA, ActivationFunction func) {
+        Operation op = new ActivateOperation(nodeA, func);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
     }
+
+    public Node sin(Node nodeA) {
+        Operation op = new SinOperation(nodeA);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    public Node cos(Node nodeA) {
+        Operation op = new CosOperation(nodeA);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    public Node tan(Node nodeA) {
+        Operation op = new TanOperation(nodeA);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
+    
+
 }

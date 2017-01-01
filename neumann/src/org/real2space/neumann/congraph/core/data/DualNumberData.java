@@ -1,6 +1,8 @@
 package org.real2space.neumann.congraph.core.data;
 
 import org.real2space.neumann.approssi.core.structure.DualNumber;
+import org.real2space.neumann.congraph.core.function.Activation;
+import org.real2space.neumann.congraph.core.function.ActivationFunction;
 
 /**
  * Project Neumann
@@ -46,7 +48,15 @@ public class DualNumberData<F> implements Data<DualNumber<F>> {
         output.divide((DualNumber)a.get());
         return new DualNumberData<F>(output);
     }
-    
+
+    public Data<DualNumber<F>> activate(ActivationFunction func) {
+        return null;
+    }
+
+    public Data<DualNumber<F>> activateDiff(ActivationFunction func) {
+        return null;
+    }
+
     public DualNumber<F> get () {
         return this.data;
     }
