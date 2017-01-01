@@ -1,5 +1,7 @@
 package org.real2space.neumann.congraph;
 
+import org.real2space.neumann.approssi.core.structure.Matrix;
+import org.real2space.neumann.approssi.core.structure.Vector;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.graph.CongraphInterface;
@@ -23,6 +25,26 @@ public class CNode {
 
     public void execute() {
         cg.execute(this);
+    }
+
+    public void execute(Assign... assigns) {
+        cg.execute(this, assigns);
+    }
+
+    public Assign assign(double value) {
+        return cg.assign(this, value);
+    }
+
+    public Assign assign(float value) {
+        return cg.assign(this, value);
+    }
+
+    public Assign assign(Matrix value) {
+        return cg.assign(this, value);
+    }
+
+    public Assign assign(Vector value) {
+        return cg.assign(this, value);
     }
 
     public Data getData() {

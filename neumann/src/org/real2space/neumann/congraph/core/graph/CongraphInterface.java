@@ -134,6 +134,18 @@ public class CongraphInterface {
         this.brain.addNode(node);
         return node;
     }
+
+    public Node placeholder() {
+        Placeholder plac = new Placeholder();
+        Node node = new Node(null, plac);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    public void assign(Node node, Data data) {
+        Placeholder plac = (Placeholder) node.getState();
+        plac.setData(data);
+    }
     
     public Node add(Node nodeA, Node nodeB) {
         Operation op = new AddOperation(nodeA, nodeB);

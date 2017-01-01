@@ -1,5 +1,7 @@
 package org.real2space.neumann.congraph.core.graph;
 
+import java.util.HashMap;
+
 /**
  * Project Neumann
  *
@@ -9,7 +11,7 @@ package org.real2space.neumann.congraph.core.graph;
  * created 12/04/16
  */
 public class Brain {
-    private Schedule schedule;
+    private HashMap<Node, Schedule> schedules;
     private Scheduler scheduler;
     private ScheduleExecuter scheduleExecuter;
     public Graph graph;
@@ -18,11 +20,17 @@ public class Brain {
         this.scheduler = Scheduler.getInstance();
         this.scheduleExecuter = ScheduleExecuter.getInstance();
         this.graph = new Graph();
+        this.schedules = new HashMap<Node, Schedule>();
     }
     
     public void execute(Node origin) {
-        this.schedule = this.scheduler.createSchedule(origin, this.graph);
-        this.scheduleExecuter.executeSchedule(this.schedule);
+        Schedule schedule;
+        if (this.schedules.containsKey(origin)) {
+            schedule = this.schedules.get(origin);
+        } else {
+            schedule = this.scheduler.createSchedule(origin, this.graph);
+        }
+        this.scheduleExecuter.executeSchedule(schedule);
     }
 
     public Graph getGraph() {

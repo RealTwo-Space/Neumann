@@ -1,9 +1,16 @@
 package org.real2space.neumann.congraph;
 
+import org.real2space.neumann.approssi.core.structure.Matrix;
+import org.real2space.neumann.approssi.core.structure.Vector;
 import org.real2space.neumann.approssi.core.value.Matrix64;
+import org.real2space.neumann.congraph.core.data.*;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.graph.CongraphInterface;
 import org.real2space.neumann.congraph.core.graph.Node;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.StringJoiner;
 
 /**
  * Created by ryosukesuzuki on 2016/12/31.
@@ -11,19 +18,61 @@ import org.real2space.neumann.congraph.core.graph.Node;
 public class Congraph {
     private final CongraphInterface cgi;
     public final CUtil util;
+    private final HashMap<CNode, Assign> assignsSet;
 
     public Congraph() {
         this.cgi = new CongraphInterface();
         this.util = new CUtil(this);
+        this.assignsSet = new HashMap<CNode, Assign>();
     }
 
     public Congraph(long randomSeed) {
         this.cgi = new CongraphInterface();
         this.util = new CUtil(this, randomSeed);
+        this.assignsSet = new HashMap<CNode, Assign>();
     }
 
     public void execute(CNode node) {
         this.cgi.execute(node.getNode());
+    }
+
+    public void execute(CNode node, Assign... assigns) {
+        int N = assigns.length;
+        for (int i = 0; i < N; i++) {
+            assignToPlaceholder(assigns[i]);
+        }
+        this.cgi.execute(node.getNode());
+    }
+
+    private void assignToPlaceholder(Assign assign) {
+        this.cgi.assign(assign.getNode(), assign.getData());
+    }
+
+    public Assign assign(CNode node, double value) {
+        return assign(node, new DoubleData(value));
+    }
+
+    public Assign assign(CNode node, float value) {
+        return assign(node, new FloatData(value));
+    }
+
+    public Assign assign(CNode node, Matrix value) {
+        return assign(node, new MatrixData(value));
+    }
+
+    public Assign assign(CNode node, Vector value) {
+        return assign(node, new VectorData(value));
+    }
+
+    private Assign assign(CNode node, Data data) {
+        Assign assign;
+        if (this.assignsSet.containsKey(node)) {
+            assign = this.assignsSet.get(node);
+            assign.setData(data);
+        }
+        assign = new Assign(node.getNode(), data);
+        this.assignsSet.put(node, assign);
+        return assign;
     }
 
     public CNode constant(double value) {
@@ -53,6 +102,11 @@ public class Congraph {
 
     public CNode variable(Matrix64 value) {
         Node node = this.cgi.variable(value);
+        return new CNode(node, this);
+    }
+
+    public CNode placeholder() {
+        Node node = this.cgi.placeholder();
         return new CNode(node, this);
     }
 

@@ -44,10 +44,9 @@ public enum Diff {
         if (op instanceof ActivateOperation) {
             Activate act = (Activate)DIFINITION.monoDiff;
             ActivateOperation actop = (ActivateOperation)op;
-            System.out.println("test " + actop.getActivationFunction());
-            System.out.println(act);
+
             act.setActivate(actop.getActivationFunction());
-            System.out.println(DIFINITION.monoDiff);
+
             return DIFINITION;
         }
         for (Diff diff : values()) {

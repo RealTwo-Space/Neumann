@@ -165,6 +165,15 @@ public class CongraphTest {
         System.out.println(diff);
     }
 
+    @Test
+    public void placeholderTest() {
+        Congraph cg = new Congraph();
+        CNode x = cg.placeholder();
+        CNode w = cg.constant(2.0);
+        CNode y = cg.placeholder();
+        CNode out = x.multiply(w).multiply(y);
 
-
+        out.execute(x.assign(100.0), y.assign(-1/100.0));
+        System.out.println(out);
+    }
 }
