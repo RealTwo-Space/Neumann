@@ -60,13 +60,13 @@ public class BackPropagation {
         Data nodeData = pool.getData(node);
         Data[] outputs = diff.execute(nodeData, refs);
 
-        System.out.println("=== start ===");
-        System.out.println("node :\n" + node.getState());
-        System.out.println("nodeData :\n" + nodeData);
+        //System.out.println("=== start ===");
+        //System.out.println("node :\n" + node.getState());
+        //System.out.println("nodeData :\n" + nodeData);
 
         for (int i = 0; i < argSize; i++) {
 
-            System.out.println("output :\n" + outputs[i]);
+            //System.out.println("output :\n" + outputs[i]);
 
             pool.addData(children.getNode(i), outputs[i]);
         }
