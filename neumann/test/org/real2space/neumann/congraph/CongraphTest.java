@@ -176,4 +176,20 @@ public class CongraphTest {
         out.execute(x.assign(100.0), y.assign(-1/100.0));
         System.out.println(out);
     }
+
+    @Test
+    public void adfd() {
+        Congraph cg = new Congraph(999L);
+        CNode x = cg.placeholder();
+        CNode W1 = cg.variable(cg.util.normalRandoms(4, 1));
+        CNode b1 = cg.variable(cg.util.normalRandoms(4, 1));
+        CNode y1 = W1.multiply(x).add(b1);
+        CNode yd = cg.placeholder();
+        CNode W2 = cg.variable(cg.util.normalRandoms(1, 4));
+        CNode b2 = cg.variable(cg.util.normalRandoms(1,1));
+        CNode y = W2.multiply(y1).add(b2);
+        CNode E = y.subtract(yd).normSq();
+        CNode r = cg.constant(0.03d);
+        E.partialDiff(W1).execute(x.assign(1.0d), yd.assign(1.0d));
+    }
 }

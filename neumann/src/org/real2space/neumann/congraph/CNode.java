@@ -25,6 +25,7 @@ public class CNode {
 
     public void execute() {
         cg.execute(this);
+        System.out.println(this.node);
     }
 
     public void execute(Assign... assigns) {
@@ -43,7 +44,15 @@ public class CNode {
         return cg.assign(this, value);
     }
 
+    public Assign assign(double[][] value) {
+        return cg.assign(this, value);
+    }
+
     public Assign assign(Vector value) {
+        return cg.assign(this, value);
+    }
+
+    public Assign assign(double[] value) {
         return cg.assign(this, value);
     }
 

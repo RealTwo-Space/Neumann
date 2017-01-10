@@ -8,7 +8,7 @@ import org.real2space.neumann.congraph.core.graph.Node;
 /**
  * Created by ryosukesuzuki on 2017/01/02.
  */
-class Assign {
+public class Assign {
     private Node node;
     private Data data;
 

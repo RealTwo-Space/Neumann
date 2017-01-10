@@ -2,7 +2,9 @@ package org.real2space.neumann.congraph;
 
 import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.structure.Vector;
+import org.real2space.neumann.approssi.core.value.Matrix32;
 import org.real2space.neumann.approssi.core.value.Matrix64;
+import org.real2space.neumann.approssi.core.value.Vector64;
 import org.real2space.neumann.congraph.core.data.*;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.graph.CongraphInterface;
@@ -18,7 +20,7 @@ import java.util.StringJoiner;
 public class Congraph {
     private final CongraphInterface cgi;
     public final CUtil util;
-    private final HashMap<CNode, Assign> assignsSet;
+    private HashMap<CNode, Assign> assignsSet;
 
     public Congraph() {
         this.cgi = new CongraphInterface();
@@ -60,8 +62,16 @@ public class Congraph {
         return assign(node, new MatrixData(value));
     }
 
+    public Assign assign(CNode node, double[][] value) {
+        return assign(node, new MatrixData(new Matrix64(value)));
+    }
+
     public Assign assign(CNode node, Vector value) {
         return assign(node, new VectorData(value));
+    }
+
+    public Assign assign(CNode node, double[] value) {
+        return assign(node, new VectorData(new Vector64(value)));
     }
 
     private Assign assign(CNode node, Data data) {

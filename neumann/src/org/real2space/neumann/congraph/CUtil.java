@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Created by ryosukesuzuki on 2016/12/31.
  */
-class CUtil {
+public class CUtil {
     private final Congraph cg;
     private final Random rand;
 
