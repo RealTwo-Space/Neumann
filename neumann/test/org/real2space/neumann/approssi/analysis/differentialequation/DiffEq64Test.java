@@ -24,7 +24,7 @@ public class DiffEq64Test {
 
         public Visualize(){
             this.setSize(300, 200);
-            //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(true);
             this.g = this.getGraphics();
             // 描画のサンプル
