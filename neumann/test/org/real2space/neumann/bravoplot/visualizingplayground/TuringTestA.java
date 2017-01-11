@@ -1,5 +1,7 @@
-package org.real2space.neumann.approssi.analysis.differentialequation;
+package org.real2space.neumann.bravoplot.visualizingplayground;
 
+import org.real2space.neumann.approssi.analysis.differentialequation.BoundaryCondition64;
+import org.real2space.neumann.approssi.analysis.differentialequation.DiffEq64;
 import org.real2space.neumann.approssi.analysis.math.Math64;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 
@@ -14,7 +16,7 @@ import java.awt.*;
  *
  * created 1/11/17
  */
-public class Visualize extends JFrame {
+public class TuringTestA extends JFrame {
 
     double f = 0.03;
     double k = 0.056;
@@ -38,7 +40,7 @@ public class Visualize extends JFrame {
     Matrix64 lastU;
     Matrix64 lastV;
 
-    public Visualize() {
+    public TuringTestA() {
         initialize();
         this.setSize(600, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -144,7 +146,7 @@ public class Visualize extends JFrame {
 
 
     public static void main(String[] args) {
-        Visualize v = new Visualize();
+        TuringTestA v = new TuringTestA();
 
         //System.out.println(v.v);
     }

@@ -1,7 +1,9 @@
-package org.real2space.neumann.congraph;
+package org.real2space.neumann.bravoplot.visualizingplayground;
 
 import org.real2space.neumann.approssi.analysis.math.Math64;
 import org.real2space.neumann.approssi.core.value.Matrix64;
+import org.real2space.neumann.congraph.CNode;
+import org.real2space.neumann.congraph.Congraph;
 import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
 import org.real2space.neumann.congraph.core.differentialequation.condition.DEConditionFactory;
 
@@ -16,7 +18,7 @@ import java.awt.*;
  *
  * created 1/11/17
  */
-public class TuringTest extends JFrame {
+public class TuringTestC extends JFrame {
     Congraph cg;
     DECondition condition;
 
@@ -31,7 +33,7 @@ public class TuringTest extends JFrame {
     CNode V;
     CNode batch;
 
-    public TuringTest () {
+    public TuringTestC() {
         cg = new Congraph();
 
         initialize();
@@ -135,7 +137,7 @@ public class TuringTest extends JFrame {
     }
 
     public static void main(String[] args) {
-        TuringTest v = new TuringTest();
+        TuringTestC v = new TuringTestC();
 
         //System.out.println(v.v);
     }
