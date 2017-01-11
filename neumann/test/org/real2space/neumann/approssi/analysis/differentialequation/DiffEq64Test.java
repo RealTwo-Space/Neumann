@@ -1,14 +1,11 @@
 package org.real2space.neumann.approssi.analysis.differentialequation;
 
 import org.junit.Test;
-import org.real2space.neumann.approssi.analysis.math.Math64;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
-
-import static org.junit.Assert.*;
 
 /**
  * Project Neumann
