@@ -2,6 +2,8 @@ package org.real2space.neumann.congraph.core.graph;
 
 import org.real2space.neumann.approssi.core.function.Function;
 import org.real2space.neumann.approssi.core.structure.*;
+import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
+import org.real2space.neumann.congraph.core.differentialequation.operation.*;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.operation.*;
 import org.real2space.neumann.congraph.core.data.*;
@@ -345,5 +347,24 @@ public class CongraphInterface {
         return node;
     }
     
+    // Ryu added from here
+    public Node nabla (Node u, Node dx, DECondition cond) {
+        Operation op = new NablaOperation(u, dx, cond);
+        Node node = new Node(null, op);
+        Node[] children = {u, dx};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
 
+    public Node laplacian (Node u, Node dx, DECondition cond) {
+        Operation op = new LaplacianOperation(u, dx, cond);
+        Node node = new Node(null, op);
+        Node[] children = {u, dx};
+        Group group = new Group(children);
+        this.brain.addEdge(node, group);
+        this.brain.addNode(node);
+        return node;
+    }
 }
