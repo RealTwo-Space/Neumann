@@ -18,7 +18,7 @@ public class Visualize extends JFrame {
 
     double f = 0.03;
     double k = 0.056;
-    double du = 0.09;
+    double du = 0.12;
     double dv = 0.056;
     double dx = 1.0;
     double dt = 1.0;
@@ -71,7 +71,9 @@ public class Visualize extends JFrame {
         c = new Matrix64(condData);
         one = new Matrix64(ones);
 
-        cond = new DirichletCondition64(c);
+        //cond = new DirichletCondition64(c);
+        //cond = new PeriodicalBoundaryCondition64(dx);
+        //cond = new NeumannCondition64(dx);
     }
 
     private void execute() {
