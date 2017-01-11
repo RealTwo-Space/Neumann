@@ -10,6 +10,15 @@ import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
  * @author RealTwo-Space
  * @version 0
  */
+
+/*
+    Sum Differentiation
+
+    d(sum of A's elements)/dA = tensor whose elements are all "1"
+    dE/dA = tensor whose elements are all "own" because own is 0-rank tensor).
+    return dE/dA
+ */
+
 public class Sum implements MonomialDifferentiation {
     @Override
     public Tensor execute(Tensor own, Tensor a) {

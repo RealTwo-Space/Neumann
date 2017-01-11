@@ -47,6 +47,15 @@ public class Congraph {
         this.cgi.execute(node.getNode());
     }
 
+    /*
+        assign data to placeholder when execute node.
+        e.g.
+
+        nodeC.execute(cg.assign(nodeA, 1.0))
+
+        means that when nodeC execute, nodeA(placeholder) will be assigned 1.0
+     */
+
     private void assignToPlaceholder(Assign assign) {
         this.cgi.assign(assign.getNode(), assign.getData());
     }
@@ -136,11 +145,6 @@ public class Congraph {
         return new CNode(node, this);
     }
 
-    public CNode entrywizeMultiply(CNode nodeA, CNode nodeB) {
-        Node node = this.cgi.entrywizeMultiply(nodeA.getNode(), nodeB.getNode());
-        return new CNode(node, this);
-    }
-
     public CNode matMultiply(CNode nodeA, CNode nodeB) {
         Node node = this.cgi.matrixMultiply(nodeA.getNode(), nodeB.getNode());
         return new CNode(node, this);
@@ -148,11 +152,6 @@ public class Congraph {
 
     public CNode divide(CNode nodeA, CNode nodeB) {
         Node node = this.cgi.divide(nodeA.getNode(), nodeB.getNode());
-        return new CNode(node, this);
-    }
-
-    public CNode entrywizeDivide(CNode nodeA, CNode nodeB) {
-        Node node = this.cgi.entrywizeDivide(nodeA.getNode(), nodeB.getNode());
         return new CNode(node, this);
     }
 
@@ -173,11 +172,6 @@ public class Congraph {
 
     public CNode sum(CNode nodeA) {
         Node node = this.cgi.sum(nodeA.getNode());
-        return new CNode(node, this);
-    }
-
-    public CNode normSq(CNode nodeA) {
-        Node node = this.cgi.normSquared(nodeA.getNode());
         return new CNode(node, this);
     }
 

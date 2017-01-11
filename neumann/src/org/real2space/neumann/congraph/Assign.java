@@ -8,6 +8,19 @@ import org.real2space.neumann.congraph.core.graph.Node;
 /**
  * Created by ryosukesuzuki on 2017/01/02.
  */
+
+/**
+ * Project Neumann
+ * created 2017/01/11
+ *
+ * @author RealTwo-Space
+ * @version 0
+ */
+
+/*
+    Assign : data structure
+ */
+
 public class Assign {
     private Node node;
     private Data data;

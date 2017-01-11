@@ -7,6 +7,18 @@ package org.real2space.neumann.congraph.core.backpropagate.tensor;
  * @author RealTwo-Space
  * @version 0
  */
+
+/*
+
+This Shape class express Tensor's shape.
+
+e.g.
+shape of scalar : rank 0, (1)
+shape of vetcor : rank 1, (p)
+shape of matrix : rank 2, (p, q)
+shape of 3d array : rank 3, (p, q, r)
+
+ */
 public class Shape {
     private final int[] shapes;
     private final int rank;
@@ -52,10 +64,7 @@ public class Shape {
         return -1;
     }
 
-    // 3 x 2 x 4 (i*YMAX+j)*XMAX+k
-    //  111, 112, 113, 114, 121, 122, 123, 124, 211, 212, 214, ...
-    //    0    1    2    3    4    5    6    7    8    9   10
-    //
+    // convert n-d array index to 1-d array index.
     public int getTensorIndex(int... indexes) {
         int res = 0;
         int N, M, L;
@@ -101,14 +110,14 @@ public class Shape {
     }
 
     public String toString() {
-        String res = "rank : "+ this.rank + "[";
+        String res = "rank : "+ this.rank + ", (";
         for (int i = 0; i < this.rank; i++) {
             if (i != 0) {
                 res += ",";
             }
             res += " " + this.get(i);
         }
-        res += " ]";
+        res += " )";
         return res;
     }
 }
