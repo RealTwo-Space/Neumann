@@ -41,25 +41,27 @@ public class TuringTest extends JFrame {
     }
 
     private void initialize () {
-        double[][] uData = new double[200][200];
-        double[][] vData = new double[200][200];
+        double[][] uData = cg.util.normalRandoms(200, 200, 0.7, 0.2);
+        double[][] vData = cg.util.normalRandoms(200, 200, 0.3, 0.2);
         double[][] condData = new double[200][200];
         double[][] ones = new double[200][200];
 
         for (int i = 0; i < 200; i++) {
             for (int j = 0; j < 200; j++) {
-                uData[i][j] = 0.9;
-                vData[i][j] = 0.0;
+                //uData[i][j] = 0.9;
+                //vData[i][j] = 0.0;
                 ones[i][j] = 1.0;
             }
         }
 
+        /*
         for (int i = 100; i < 140; i++) {
             for (int j = 50; j < 80; j++) {
                 uData[i][j] = 1.0;
                 vData[i][j] = 0.3;
             }
         }
+        */
 
         Matrix64 u = new Matrix64(uData);
         Matrix64 v = new Matrix64(vData);
