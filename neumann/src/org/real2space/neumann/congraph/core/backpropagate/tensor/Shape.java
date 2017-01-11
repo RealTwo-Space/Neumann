@@ -9,9 +9,16 @@ package org.real2space.neumann.congraph.core.backpropagate.tensor;
  */
 public class Shape {
     private final int[] shapes;
+    private final int rank;
 
     public Shape(int... sizes) {
         this.shapes = sizes;
+        int N = sizes.length;
+        if (N == 1 && sizes[0] == 1) {
+            this.rank = 0;
+        } else {
+            this.rank = N;
+        }
     }
 
     public boolean isET(Shape shape) {
@@ -26,7 +33,6 @@ public class Shape {
 
     // 2 x 2 x 1 -> 2 x 2 x 2
     // 111(0), 121(1), 211(2), 221(3) -> 111(0) 112(1) 121(2) 122(3)
-
     public int getIndexWhichCanExpand(Shape shape) {
         int N = this.shapes.length;
         int match = 0;
@@ -76,9 +82,10 @@ public class Shape {
     }
 
     public boolean canMatrixMultiply(Shape shape) {
-        if (this.shapes.length != 2 || shape.shapes.length != 2) {
+        if (this.rank() != 2 || shape.rank() != 2) {
             return false;
         }
+
         if (this.get(1) == shape.get(0))  {
             return true;
         }
@@ -87,5 +94,21 @@ public class Shape {
 
     public int get(int index) {
         return this.shapes[index];
+    }
+
+    public int rank() {
+        return this.rank;
+    }
+
+    public String toString() {
+        String res = "rank : "+ this.rank + "[";
+        for (int i = 0; i < this.rank; i++) {
+            if (i != 0) {
+                res += ",";
+            }
+            res += " " + this.get(i);
+        }
+        res += " ]";
+        return res;
     }
 }

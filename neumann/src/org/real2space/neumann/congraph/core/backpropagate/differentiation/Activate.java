@@ -1,6 +1,7 @@
 package org.real2space.neumann.congraph.core.backpropagate.differentiation;
 
 import org.real2space.neumann.approssi.core.structure.Matrix;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.data.MatrixData;
 import org.real2space.neumann.congraph.core.data.NumberData;
@@ -24,18 +25,7 @@ public class Activate implements MonomialDifferentiation {
         this.func = func;
     }
 
-    public Data execute(Data own, Data a) {
-        Data data = a.activateDiff(this.func);
-        Data out;
-        if (own instanceof NumberData) {
-            return data.multiply(own);
-        } else {
-            if (a instanceof MatrixData) {
-                MatrixData mat = (MatrixData) data;
-                return mat.entrywizeMultiply(own);
-            } else {
-                return own.multiply(data);
-            }
-        }
+    public Tensor execute(Tensor own, Tensor a) {
+        return own.multiply(a.activate(this.func));
     }
 }

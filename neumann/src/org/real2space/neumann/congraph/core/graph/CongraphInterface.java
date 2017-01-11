@@ -177,6 +177,16 @@ public class CongraphInterface {
         return node;
     }
 
+    public Node matrixMultiply(Node nodeA, Node nodeB) {
+        Operation op = new MatrixMultiplyOperation(nodeA, nodeB);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA, nodeB};
+        Group group = new Group(children);
+        this.brain.addNode(node);
+        this.brain.addEdge(node, group);
+        return node;
+    }
+
     public Node entrywizeMultiply(Node nodeA, Node nodeB) {
         Operation op = new EntrywizeMultiplyOperation(nodeA, nodeB);
         Node node = new Node(null, op);
@@ -263,6 +273,16 @@ public class CongraphInterface {
         Group group = new Group(children);
         this.brain.addEdge(node, group);
         this.brain.addNode(node);
+        return node;
+    }
+
+    public Node sum(Node nodeA) {
+        Operation op = new SumOperation(nodeA);
+        Node node = new Node(null, op);
+        Node[] children = {nodeA};
+        Group group = new Group(children);
+        this.brain.addNode(node);
+        this.brain.addEdge(node, group);
         return node;
     }
 

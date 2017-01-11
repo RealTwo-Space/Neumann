@@ -49,17 +49,40 @@ public class MatrixData<F> implements Data<Matrix<F>> {
         if (a instanceof NumberData) {
             NumberData t = (NumberData)a;
             output.multiply(t.get());
+            return new MatrixData<F>(output);
         } else {
-            output.multiply((Matrix)a.get());
+            Matrix temp = (Matrix) a.get();
+            int N = output.getRow();
+            int M = output.getColumn();
+
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < M; j++) {
+                    output.set(i, j, (double)output.get(i, j) * (double)temp.get(i, j));
+                }
+            }
+            return new MatrixData(output);
         }
-        return new MatrixData<F>(output);
+
     }
     
     public Data<Matrix<F>> divide(Data a) {
         Matrix output = this.data.deepCopy();
-        NumberData t = (NumberData)a;
-        output.divide(a.get());
-        return new MatrixData<F>(output);
+        if (a instanceof NumberData) {
+            NumberData t = (NumberData)a;
+            output.divide(t.get());
+            return new MatrixData<F>(output);
+        } else {
+            Matrix temp = (Matrix) a.get();
+            int N = output.getRow();
+            int M = output.getColumn();
+
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < M; j++) {
+                    output.set(i, j, (double)output.get(i, j) / (double)temp.get(i, j));
+                }
+            }
+            return new MatrixData(output);
+        }
     }
 
     public Data<Matrix<F>> entrywizeMultiply(Data a) {
@@ -74,6 +97,12 @@ public class MatrixData<F> implements Data<Matrix<F>> {
             }
         }
         return new MatrixData(output);
+    }
+
+    public Data<Matrix<F>> matrixMultiply(Data a) {
+        Matrix output = this.data.deepCopy();
+        output.multiply((Matrix)a.get());
+        return new MatrixData<F>(output);
     }
 
     public Data<Matrix<F>> entrywizeDivide(Data a) {
@@ -129,7 +158,7 @@ public class MatrixData<F> implements Data<Matrix<F>> {
         return null;
     }
     
-    public Matrix<F> get () {
+    public Matrix<F> get() {
         return this.data;
     }
 

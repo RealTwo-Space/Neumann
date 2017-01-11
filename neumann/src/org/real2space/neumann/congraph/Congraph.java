@@ -20,6 +20,7 @@ import java.util.StringJoiner;
 public class Congraph {
     private final CongraphInterface cgi;
     public final CUtil util;
+    public static final CFunc func = new CFunc();
     private HashMap<CNode, Assign> assignsSet;
 
     public Congraph() {
@@ -140,6 +141,11 @@ public class Congraph {
         return new CNode(node, this);
     }
 
+    public CNode matMultiply(CNode nodeA, CNode nodeB) {
+        Node node = this.cgi.matrixMultiply(nodeA.getNode(), nodeB.getNode());
+        return new CNode(node, this);
+    }
+
     public CNode divide(CNode nodeA, CNode nodeB) {
         Node node = this.cgi.divide(nodeA.getNode(), nodeB.getNode());
         return new CNode(node, this);
@@ -163,6 +169,11 @@ public class Congraph {
     public CNode decrementalSubstitute(CNode nodeA, CNode nodeB) {
         CNode out = nodeA.subtract(nodeB);
         return substitute(nodeA, out);
+    }
+
+    public CNode sum(CNode nodeA) {
+        Node node = this.cgi.sum(nodeA.getNode());
+        return new CNode(node, this);
     }
 
     public CNode normSq(CNode nodeA) {

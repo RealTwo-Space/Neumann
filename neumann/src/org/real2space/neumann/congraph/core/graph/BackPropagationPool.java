@@ -1,5 +1,6 @@
 package org.real2space.neumann.congraph.core.graph;
 
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
 import org.real2space.neumann.congraph.core.data.Data;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,11 +17,11 @@ import java.util.Map;
  */
  
 public class BackPropagationPool {
-    private HashMap<Node, Data> partials;
+    private HashMap<Node, Tensor> partials;
     private Schedule schedule;
     
     public BackPropagationPool(Schedule schedule) {
-        this.partials = new HashMap<Node, Data>();
+        this.partials = new HashMap<Node, Tensor>();
         this.schedule = schedule;
         
         LinkedList<Layer> layers = this.schedule.getLayers();
@@ -36,19 +37,24 @@ public class BackPropagationPool {
         }
     }
 
-    public void reflesh() {
-        /* reflesh all data to zero */
-        for(Map.Entry<Node, Data> e : partials.entrySet()) {
-            partials.put(e.getKey(), e.getKey().refData().ZERO());
+    public void refresh() {
+        /* refresh all data to zero */
+        for(Map.Entry<Node, Tensor> e : partials.entrySet()) {
+            Tensor temp = Tensor.convert(e.getKey().refData());
+            partials.put(e.getKey(),  Tensor.fill(0, temp.shape()));
         }
     }
     
     public Data getData(Node node) {
+        return Tensor.convert(node.refData(), this.partials.get(node));
+    }
+
+    public Tensor getTensor(Node node) {
         return this.partials.get(node);
     }
 
-    public void addData(Node node, Data data) {
-        Data add = this.partials.get(node).add(data);
+    public void addData(Node node, Tensor data) {
+        Tensor add = this.partials.get(node).add(data);
         this.partials.put(node, add);
     }
 

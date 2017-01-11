@@ -1,5 +1,6 @@
 package org.real2space.neumann.congraph.core.backpropagate.differentiation;
 
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.function.Activation;
 import org.real2space.neumann.congraph.core.graph.Operation;
@@ -11,11 +12,13 @@ import org.real2space.neumann.congraph.core.operation.*;
  */
 
 public enum Diff {
-    DIFINITION(new Activate(), new ActivateOperation(null)),
+    DEFINITION(new Activate(), new ActivateOperation(null)),
     ADD(new Add(), new AddOperation(null, null)),
     SUBTRACT(new Subtract(), new SubtractOperation(null, null)),
     MULTIPLY(new Multiply(), new MultiplyOperation(null, null)),
+    MATRIX_MULTIPLY(new MatrixMultiply(), new MatrixMultiplyOperation(null, null)),
     DIVIDE(new Divide(), new DivideOperation(null, null)),
+    SUM(new Sum(), new SumOperation(null)),
     NORM_SQUARED(new NormSquared(), new NormSquaredOperation(null)),
     SIN(new Activate(Activation.SIN), new SinOperation(null)),
     COS(new Activate(Activation.COS), new CosOperation(null)),
@@ -42,12 +45,12 @@ public enum Diff {
 
     public static Diff valueOf(Operation op) {
         if (op instanceof ActivateOperation) {
-            Activate act = (Activate)DIFINITION.monoDiff;
+            Activate act = (Activate)DEFINITION.monoDiff;
             ActivateOperation actop = (ActivateOperation)op;
 
             act.setActivate(actop.getActivationFunction());
 
-            return DIFINITION;
+            return DEFINITION;
         }
         for (Diff diff : values()) {
             if (diff.getOperation().getClass() == op.getClass()) { // id が一致するものを探す
@@ -61,10 +64,10 @@ public enum Diff {
         return this.op;
     }
 
-    public Data[] execute(Data own, Data... datas) {
+    public Tensor[] execute(Tensor own, Tensor... datas) {
 
         if (this.size == 1) {
-            return new Data[] {this.monoDiff.execute(own, datas[0])};
+            return new Tensor[] {this.monoDiff.execute(own, datas[0])};
         } else if (this.size == 2) {
             return this.biDiff.execute(own, datas[0], datas[1]);
         }

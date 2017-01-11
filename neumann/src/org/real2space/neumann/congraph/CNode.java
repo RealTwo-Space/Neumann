@@ -80,6 +80,9 @@ public class CNode {
         return cg.entrywizeMultiply(this, nodeB);
     }
 
+    public CNode matMultiply(CNode nodeB) {
+        return cg.matMultiply(this, nodeB);
+    }
 
     public CNode divide(CNode nodeB) {
         return cg.divide(this, nodeB);
@@ -99,6 +102,10 @@ public class CNode {
 
     public CNode decrementalSubstitute(CNode node) {
         return cg.decrementalSubstitute(this, node);
+    }
+
+    public CNode sum() {
+        return cg.sum(this);
     }
 
     public CNode normSq() {

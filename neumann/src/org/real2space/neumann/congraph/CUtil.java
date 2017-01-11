@@ -25,8 +25,24 @@ public class CUtil {
         return 0.0;
     }
 
-    public Matrix64 zeros(int row, int column) {
-        return new Matrix64(row, column);
+    public double[][] zeros(int row, int column) {
+        double[][] mat = new double[row][column];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                mat[i][j] = 0.0;
+            }
+        }
+        return mat;
+    }
+
+    public double[][] fills(int row, int column, double value) {
+        double[][] mat = new double[row][column];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                mat[i][j] = value;
+            }
+        }
+        return mat;
     }
 
     public double normalRandom() {
@@ -37,23 +53,23 @@ public class CUtil {
         return rand.nextGaussian() * stdev + mean;
     }
 
-    public Matrix64 normalRandoms(int row, int column) {
+    public double[][] normalRandoms(int row, int column) {
         double[][] mat = new double[row][column];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 mat[i][j] = normalRandom();
             }
         }
-        return new Matrix64(mat);
+        return mat;
     }
 
-    public Matrix64 normalRandoms(int row, int column, double mean, double stdev) {
+    public double[][] normalRandoms(int row, int column, double mean, double stdev) {
         double[][] mat = new double[row][column];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 mat[i][j] = normalRandom(mean, stdev);
             }
         }
-        return new Matrix64(mat);
+        return mat;
     }
 }

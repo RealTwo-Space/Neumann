@@ -22,13 +22,6 @@ public class Node {
     
     protected void execute() {
         this.data = this.state.execute();
-        if (this.data instanceof MatrixData) {
-            MatrixData md = (MatrixData)this.data;
-            Data dd = md.toScalar();
-            if (dd != null) {
-                this.data = dd;
-            }
-        }
     }
 
     public State getState() {
