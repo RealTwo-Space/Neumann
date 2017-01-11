@@ -29,6 +29,9 @@ public class TuringTestC extends JFrame {
     double dx = 1.0;
     double dt = 1.0;
 
+    int size = 150;
+    int ratio = 4;
+
     CNode U;
     CNode V;
     CNode batch;
@@ -37,19 +40,19 @@ public class TuringTestC extends JFrame {
         cg = new Congraph();
 
         initialize();
-        this.setSize(600, 600);
+        this.setSize(size * ratio, size * ratio);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
     private void initialize () {
-        double[][] uData = cg.util.normalRandoms(200, 200, 0.7, 0.2);
-        double[][] vData = cg.util.normalRandoms(200, 200, 0.3, 0.2);
-        double[][] condData = new double[200][200];
-        double[][] ones = new double[200][200];
+        double[][] uData = cg.util.normalRandoms(size, size, 0.7, 0.2);
+        double[][] vData = cg.util.normalRandoms(size, size, 0.3, 0.2);
+        double[][] condData = new double[size][size];
+        double[][] ones = new double[size][size];
 
-        for (int i = 0; i < 200; i++) {
-            for (int j = 0; j < 200; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 //uData[i][j] = 0.9;
                 //vData[i][j] = 0.0;
                 ones[i][j] = 1.0;
@@ -131,7 +134,7 @@ public class TuringTestC extends JFrame {
                 else {
                     g.setColor(new Color(min, min, min));
                 }
-                g.fillRect(i * 3, j * 3, 3, 3);
+                g.fillRect(i * ratio, j * ratio, ratio, ratio);
             }
         }
     }
