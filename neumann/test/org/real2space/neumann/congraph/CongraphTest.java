@@ -18,7 +18,7 @@ public class CongraphTest {
         CNode a = cg.constant(8.0);
         CNode b = cg.constant(8.0);
         CNode c = cg.add(a, b);
-        cg.execute(c);
+        c.execute();
 
     }
 
@@ -50,20 +50,20 @@ public class CongraphTest {
         Congraph cg = new Congraph(999L);
         CNode x = cg.constant(cg.util.normalRandoms(10, 3));
         CNode beta = cg.variable(cg.util.normalRandoms(3, 1));
-        //CNode bias = cg.variable(cg.util.normalRandoms(10, 1));
-        CNode y = x.matMultiply(beta);
+        CNode bias = cg.variable(cg.util.normalRandoms(10, 1));
+        CNode y = x.matMultiply(beta).add(bias);
         CNode yd = cg.variable(cg.util.normalRandoms(10, 1));
         CNode E = y.subtract(yd).activate(cg.func.SQ).sum();
-        CNode r = cg.constant(0.003);
+        CNode r = cg.constant(0.03);
         CNode batch = cg.batch(
-                beta.decrementalSubstitute(E.partialDiff(beta).multiply(r))
-                //bias.incrementalSubstitute(E.partialDiff(bias).multiply(r))
+                beta.decrementalSubstitute(E.partialDiff(beta).multiply(r)),
+                bias.decrementalSubstitute(E.partialDiff(bias).multiply(r))
         );
         for (int i = 0; i < 100; i++) {
             cg.execute(batch);
             System.out.println(E);
         }
-        System.out.println(yd);
-        System.out.println(y);
+        System.out.println(beta);
+        System.out.println(bias);
     }
 }

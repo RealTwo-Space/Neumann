@@ -5,6 +5,8 @@ import org.real2space.neumann.approssi.core.structure.Vector;
 import org.real2space.neumann.approssi.core.value.Matrix32;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 import org.real2space.neumann.approssi.core.value.Vector64;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.TensorData;
 import org.real2space.neumann.congraph.core.data.*;
 import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
@@ -85,6 +87,10 @@ public class Congraph {
         return assign(node, new VectorData(new Vector64(value)));
     }
 
+    public Assign assign(CNode node, Tensor tensor) {
+        return assign(node, new TensorData(tensor));
+    }
+
     private Assign assign(CNode node, Data data) {
         Assign assign;
         if (this.assignsSet.containsKey(node)) {
@@ -111,6 +117,11 @@ public class Congraph {
         return new CNode(node, this);
     }
 
+    public CNode constant(Tensor tensor) {
+        Node node = this.cgi.constant(tensor);
+        return new CNode(node, this);
+    }
+
     public CNode variable(double value) {
         Node node = this.cgi.variable(value);
         return new CNode(node, this);
@@ -123,6 +134,11 @@ public class Congraph {
 
     public CNode variable(Matrix64 value) {
         Node node = this.cgi.variable(value);
+        return new CNode(node, this);
+    }
+
+    public CNode variable(Tensor tensor) {
+        Node node = this.cgi.variable(tensor);
         return new CNode(node, this);
     }
 

@@ -51,7 +51,6 @@ public class BackPropagation {
             for (Node node : nodes) {
                 addPartials(node, pool, graph);
             }
-
         }
     }
 

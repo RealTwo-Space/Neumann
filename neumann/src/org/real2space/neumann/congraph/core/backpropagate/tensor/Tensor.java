@@ -257,6 +257,15 @@ public class Tensor {
         return res;
     }
 
+    public double[] get() {
+        int N = this.values.length;
+        return Arrays.copyOf(this.values, N);
+    }
+
+    public Tensor deepCopy() {
+        return new Tensor(this.get(), this.shape());
+    }
+
     public Shape shape() {
         return this.shape;
     }

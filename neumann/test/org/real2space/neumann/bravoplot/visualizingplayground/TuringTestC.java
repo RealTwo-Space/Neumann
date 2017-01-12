@@ -94,7 +94,7 @@ public class TuringTestC extends JFrame {
         CNode lapU = cg.laplacian(U, dxN, this.condition).multiply(duN);
         CNode lapV = cg.laplacian(V, dxN, this.condition).multiply(dvN);
 
-        CNode uvv = U.entrywizeMultiply(V).entrywizeMultiply(V);
+        CNode uvv = U.multiply(V).multiply(V);
 
         CNode lastU = One.subtract(U).multiply(fN);
         CNode lastV = V.multiply(fN.add(kN));

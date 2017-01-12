@@ -15,7 +15,7 @@ import org.real2space.neumann.congraph.core.function.ActivationFunction;
  * created 12/17/16
  */
 
-public class MatrixData<F> implements Data<Matrix<F>> {
+public class MatrixData<F> implements Data<Matrix<F>>, MatrixMutiplyInterface<Matrix<F>> {
     private Matrix<F> data;
     
     public MatrixData (Matrix<F> data) {
