@@ -41,7 +41,8 @@ public class BackPropagation {
         HashSet<Node> nodes;
 
         Node origin = schedule.getOrigin();
-        pool.addData(origin, new Tensor(1.0));
+        Tensor originTensor = Tensor.convert(origin.refData());
+        pool.addData(origin, new Tensor(1.0).expand(originTensor.shape()));
         addPartials(origin, pool, graph);
 
         for (ListIterator<Layer> itL = layers.listIterator(); itL.hasNext();){

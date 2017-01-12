@@ -212,12 +212,12 @@ public class Congraph {
     }
 
     // nodeA = u, nodeB = dx
-    public CNode nabla (CNode nodeA, CNode nodeB, DECondition cond) {
+    public CNode nabla(CNode nodeA, CNode nodeB, DECondition cond) {
         Node node = this.cgi.nabla(nodeA.getNode(), nodeB.getNode(), cond);
         return new CNode(node, this);
     }
 
-    public CNode laplacian (CNode nodeA, CNode nodeB, DECondition cond) {
+    public CNode laplacian(CNode nodeA, CNode nodeB, DECondition cond) {
         Node node = this.cgi.laplacian(nodeA.getNode(), nodeB.getNode(), cond);
         return new CNode(node, this);
     }
