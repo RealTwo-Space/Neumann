@@ -14,7 +14,7 @@ public class DiffEq64 {
     // all of these are considering only "boundary"
     // need to consider broader meaning of boundary
 
-    // do nabla for matrix except boundary
+    // do nabla for matrix
     // central difference
     public static Matrix64 nabla(Matrix64 u, double dx, BoundaryCondition64 cond) {
         Matrix64 newU = u.deepCopy();
@@ -36,7 +36,7 @@ public class DiffEq64 {
         return newU;
     }
 
-    // do laplacian for matrix except boundary
+    // do laplacian for matrix
     public static Matrix64 laplacian (Matrix64 u, double dx, BoundaryCondition64 cond) {
         Matrix64 newU = u.deepCopy();
         double invdx = 1.0 / (dx * dx);

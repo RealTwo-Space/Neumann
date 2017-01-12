@@ -3,6 +3,7 @@ package org.real2space.neumann.congraph;
 import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.structure.Vector;
 import org.real2space.neumann.congraph.core.data.Data;
+import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
 import org.real2space.neumann.congraph.core.graph.CongraphInterface;
 import org.real2space.neumann.congraph.core.graph.Node;
@@ -125,9 +126,15 @@ public class CNode {
         return cg.cos(this);
     }
 
-    public CNode tan(CNode nodeA) {
+    public CNode tan() {
         return cg.tan(this);
     }
 
+    public CNode nabla(CNode nodeA, CNode nodeB, DECondition cond) {
+        return cg.nabla(nodeA, nodeB, cond);
+    }
 
+    public CNode laplacian(CNode nodeA, CNode nodeB, DECondition cond) {
+        return cg.laplacian(nodeA, nodeB, cond);
+    }
 }
