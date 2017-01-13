@@ -2,6 +2,7 @@ package org.real2space.neumann.congraph.core.operation;
 
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.data.MatrixData;
+import org.real2space.neumann.congraph.core.data.MatrixMutiplyInterface;
 import org.real2space.neumann.congraph.core.graph.BinomialArgument;
 import org.real2space.neumann.congraph.core.graph.Node;
 import org.real2space.neumann.congraph.core.graph.Operation;
@@ -21,7 +22,7 @@ public class MatrixMultiplyOperation extends Operation {
     }
     @Override
     public Data execute() {
-        MatrixData matA = (MatrixData) this.args.getDataAt(0);
+        MatrixMutiplyInterface matA = (MatrixMutiplyInterface) this.args.getDataAt(0);
         return matA.matrixMultiply(this.args.getDataAt(1));
     }
 }

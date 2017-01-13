@@ -68,7 +68,7 @@ public class CFunc {
 
         @Override
         public double activateDiff(double value) {
-            return 2 * value;
+            return 2.0 * value;
         }
     };
 

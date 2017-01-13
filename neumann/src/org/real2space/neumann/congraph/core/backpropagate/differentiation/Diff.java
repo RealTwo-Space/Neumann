@@ -11,6 +11,18 @@ import org.real2space.neumann.congraph.core.operation.*;
  * Created by ryosukesuzuki on 2016/12/30.
  */
 
+/*
+
+    Diff enum
+
+    This class is used for back propagation to calculate gradients with node operation.
+
+    e.g.
+    if node's operation is AddOperation
+    then use Add differentiation class
+
+ */
+
 public enum Diff {
     DEFINITION(new Activate(), new ActivateOperation(null)),
     ADD(new Add(), new AddOperation(null, null)),

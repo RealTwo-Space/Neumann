@@ -15,10 +15,19 @@ import java.util.Arrays;
  * @author RealTwo-Space
  * @version 0
  */
+
+/*
+
+    Tensor is like n-d array.
+
+
+ */
 public class Tensor {
     private double[] values;
     private Shape shape;
 
+
+    //    convert Data to Tensor
     public static Tensor convert(Data data) {
         if (data instanceof NumberData) {
             return new Tensor((double)data.get());
@@ -31,6 +40,7 @@ public class Tensor {
         }
     }
 
+    // convert tensor to data
     public static Data convert(Tensor tensor) {
         if (tensor.shape().rank() == 0) {
             return new DoubleData(tensor.values[0]);
@@ -42,6 +52,7 @@ public class Tensor {
         return null;
     }
 
+    // convert tensor to data.
     public static Data convert(Data data, Tensor tensor) {
         if (data instanceof NumberData) {
             return new DoubleData(tensor.values[0]);
@@ -188,6 +199,15 @@ public class Tensor {
         return new Tensor(res, this.shape);
     }
 
+    public Tensor activateDiff(ActivationFunction func) {
+        int N = this.values.length;
+        double[] res = new double[N];
+        for (int i = 0; i < N; i++) {
+            res[i] = func.activateDiff(this.values[i]);
+        }
+        return new Tensor(res, this.shape);
+    }
+
     public Tensor expand(Shape shape) {
         int N = shape.elementSize();
         double[] res = new double[N];
@@ -202,6 +222,7 @@ public class Tensor {
         return null;
     }
 
+    // [1, 2, 3] -> [6]. (1+2+3)
     public Tensor reduceSum() {
         double res = 0.0;
         for (int i = 0, N = this.values.length; i < N; i++) {
@@ -210,6 +231,7 @@ public class Tensor {
         return new Tensor(res);
     }
 
+    // [2, 3, 4] -> [24]. (2*3*4)
     public Tensor reduceMult() {
         double res = 1.0;
         for (int i = 0, N = this.values.length; i < N; i++) {
@@ -222,6 +244,7 @@ public class Tensor {
         return this.values[0];
     }
 
+    // not to Matrix class in Approssi.
     public double[][] toMatrix() {
         int N = this.shape.get(0);
         int M = this.shape.get(1);
@@ -232,6 +255,15 @@ public class Tensor {
             }
         }
         return res;
+    }
+
+    public double[] get() {
+        int N = this.values.length;
+        return Arrays.copyOf(this.values, N);
+    }
+
+    public Tensor deepCopy() {
+        return new Tensor(this.get(), this.shape());
     }
 
     public Shape shape() {

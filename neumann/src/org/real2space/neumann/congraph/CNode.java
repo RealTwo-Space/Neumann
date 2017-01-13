@@ -33,6 +33,15 @@ public class CNode {
         cg.execute(this, assigns);
     }
 
+    /*
+        assign data to placeholder when execute node.
+        e.g.
+
+        nodeC.execute(cg.assign(nodeA, 1.0))
+
+        means that when nodeC execute, nodeA(placeholder) will be assigned 1.0
+     */
+
     public Assign assign(double value) {
         return cg.assign(this, value);
     }
@@ -77,20 +86,12 @@ public class CNode {
         return cg.multiply(this, nodeB);
     }
 
-    public CNode entrywizeMultiply(CNode nodeB) {
-        return cg.entrywizeMultiply(this, nodeB);
-    }
-
     public CNode matMultiply(CNode nodeB) {
         return cg.matMultiply(this, nodeB);
     }
 
     public CNode divide(CNode nodeB) {
         return cg.divide(this, nodeB);
-    }
-
-    public CNode entrywizeDivide(CNode nodeB) {
-        return cg.entrywizeDivide(this, nodeB);
     }
 
     public CNode substitute(CNode nodeB) {
@@ -107,10 +108,6 @@ public class CNode {
 
     public CNode sum() {
         return cg.sum(this);
-    }
-
-    public CNode normSq() {
-        return cg.normSq(this);
     }
 
     public CNode partialDiff(CNode by) {

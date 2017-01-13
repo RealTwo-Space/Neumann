@@ -2,6 +2,8 @@ package org.real2space.neumann.congraph.core.graph;
 
 import org.real2space.neumann.approssi.core.function.Function;
 import org.real2space.neumann.approssi.core.structure.*;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.TensorData;
 import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
 import org.real2space.neumann.congraph.core.differentialequation.operation.*;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
@@ -83,6 +85,14 @@ public class CongraphInterface {
         this.brain.addNode(node);
         return node;
     }
+
+    public Node constant(Tensor constant) {
+        Data data = new TensorData(constant.deepCopy());
+        Constant con = new Constant(data);
+        Node node = new Node (data, con);
+        this.brain.addNode(node);
+        return node;
+    }
     
     public Node variable(Data data) {
         Variable var = new Variable();
@@ -112,7 +122,7 @@ public class CongraphInterface {
     
     public Node variable(Vector variable) {
         Variable var = new Variable();
-        Data data = new VectorData((Vector)variable.deepCopy());
+        Data data = new VectorData(variable.deepCopy());
         Node node = new Node(data, var);
         var.setMonomialArgument(node);
         this.brain.addNode(node);
@@ -121,7 +131,7 @@ public class CongraphInterface {
     
     public Node variable(Matrix variable) {
         Variable var = new Variable();
-        Data data = new MatrixData((Matrix) variable.deepCopy());
+        Data data = new MatrixData(variable.deepCopy());
         Node node = new Node(data, var);
         var.setMonomialArgument(node);
         this.brain.addNode(node);
@@ -130,7 +140,16 @@ public class CongraphInterface {
     
     public Node variable(DualNumber variable) {
         Variable var = new Variable();
-        Data data = new DualNumberData((DualNumber)variable.deepCopy());
+        Data data = new DualNumberData(variable.deepCopy());
+        Node node = new Node(data, var);
+        var.setMonomialArgument(node);
+        this.brain.addNode(node);
+        return node;
+    }
+
+    public Node variable(Tensor variable) {
+        Variable var = new Variable();
+        Data data = new TensorData(variable.deepCopy());
         Node node = new Node(data, var);
         var.setMonomialArgument(node);
         this.brain.addNode(node);

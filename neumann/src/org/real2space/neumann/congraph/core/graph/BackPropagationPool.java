@@ -15,6 +15,13 @@ import java.util.Map;
  *          
  * created 12/29/16
  */
+
+/*
+
+    Back Propagation Pool
+
+    where store all gradients
+ */
  
 public class BackPropagationPool {
     private HashMap<Node, Tensor> partials;

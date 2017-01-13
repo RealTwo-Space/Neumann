@@ -8,6 +8,10 @@ import org.real2space.neumann.congraph.core.data.NumberData;
 /**
  * Created by ryosukesuzuki on 2016/12/31.
  */
+
+/*
+    This class will be deleted.
+ */
 public class NormSquared implements MonomialDifferentiation {
     @Override
     public Tensor execute(Tensor own, Tensor a) {

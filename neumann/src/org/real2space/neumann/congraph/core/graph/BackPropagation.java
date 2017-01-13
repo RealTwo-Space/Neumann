@@ -13,6 +13,15 @@ import java.util.ListIterator;
 /**
  * Created by ryosukesuzuki on 2016/12/31.
  */
+
+/*
+    Back Propagation
+
+    calculate all gradients in a schedule.
+
+    to calculate gradients, all Data are going to convert to Tensor.
+
+ */
 public class BackPropagation {
     private static final BackPropagation singleton = new BackPropagation();
 
@@ -32,7 +41,8 @@ public class BackPropagation {
         HashSet<Node> nodes;
 
         Node origin = schedule.getOrigin();
-        pool.addData(origin, new Tensor(1.0));
+        Tensor originTensor = Tensor.convert(origin.refData());
+        pool.addData(origin, new Tensor(1.0).expand(originTensor.shape()));
         addPartials(origin, pool, graph);
 
         for (ListIterator<Layer> itL = layers.listIterator(); itL.hasNext();){
@@ -41,10 +51,23 @@ public class BackPropagation {
             for (Node node : nodes) {
                 addPartials(node, pool, graph);
             }
-
         }
     }
 
+
+    /*
+
+        add partial diff to node children.
+
+        e.g.
+
+        C = current node
+        A, B are C's children
+
+        add A to dE/dA : (dE/dC * dC/dA)
+        add A to dE/dB : (dE/dC * dC/dB)
+
+     */
     private void addPartials(Node node, BackPropagationPool pool, Graph graph) {
 
         Group children = graph.getChildren(node);
@@ -56,12 +79,12 @@ public class BackPropagation {
         for (int i = 0; i < argSize; i++) {
             refs[i] = Tensor.convert(children.getNode(i).refData());
         }
+
         Diff diff = Diff.valueOf((Operation)node.getState());
         Tensor nodeTensor = pool.getTensor(node);
         Tensor[] outputs = diff.execute(nodeTensor, refs);
 
         for (int i = 0; i < argSize; i++) {
-
             pool.addData(children.getNode(i), outputs[i]);
         }
     }

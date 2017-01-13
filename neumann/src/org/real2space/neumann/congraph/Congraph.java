@@ -5,6 +5,8 @@ import org.real2space.neumann.approssi.core.structure.Vector;
 import org.real2space.neumann.approssi.core.value.Matrix32;
 import org.real2space.neumann.approssi.core.value.Matrix64;
 import org.real2space.neumann.approssi.core.value.Vector64;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.TensorData;
 import org.real2space.neumann.congraph.core.data.*;
 import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
@@ -48,6 +50,15 @@ public class Congraph {
         this.cgi.execute(node.getNode());
     }
 
+    /*
+        assign data to placeholder when execute node.
+        e.g.
+
+        nodeC.execute(cg.assign(nodeA, 1.0))
+
+        means that when nodeC execute, nodeA(placeholder) will be assigned 1.0
+     */
+
     private void assignToPlaceholder(Assign assign) {
         this.cgi.assign(assign.getNode(), assign.getData());
     }
@@ -76,6 +87,10 @@ public class Congraph {
         return assign(node, new VectorData(new Vector64(value)));
     }
 
+    public Assign assign(CNode node, Tensor tensor) {
+        return assign(node, new TensorData(tensor));
+    }
+
     private Assign assign(CNode node, Data data) {
         Assign assign;
         if (this.assignsSet.containsKey(node)) {
@@ -102,6 +117,11 @@ public class Congraph {
         return new CNode(node, this);
     }
 
+    public CNode constant(Tensor tensor) {
+        Node node = this.cgi.constant(tensor);
+        return new CNode(node, this);
+    }
+
     public CNode variable(double value) {
         Node node = this.cgi.variable(value);
         return new CNode(node, this);
@@ -114,6 +134,11 @@ public class Congraph {
 
     public CNode variable(Matrix64 value) {
         Node node = this.cgi.variable(value);
+        return new CNode(node, this);
+    }
+
+    public CNode variable(Tensor tensor) {
+        Node node = this.cgi.variable(tensor);
         return new CNode(node, this);
     }
 
@@ -137,11 +162,6 @@ public class Congraph {
         return new CNode(node, this);
     }
 
-    public CNode entrywizeMultiply(CNode nodeA, CNode nodeB) {
-        Node node = this.cgi.entrywizeMultiply(nodeA.getNode(), nodeB.getNode());
-        return new CNode(node, this);
-    }
-
     public CNode matMultiply(CNode nodeA, CNode nodeB) {
         Node node = this.cgi.matrixMultiply(nodeA.getNode(), nodeB.getNode());
         return new CNode(node, this);
@@ -149,11 +169,6 @@ public class Congraph {
 
     public CNode divide(CNode nodeA, CNode nodeB) {
         Node node = this.cgi.divide(nodeA.getNode(), nodeB.getNode());
-        return new CNode(node, this);
-    }
-
-    public CNode entrywizeDivide(CNode nodeA, CNode nodeB) {
-        Node node = this.cgi.entrywizeDivide(nodeA.getNode(), nodeB.getNode());
         return new CNode(node, this);
     }
 
@@ -174,11 +189,6 @@ public class Congraph {
 
     public CNode sum(CNode nodeA) {
         Node node = this.cgi.sum(nodeA.getNode());
-        return new CNode(node, this);
-    }
-
-    public CNode normSq(CNode nodeA) {
-        Node node = this.cgi.normSquared(nodeA.getNode());
         return new CNode(node, this);
     }
 
@@ -218,12 +228,12 @@ public class Congraph {
     }
 
     // nodeA = u, nodeB = dx
-    public CNode nabla (CNode nodeA, CNode nodeB, DECondition cond) {
+    public CNode nabla(CNode nodeA, CNode nodeB, DECondition cond) {
         Node node = this.cgi.nabla(nodeA.getNode(), nodeB.getNode(), cond);
         return new CNode(node, this);
     }
 
-    public CNode laplacian (CNode nodeA, CNode nodeB, DECondition cond) {
+    public CNode laplacian(CNode nodeA, CNode nodeB, DECondition cond) {
         Node node = this.cgi.laplacian(nodeA.getNode(), nodeB.getNode(), cond);
         return new CNode(node, this);
     }

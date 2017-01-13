@@ -11,6 +11,15 @@ import org.real2space.neumann.congraph.core.function.ActivationFunction;
 /**
  * Created by ryosukesuzuki on 2017/01/01.
  */
+
+/*
+
+    Activate differentiation
+
+    return own * F'(A)
+
+ */
+
 public class Activate implements MonomialDifferentiation {
     private ActivationFunction func;
 
@@ -26,6 +35,6 @@ public class Activate implements MonomialDifferentiation {
     }
 
     public Tensor execute(Tensor own, Tensor a) {
-        return own.multiply(a.activate(this.func));
+        return own.multiply(a.activateDiff(this.func));
     }
 }
