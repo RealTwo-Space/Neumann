@@ -27,11 +27,25 @@ public class Column {
         data.add(value);
     }
 
+    public void addAll(Column col) {
+        this.data.addAll(col.data);
+    }
+
+
     public DataType get(int index) {
         return data.get(index);
     }
 
-    public double[] get() {
+    public String[] getStringArray() {
+        int N = data.size();
+        String[] res = new String[N];
+        for (int i = 0; i < N; i++) {
+            res[i] = (String)data.get(i).get();
+        }
+        return res;
+    }
+
+    public double[] getDoubleArray() {
         int N = data.size();
         double[] res = new double[N];
         for (int i = 0; i < N; i++) {

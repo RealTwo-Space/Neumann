@@ -55,10 +55,42 @@ public class DataFrame {
             reader.close();
             return res;
         } catch (IOException e) {
+            System.out.println("cannot read");
             return null;
         }
     }
 
+    public DataFrame combine(DataFrame df) {
+        DataFrame res = new DataFrame();
+
+        int M = df.size();
+
+        res.headers.addAll(this.headers);
+        res.headers.addAll(df.headers);
+        Column col;
+        for (int i = 0; i < M; i++) {
+            col = new Column();
+            col.addAll(this.columns.get(i));
+            col.addAll(df.columns.get(i));
+            res.columns.add(col);
+        }
+        return res;
+    }
+
+    // indexes is header index
+    public DataFrame remove(String... indexes) {
+        ArrayList<String> heads = new ArrayList<String>();
+        heads.addAll(headers);
+        int N = indexes.length;
+        int index;
+        for (int i = 0; i < N; i++) {
+            index = heads.indexOf(indexes[i]);
+            heads.remove(index);
+        }
+        return this.getRows((String[]) heads.toArray());
+    }
+
+    // get row with header index
     public DataFrame getRow(String index) {
         int ind = this.headers.indexOf(index);
         return getRow(ind);
@@ -101,7 +133,6 @@ public class DataFrame {
         return null;
     }
 
-
     public DataFrame getColumns(int top, int bottom) {
         DataFrame res = new DataFrame();
         res.headers = this.headers;
@@ -118,13 +149,71 @@ public class DataFrame {
         return res;
     }
 
-    public double[][] get() {
+    // convert string to dammies
+    public DataFrame getDammies(String... indexes) {
+        DataFrame rows = this.getRows(indexes);
+        String[][] stringData = rows.toStringArray();
+
+        ArrayList<String> dammyList = new ArrayList<String>();
+        DataFrame res = new DataFrame();
+        int N = stringData[0].length;
+        int M = stringData.length;
+        ArrayList<Integer> dammyNum = new ArrayList<Integer>();
+        int num = 0;
+        for (int i = 0; i < N; i++) {
+            num = 0;
+            dammyList.clear();
+            for (int j = 0; j < M; j++) {
+                if (dammyList.indexOf(stringData[j][i]) < 0) {
+                    dammyList.add(stringData[j][i]);
+                    res.headers.add(indexes[i] + "." + stringData[j][i]);
+                    num++;
+                }
+            }
+            dammyNum.add(num);
+        }
+
+        int dammyIndex;
+        Column col;
+        int D;
+        for (int i = 0; i < M; i++) {
+            col = new Column();
+            for (int j = 0; j < N; j++) {
+                dammyIndex = res.indexOf(indexes[j] + "." + stringData[i][j]);
+                D = dammyNum.get(j);
+                for (int k = 0; k < D; k++) {
+                    if (k == dammyIndex) {
+                        col.add(new DoubleType(1.0));
+                    } else {
+                        col.add(new DoubleType(0.0));
+                    }
+                }
+            }
+            res.columns.add(col);
+        }
+        return res;
+    }
+
+    public String[][] toStringArray() {
+        int N = this.columns.size();
+        String[][] res = new String[N][];
+        for (int i = 0; i < N; i++) {
+            res[i] = this.columns.get(i).getStringArray();
+        }
+        return res;
+    }
+
+    public double[][] toDoubleArray() {
         int N = this.columns.size();
         double[][] res = new double[N][];
         for (int i = 0; i < N; i++) {
-            res[i] = this.columns.get(i).get();
+            res[i] = this.columns.get(i).getDoubleArray();
         }
         return res;
+    }
+
+    public int indexOf(String index) {
+        return this.headers.indexOf(index);
     }
 
     public int size() {
