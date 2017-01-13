@@ -26,13 +26,13 @@ public class FitzHughNagumoC extends JFrame {
     int ratio = 3;
     int r = (int)(600.0 / (double)size);
 
-    double gamma = 0.1;
-    double epsilon = 1000;
+    double gamma = 1.0;
+    double epsilon = 0.001;
     double a = 0.125;
-    double du = 0.01;
-    double dv = 0.001;
-    double dx = 1.0;
-    double dt = 1.0;
+    double du = 1.0;
+    double dv = 0.1;
+    double dx = 0.1;
+    double dt = 0.001;
 
     CNode U;
     CNode V;

@@ -1,14 +1,10 @@
-package playground.Util;
+package org.real2space.neumann.congraph.ioutil;
 
 import com.opencsv.CSVReader;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import org.real2space.neumann.congraph.core.backpropagate.differentiation.Add;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -85,9 +81,12 @@ public class DataFrame {
         int index;
         for (int i = 0; i < N; i++) {
             index = heads.indexOf(indexes[i]);
-            heads.remove(index);
+            if (index >= 0) {
+                heads.remove(index);
+            }
         }
-        return this.getRows((String[]) heads.toArray());
+        String[] res = (String[]) heads.toArray(new String[0]);
+        return this.getRows(res);
     }
 
     // get row with header index
@@ -176,11 +175,14 @@ public class DataFrame {
         int dammyIndex;
         Column col;
         int D;
+        int offset = 0;
         for (int i = 0; i < M; i++) {
             col = new Column();
             for (int j = 0; j < N; j++) {
-                dammyIndex = res.indexOf(indexes[j] + "." + stringData[i][j]);
+                dammyIndex = res.indexOf(indexes[j] + "." + stringData[i][j]) - offset;
                 D = dammyNum.get(j);
+                offset += D;
+
                 for (int k = 0; k < D; k++) {
                     if (k == dammyIndex) {
                         col.add(new DoubleType(1.0));
@@ -189,9 +191,74 @@ public class DataFrame {
                     }
                 }
             }
+            offset = 0;
             res.columns.add(col);
         }
         return res;
+    }
+
+    public DataFrame removeColumnWithKey(String key) {
+        DataFrame res = new DataFrame();
+        int N = this.headers.size();
+        int M = this.size();
+        boolean hasKey;
+        Column col;
+        res.headers = this.headers;
+        for (int i = 0; i < M; i++) {
+            hasKey = false;
+            for (int j = 0; j < N; j++) {
+                if (this.columns.get(i).get(j) instanceof StringType) {
+                    String temp = (String) this.columns.get(i).get(j).get();
+                    if (temp.equals(key)) {
+                        hasKey = true;
+                        break;
+                    }
+                }
+            }
+            if (hasKey == false) {
+                res.columns.add(this.columns.get(i));
+            }
+        }
+        return res;
+    }
+
+    public DataFrame sum() {
+        DataFrame res = new DataFrame();
+        Column col = new Column();
+        res.headers.addAll(this.headers);
+        int N = res.headers.size();
+        int M = this.columns.size();
+        double sum;
+        for (int j = 0; j < N; j++) {
+            sum = 0.0;
+            for (int i = 0; i < M; i++) {
+                sum += (double)this.columns.get(i).get(j).get();
+            }
+            col.add(new DoubleType(sum));
+        }
+        res.columns.add(col);
+        return res;
+    }
+
+    public DataFrame multiply(double value) {
+        DataFrame res = new DataFrame();
+        Column col;
+        res.headers.addAll(this.headers);
+        int N = res.headers.size();
+        int M = this.columns.size();
+        for (int j = 0; j < M; j++) {
+            col = new Column();
+            for (int i = 0; i < N; i++) {
+                col.add(new DoubleType(this.getDouble(j, i) * value));
+            }
+            res.columns.add(col);
+        }
+
+        return res;
+    }
+
+    public DataFrame divide(double value) {
+        return this.multiply(1.0 / value);
     }
 
     public String[][] toStringArray() {
@@ -210,6 +277,18 @@ public class DataFrame {
             res[i] = this.columns.get(i).getDoubleArray();
         }
         return res;
+    }
+
+    public double getDouble(int row, int col) {
+        return (double) this.columns.get(row).get(col).get();
+    }
+
+    public String getString(int row, int col) {
+        return (String) this.columns.get(row).get(col).get();
+    }
+
+    public DataType get(int row, int col) {
+        return this.columns.get(row).get(col);
     }
 
     public int indexOf(String index) {
@@ -236,6 +315,66 @@ public class DataFrame {
             res += this.columns.get(i);
         }
 
+        System.out.println(res);
+    }
+
+    public void head(int size) {
+        int N = size();
+        if (N > size) {
+            N = size;
+        }
+
+        String res = "  | ";
+        for (int i = 0, M = this.headers.size(); i < M; i++) {
+            res += this.headers.get(i) + " | ";
+        }
+        for (int i = 0; i < N; i++) {
+            res += "\n";
+            res += i + " ";
+            res += this.columns.get(i);
+        }
+
+        System.out.println(res);
+    }
+
+    public void tail() {
+        int N = size();
+        int S = N;
+        if (N > 10) {
+            N = 10;
+        }
+
+        String res = "  | ";
+        for (int i = 0, M = this.headers.size(); i < M; i++) {
+            res += this.headers.get(i) + " | ";
+        }
+        for (int i = S - 1, temp = S - N; i > temp; i--) {
+            res += "\n";
+            res += i + " ";
+            res += this.columns.get(i);
+        }
+
+        System.out.println(res);
+    }
+
+    public void tail(int size) {
+        int N = size();
+        int S = N;
+        if (N > size) {
+            N = size;
+        }
+
+        String res = "  | ";
+
+        for (int i = 0, M = this.headers.size(); i < M; i++) {
+            res += this.headers.get(i) + " | ";
+        }
+
+        for (int i = S - 1, temp = S - N; i > temp; i--) {
+            res += "\n";
+            res += i + " ";
+            res += this.columns.get(i);
+        }
         System.out.println(res);
     }
 }

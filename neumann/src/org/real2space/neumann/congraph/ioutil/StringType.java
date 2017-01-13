@@ -1,4 +1,4 @@
-package playground.Util;
+package org.real2space.neumann.congraph.ioutil;
 
 /**
  * Project Neumann

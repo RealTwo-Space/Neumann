@@ -1,4 +1,4 @@
-package playground.Util;
+package org.real2space.neumann.congraph.ioutil;
 
 import java.util.ArrayList;
 
@@ -21,6 +21,10 @@ public class Column {
         } catch (NumberFormatException e) {
             data.add(new StringType(value));
         }
+    }
+
+    public void add(double value) {
+        data.add(new DoubleType(value));
     }
 
     public void add(DataType value) {
@@ -49,7 +53,7 @@ public class Column {
         int N = data.size();
         double[] res = new double[N];
         for (int i = 0; i < N; i++) {
-            res[i] = (double)data.get(i).get();
+            res[i] = (Double) data.get(i).get();
         }
         return res;
     }

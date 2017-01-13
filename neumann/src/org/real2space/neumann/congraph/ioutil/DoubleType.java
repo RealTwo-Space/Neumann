@@ -1,6 +1,4 @@
-package playground.Util;
-
-import org.real2space.neumann.congraph.core.data.DoubleData;
+package org.real2space.neumann.congraph.ioutil;
 
 /**
  * Project Neumann

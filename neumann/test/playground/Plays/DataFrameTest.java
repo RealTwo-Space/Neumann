@@ -1,6 +1,6 @@
 package playground.Plays;
 
-import playground.Util.DataFrame;
+import org.real2space.neumann.congraph.ioutil.DataFrame;
 
 /**
  * Project Neumann
@@ -12,8 +12,14 @@ import playground.Util.DataFrame;
 
 public class DataFrameTest {
     public static void main(String[] args) {
-
-        DataFrame df = DataFrame.readCSV("../data/MER_T12_06.csv");
-        //df.head();
+        DataFrame df = DataFrame.readCSV("./neumann/test/playground/data/MER_T12_06.csv");
+        DataFrame dammies = df.getDammies("MSN", "Description" ,"Unit");
+        df.head();
+        dammies.head();
+        dammies.combine(df.remove("MSN", "Description" ,"Unit")).tail(10);
+        DataFrame number = df.remove("MSN", "Description" ,"Unit");//.sum().head();
+        number.head();
+        DataFrame value = number.removeColumnWithKey("Not Available");
+        value.getRow("Value").divide(100.0).head();
     }
 }
