@@ -107,7 +107,7 @@ public class FitzHughNagumoC extends JFrame {
         CNode lapU = cg.laplacian(U, Dx, this.condition).multiply(Du);
         CNode lapV = cg.laplacian(V, Dx, this.condition).multiply(Dv);
 
-        CNode lastU = U.entrywizeMultiply(One.subtract(U)).entrywizeMultiply(U.subtract(A)).subtract(V).divide(Epsilon);
+        CNode lastU = U.multiply(One.subtract(U)).multiply(U.subtract(A)).subtract(V).divide(Epsilon);
         CNode lastV = U.subtract(V.multiply(Gamma));
 
         CNode newU = lapU.add(lastU).multiply(Dt).add(U);
