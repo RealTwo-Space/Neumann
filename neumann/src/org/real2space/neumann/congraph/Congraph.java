@@ -15,6 +15,7 @@ import org.real2space.neumann.congraph.core.graph.Node;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.StringJoiner;
 
 /**
@@ -23,18 +24,22 @@ import java.util.StringJoiner;
 public class Congraph {
     private final CongraphInterface cgi;
     public final CUtil util;
+    public final CTensorUtil tUtil;
     public static final CFunc func = new CFunc();
     private HashMap<CNode, Assign> assignsSet;
 
     public Congraph() {
         this.cgi = new CongraphInterface();
         this.util = new CUtil(this);
+        this.tUtil = new CTensorUtil(this);
         this.assignsSet = new HashMap<CNode, Assign>();
     }
 
     public Congraph(long randomSeed) {
         this.cgi = new CongraphInterface();
-        this.util = new CUtil(this, randomSeed);
+        Random rand = new Random(randomSeed);
+        this.util = new CUtil(this, rand);
+        this.tUtil = new CTensorUtil(this, rand);
         this.assignsSet = new HashMap<CNode, Assign>();
     }
 

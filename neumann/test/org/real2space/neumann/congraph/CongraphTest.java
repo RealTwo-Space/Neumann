@@ -66,4 +66,28 @@ public class CongraphTest {
         System.out.println(beta);
         System.out.println(bias);
     }
+
+    @Test
+    public void gradientTest2() {
+        Congraph cg = new Congraph(999L);
+        CNode x = cg.constant(cg.tUtil.normalRandoms(cg.tUtil.shape(10, 3)));
+        CNode beta = cg.variable(cg.tUtil.normalRandoms(cg.tUtil.shape(3, 1)));
+
+        CNode bias = cg.variable(cg.tUtil.normalRandoms(cg.tUtil.shape()));
+        System.out.println(bias);
+        CNode y = x.matMultiply(beta).add(bias);
+        CNode yd = cg.variable(cg.tUtil.normalRandoms(cg.tUtil.shape(10, 1)));
+        CNode E = y.subtract(yd).activate(cg.func.SQ).sum();
+        CNode r = cg.constant(cg.tUtil.tensor(0.03));
+        CNode batch = cg.batch(
+                beta.decrementalSubstitute(E.partialDiff(beta).multiply(r)),
+                bias.decrementalSubstitute(E.partialDiff(bias).multiply(r))
+        );
+        for (int i = 0; i < 100; i++) {
+            cg.execute(batch);
+            System.out.println(E);
+        }
+        System.out.println(beta);
+        System.out.println(bias);
+    }
 }

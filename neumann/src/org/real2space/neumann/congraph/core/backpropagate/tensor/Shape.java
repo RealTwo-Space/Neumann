@@ -13,7 +13,7 @@ package org.real2space.neumann.congraph.core.backpropagate.tensor;
 This Shape class express Tensor's shape.
 
 e.g.
-shape of scalar : rank 0, (1)
+shape of scalar : rank 0, ()
 shape of vetcor : rank 1, (p)
 shape of matrix : rank 2, (p, q)
 shape of 3d array : rank 3, (p, q, r)
@@ -26,11 +26,16 @@ public class Shape {
     public Shape(int... sizes) {
         this.shapes = sizes;
         int N = sizes.length;
-        if (N == 1 && sizes[0] == 1) {
+        if (N == 1 && sizes[0] == 0) {
             this.rank = 0;
         } else {
             this.rank = N;
         }
+    }
+
+    public Shape() {
+        this.rank = 0;
+        this.shapes = new int[]{0};
     }
 
     public boolean isET(Shape shape) {
@@ -83,6 +88,7 @@ public class Shape {
     }
 
     public int elementSize() {
+        if (this.rank() == 0) return 1;
         int res = 1;
         for (int i = 0, N = this.shapes.length; i < N; i++) {
             res *= this.shapes[i];

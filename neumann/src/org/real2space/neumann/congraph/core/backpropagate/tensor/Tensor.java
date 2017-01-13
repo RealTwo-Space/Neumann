@@ -30,11 +30,13 @@ public class Tensor {
     //    convert Data to Tensor
     public static Tensor convert(Data data) {
         if (data instanceof NumberData) {
-            return new Tensor((double)data.get());
+            return new Tensor((double) data.get());
         } else if (data instanceof MatrixData) {
             MatrixData matD = (MatrixData) data;
-            Matrix64 mat = (Matrix64)matD.get();
+            Matrix64 mat = (Matrix64) matD.get();
             return new Tensor(mat.get());
+        } else if (data instanceof TensorData) {
+            return (Tensor)data.get();
         } else {
             throw new ArithmeticException("not implemented for now.");
         }
@@ -54,6 +56,13 @@ public class Tensor {
 
     // convert tensor to data.
     public static Data convert(Data data, Tensor tensor) {
+        if (data instanceof TensorData) {
+            Tensor temp = (Tensor) data.get();
+            if (temp.shape().rank() == 0) {
+                return new TensorData(tensor.reduceSum());
+            }
+            return new TensorData(tensor);
+        }
         if (data instanceof NumberData) {
             return new DoubleData(tensor.values[0]);
         } else if (tensor.shape().rank() == 1) {
@@ -71,7 +80,7 @@ public class Tensor {
 
     public Tensor(double scalar) {
         this.values = new double[]{scalar};
-        this.shape = new Shape(1);
+        this.shape = new Shape(0);
     }
 
     public Tensor(double scalar, Shape shape) {
@@ -79,6 +88,12 @@ public class Tensor {
         Arrays.fill(this.values, scalar);
         this.shape = shape;
 
+    }
+
+    public Tensor(double[] value, Shape shape) {
+        if (shape.elementSize() != value.length) throw new ArithmeticException("not correct shape");
+        this.values = value;
+        this.shape = shape;
     }
 
     public Tensor(double[] vector) {
@@ -99,57 +114,80 @@ public class Tensor {
         }
     }
 
-    public Tensor(double[] values, Shape shape) {
-        this.values = values;
-        this.shape = shape;
-    }
-
     public Tensor add(Tensor tensor) {
-        if (!this.shape.isET(tensor.shape)) {
+        Tensor temp = tensor;
+        Tensor own = this;
+        if (temp.shape.rank() == 0) {
+            temp = temp.expand(this.shape);
+        } else if (own.shape.rank() == 0) {
+            own = own.expand(tensor.shape);
+        }
+        if (!own.shape.isET(temp.shape)) {
             throw new ArithmeticException("shape is not match");
         }
-        int N = this.values.length;
-        double[] res = Arrays.copyOf(this.values, N);
+        int N = own.values.length;
+        double[] res = Arrays.copyOf(own.values, N);
         for (int i = 0; i < N; i++) {
-            res[i] += tensor.values[i];
+            res[i] += temp.values[i];
         }
-        return new Tensor(res, this.shape);
+        return new Tensor(res, own.shape);
     }
 
     public Tensor subtract(Tensor tensor) {
-        if (!this.shape.isET(tensor.shape)) {
+        Tensor temp = tensor;
+        Tensor own = this;
+        if (temp.shape.rank() == 0) {
+            temp = temp.expand(this.shape);
+        } else if (own.shape.rank() == 0) {
+            own = own.expand(tensor.shape);
+        }
+        if (!own.shape.isET(temp.shape)) {
             throw new ArithmeticException("shape is not match");
         }
-        int N = this.values.length;
-        double[] res = Arrays.copyOf(this.values, N);
+        int N = own.values.length;
+        double[] res = Arrays.copyOf(own.values, N);
         for (int i = 0; i < N; i++) {
-            res[i] -= tensor.values[i];
+            res[i] -= temp.values[i];
         }
-        return new Tensor(res, this.shape);
+        return new Tensor(res, own.shape);
     }
 
     public Tensor multiply(Tensor tensor) {
-        if (!this.shape.isET(tensor.shape)) {
+        Tensor temp = tensor;
+        Tensor own = this;
+        if (temp.shape.rank() == 0) {
+            temp = temp.expand(this.shape);
+        } else if (own.shape.rank() == 0) {
+            own = own.expand(tensor.shape);
+        }
+        if (!own.shape.isET(temp.shape)) {
             throw new ArithmeticException("shape is not match");
         }
-        int N = this.values.length;
-        double[] res = Arrays.copyOf(this.values, N);
+        int N = own.values.length;
+        double[] res = Arrays.copyOf(own.values, N);
         for (int i = 0; i < N; i++) {
-            res[i] *= tensor.values[i];
+            res[i] *= temp.values[i];
         }
-        return new Tensor(res, this.shape);
+        return new Tensor(res, own.shape);
     }
 
     public Tensor divide(Tensor tensor) {
-        if (!this.shape.isET(tensor.shape)) {
+        Tensor temp = tensor;
+        Tensor own = this;
+        if (temp.shape.rank() == 0) {
+            temp = temp.expand(this.shape);
+        } else if (own.shape.rank() == 0) {
+            own = own.expand(tensor.shape);
+        }
+        if (!own.shape.isET(temp.shape)) {
             throw new ArithmeticException("shape is not match");
         }
-        int N = this.values.length;
-        double[] res = Arrays.copyOf(this.values, N);
+        int N = own.values.length;
+        double[] res = Arrays.copyOf(own.values, N);
         for (int i = 0; i < N; i++) {
-            res[i] /= tensor.values[i];
+            res[i] /= temp.values[i];
         }
-        return new Tensor(res, this.shape);
+        return new Tensor(res, own.shape);
     }
 
     public Tensor matrixMultiply(Tensor tensor) {
@@ -241,7 +279,8 @@ public class Tensor {
     }
 
     public double toScalar() {
-        return this.values[0];
+        Tensor res = this.reduceSum();
+        return res.values[0];
     }
 
     // not to Matrix class in Approssi.

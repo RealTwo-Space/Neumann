@@ -16,9 +16,9 @@ public class CUtil {
         this.rand = new Random();
     }
 
-    CUtil(Congraph cg, long seed) {
+    CUtil(Congraph cg, Random random) {
         this.cg = cg;
-        this.rand = new Random(seed);
+        this.rand = random;
     }
 
     public double zero() {

@@ -2,6 +2,7 @@ package org.real2space.neumann.congraph;
 
 import org.real2space.neumann.approssi.core.structure.Matrix;
 import org.real2space.neumann.approssi.core.structure.Vector;
+import org.real2space.neumann.congraph.core.backpropagate.tensor.Tensor;
 import org.real2space.neumann.congraph.core.data.Data;
 import org.real2space.neumann.congraph.core.differentialequation.condition.DECondition;
 import org.real2space.neumann.congraph.core.function.ActivationFunction;
@@ -38,6 +39,8 @@ public class CNode {
         e.g.
 
         nodeC.execute(cg.assign(nodeA, 1.0))
+         OR
+        nodeC.execute(nodeA.assign(1.0))
 
         means that when nodeC execute, nodeA(placeholder) will be assigned 1.0
      */
@@ -63,6 +66,10 @@ public class CNode {
     }
 
     public Assign assign(double[] value) {
+        return cg.assign(this, value);
+    }
+
+    public Assign assign(Tensor value) {
         return cg.assign(this, value);
     }
 
@@ -130,11 +137,11 @@ public class CNode {
         return cg.tan(this);
     }
 
-    public CNode nabla(CNode nodeA, CNode nodeB, DECondition cond) {
-        return cg.nabla(nodeA, nodeB, cond);
+    public CNode nabla(CNode nodeB, DECondition cond) {
+        return cg.nabla(this, nodeB, cond);
     }
 
-    public CNode laplacian(CNode nodeA, CNode nodeB, DECondition cond) {
-        return cg.laplacian(nodeA, nodeB, cond);
+    public CNode laplacian(CNode nodeB, DECondition cond) {
+        return cg.laplacian(this, nodeB, cond);
     }
 }

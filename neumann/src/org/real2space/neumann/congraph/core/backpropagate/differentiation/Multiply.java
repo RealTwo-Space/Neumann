@@ -12,22 +12,8 @@ import org.real2space.neumann.congraph.core.data.NumberData;
  */
 public class Multiply implements BinomialDifferentiation {
     public Tensor[] execute(Tensor own, Tensor a, Tensor b) {
-        Tensor tempA, tempB;
-        if (a.shape().rank() == 0) {
-            tempA = a.expand(own.shape());
-        } else {
-            tempA = a;
-        }
-
-        if (b.shape().rank() == 0) {
-            tempB = b.expand(own.shape());
-        } else {
-            tempB = b;
-        }
-
-
         return new Tensor[] {
-                own.multiply(tempB), own.multiply(tempA)
+                own.multiply(b), own.multiply(a)
         };
     }
 }
