@@ -57,7 +57,7 @@ public class CTensorUtil {
     }
 
     public Tensor diagonol() {
-
+        return null;
     }
 
     public Tensor tensor(double[] values, Shape shape) {
