@@ -22,15 +22,27 @@ public class TuringTestC extends JFrame {
     Congraph cg;
     DECondition condition;
 
+
+    // interesting to see
     double f = 0.03;
-    double k = 0.056;
-    double du = 0.12;
-    double dv = 0.056;
+    double k = 0.054;
+    double du = 0.11;
+    double dv = 0.07;
     double dx = 1.0;
     double dt = 1.0;
 
-    int size = 150;
-    int ratio = 4;
+
+    /*
+    double f = 0.03;
+    double k = 0.056;
+    double du = 0.11;
+    double dv = 0.07;
+    double dx = 1.0;
+    double dt = 1.0;
+    */
+
+    int size = 200;
+    int ratio = (int)(600.0 / (double)size);
 
     CNode U;
     CNode V;
@@ -55,26 +67,37 @@ public class TuringTestC extends JFrame {
             for (int j = 0; j < size; j++) {
                 //uData[i][j] = 0.9;
                 //vData[i][j] = 0.0;
+                condData[i][j] = 0;
                 ones[i][j] = 1.0;
             }
         }
 
         /*
-        for (int i = 100; i < 140; i++) {
-            for (int j = 50; j < 80; j++) {
-                uData[i][j] = 1.0;
+        for (int i = size / 2 - size / 4; i < size / 2 + size / 4; i++) {
+            for (int j = size * 2 / 3 + size / 6; j < size * 2 / 3 + size / 4; j++) {
+                //uData[i][j] = 0.9;
                 vData[i][j] = 0.3;
             }
         }
         */
+
+        for (int i = size / 2 - size / 24; i < size / 2 + size / 24; i++) {
+            for (int j = size / 2 - size / 24; j < size / 2 + size / 24; j++) {
+                //uData[i][j] = 1.0;
+                //vData[i][j] = 0.3;
+            }
+        }
+
+
+
 
         Matrix64 u = new Matrix64(uData);
         Matrix64 v = new Matrix64(vData);
         Matrix64 c = new Matrix64(condData);
         Matrix64 one = new Matrix64(ones);
 
-        condition = DEConditionFactory.DIRICHRET(c);
-        //condition = DEConditionFactory.PERIODIC(dx);
+        //condition = DEConditionFactory.DIRICHRET(c);
+        condition = DEConditionFactory.PERIODIC(dx);
         //condition = DEConditionFactory.NEUMANN(dx);
 
         createGraph(u, v, c, one);
@@ -122,7 +145,7 @@ public class TuringTestC extends JFrame {
         cg.execute(batch);
 
         Matrix64 visV = (Matrix64)V.getData().get();
-        visV.multiply(2.0);
+        visV.multiply(3.0);
         float min;
 
         for (int i = 0, n = visV.getRow(); i < n; i++) {
@@ -132,7 +155,7 @@ public class TuringTestC extends JFrame {
                     g.setColor(Color.black);
                 }
                 else {
-                    g.setColor(new Color(min, min, min));
+                    g.setColor(new Color(1.0f - min, 1.0f - min, 0));
                 }
                 g.fillRect(i * ratio, j * ratio, ratio, ratio);
             }
