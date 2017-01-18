@@ -20,12 +20,15 @@ public class ShapeTest {
     @Test
     public void getTensorIndex() throws Exception {
         Shape shape = new Shape(3,2,4);
-        int N1 = shape.getTensorIndex(1,1,1);
-        int N2 = shape.getTensorIndex(1,1,2);
-        int N3 = shape.getTensorIndex(3,2,4);
+        Shape shapeA = new Shape(3,2,4,3);
+        Shape shapeB = new Shape(3,2,4,1);
+        int N1 = shape.getIndex(1,1,1);
+        int N2 = shape.getIndex(1,1,2);
+        int N3 = shape.getIndex(3,2,4);
         System.out.println(N1);
         System.out.println(N2);
         System.out.println(N3);
+        System.out.println(shapeB.getIndexWhichCanExpand(shapeA));
     }
 
 }

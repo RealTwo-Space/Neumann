@@ -46,6 +46,13 @@ public class CongraphTest {
     }
 
     @Test
+    public void matTest() {
+        Congraph cg = new Congraph();
+        cg.constant(new double[][]{{1.0}, {1.0}}).multiply(cg.constant(1.0)).execute();
+
+    }
+
+    @Test
     public void gradientTest() {
         Congraph cg = new Congraph(999L);
         CNode x = cg.constant(cg.util.normalRandoms(10, 3));

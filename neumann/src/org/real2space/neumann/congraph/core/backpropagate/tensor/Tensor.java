@@ -255,6 +255,19 @@ public class Tensor {
         return new Tensor(res, shape);
     }
 
+    // TODO: jissou
+    public Tensor expandTo(Shape shape) {
+        int expandIndex = this.shape.getIndexWhichCanExpand(shape);
+        if (expandIndex == -1) throw new ArithmeticException("cannot expand");
+        int N = shape.elementSize();
+
+        double[] res = new double[N];
+        for (int i = 0; i < N; i++) {
+            res[i] = this.values[shape.getIndex()];
+        }
+        return null;
+    }
+
     // [ [[1, 2]],[[2, 3]] ]2x1x2
     public Tensor reduce() {
         return null;

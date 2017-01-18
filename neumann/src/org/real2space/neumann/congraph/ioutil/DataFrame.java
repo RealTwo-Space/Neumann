@@ -5,7 +5,9 @@ import com.opencsv.CSVReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Project Neumann
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class DataFrame {
     private ArrayList<String> headers;
     private ArrayList<Column> columns;
+    private static Random random = new Random();
 
     private DataFrame() {
         this.headers = new ArrayList<String>();
@@ -54,6 +57,10 @@ public class DataFrame {
             System.out.println("cannot read");
             return null;
         }
+    }
+
+    public static void setRandomSeed(long value) {
+        random.setSeed(value);
     }
 
     public DataFrame combine(DataFrame df) {
@@ -259,6 +266,27 @@ public class DataFrame {
 
     public DataFrame divide(double value) {
         return this.multiply(1.0 / value);
+    }
+
+    public DataFrame sortRandom() {
+        DataFrame res = new DataFrame();
+        res.headers = this.headers;
+        Column col;
+        ArrayList<Column> pool = new ArrayList<Column>();
+        int N = this.columns.size();
+        for (int i = 0; i < N; i++) {
+            pool.add(this.columns.get(i));
+        }
+        int index;
+
+        for (int i = 0; i < N; i++) {
+            col = new Column();
+            index = random.nextInt(pool.size());
+            col.addAll(pool.get(index));
+            pool.remove(index);
+            res.columns.add(col);
+        }
+        return res;
     }
 
     public String[][] toStringArray() {
